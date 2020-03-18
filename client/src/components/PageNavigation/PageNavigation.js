@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 function PageNavigation() {
     return (
         <nav>
-            <ul>
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/friends">Znajomi</NavLink></li>
-                <li><NavLink to="/history">Historia</NavLink></li>
-                <li><NavLink to="/profile">Edytuj profil</NavLink></li>                
+            <ul className="mainNavigation">
+                <li><NavLink className="navLink" activeClassName="activNavLink" to="/">Home</NavLink></li>
+                <li><NavLink className="navLink" activeClassName="activNavLink" to="/friends">Znajomi</NavLink></li>
+                <li><NavLink className="navLink" activeClassName="activNavLink" to="/history">Historia</NavLink></li>
+                <li><NavLink className="navLink" activeClassName="activNavLink" to="/profile">Edytuj profil</NavLink></li>                
             </ul>
         </nav>
     );

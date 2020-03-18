@@ -6,23 +6,20 @@ import {
 } from 'react-router-dom';
 
 import PageNavigation from '../PageNavigation/PageNavigation';
+import Home from '../Home/Home';
 
 function App(){
     return (
         <BrowserRouter>
             <PageNavigation />
-            <h1>Hello, world!</h1>
+            <h1>ChitChat</h1>
             <Switch>
-                <Route path="/read">
+                <Route exact path="/">
                     <Home/>
                 </Route>    
             </Switch>
         </BrowserRouter>
     )
-}
-
-function Home() {
-    return <h2>Home</h2>;
 }
   
 
