@@ -9,6 +9,11 @@ function ChatWindow () {
             <textarea className="textArea">
 
             </textarea>
+            <div className="sendMessageButton">
+                <button className="sendMessageButton" type="button">
+                wyślij
+                </button>
+            </div>
         </div>
     );   
 }
