@@ -3,12 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>ChitChat Project</title>
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <style>
     body {
       padding: 0;
       margin: 0;
       height: 100%;
       width: 100%;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: bold;
     }
     #root, .page, .page > div {
       height: 95%;
@@ -135,7 +138,38 @@
       width: 70%;
       height: 350px;
     }
-   
+    .registerAccount {
+      margin: 0 auto;
+      border: black 1px solid;
+      width: 30%;
+      height: 750px;
+      text-align: center;
+      display: flex;
+      flex-direction: column; 
+    }
+    label {
+      padding: 9px 0 9px 100px;
+      width: 280px;
+      text-align: right;
+    }
+    .profileEdit {
+      margin: 0 auto;
+      border: black 1px solid;
+      width: 40%;
+      height: 850px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .profileEdit label {
+      width: 70%;
+    text-align: left;
+    }
+    hr {
+    width: 80%;
+    height: 10px;
+    color: gray;
+    }
   </style>
 </head>
 <body>

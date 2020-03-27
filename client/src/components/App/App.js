@@ -7,6 +7,8 @@ import {
 
 import PageNavigation from '../PageNavigation/PageNavigation';
 import Home from '../Home/Home';
+import RegisterAccount from '../RegisterAccount/RegisterAccount';
+import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
 function App(){
     return (
@@ -15,8 +17,14 @@ function App(){
             <h1>ChitChat</h1>
             <Switch>
                 <Route exact path="/">
-                    <Home/>
-                </Route>    
+                    <Home />
+                </Route>
+                <Route path="/register">
+                    <RegisterAccount />
+                </Route> 
+                <Route path="/profile/edit">
+                    <ProfileEdit />
+                </Route>  
             </Switch>
         </BrowserRouter>
     )
