@@ -112,6 +112,11 @@ function ProfileEdit(){
                         <label>Trzecie zainteresowanie
                             <input type="checkbox" id="3" name="interests" value="3"/>
                         </label>
+                        <div className="createAccountButton">
+                <button className="createProfilButton" type="button">
+                    Zapisz
+                </button>
+            </div>
         </div>
     )
 }
