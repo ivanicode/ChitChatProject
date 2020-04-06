@@ -1,8 +1,12 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import ErrorText from '../common/ErrorText/ErrorText';
 import {useManagePasswordMatch, useManageFormData} from './hooks';
 
+
 function RegisterAccount(){
+
+    const [errors, setErrors] = React.useState({});
 
     const {
         formData,
@@ -15,12 +19,35 @@ function RegisterAccount(){
         submitForm
     } = useManagePasswordMatch(formData);
 
+    function onBirthDateChangeHandler(event) {
+        onChangeHandler(event);
+        const date = dayjs(event.target.value);
+        console.log(date.isValid());
+        if(!date.isValid()){
+            console.log('is not valid')
+            setErrors({
+                ...errors, 
+                [event.target.id]: 'Data jest niepoprawna',
+            });
+            return;
+        }
+        if(date.year() > 2004){
+            setErrors({
+                ...errors, 
+                [event.target.id]: 'Jesteś za młody/a!',
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+    }
     
     
     return (
         <form onSubmit={submitForm} noValidate>
         <div className="registerAccount">
-            
+            {console.log(errors)}
             <label className="firstName">
                 Imię:
                 <input type="text" id="firstName" value={formData.firstName} onChange={onChangeHandler}></input>
@@ -32,7 +59,8 @@ function RegisterAccount(){
             <label className="birthDate">
                 Data urodzenia:
                 <input type="date" max="2004-12-31" min="1900-01-01"
-                id="date" value={formData.date} onChange={onChangeHandler}></input>
+                id="date" value={formData.date} onChange={onBirthDateChangeHandler} onKeyPress={onBirthDateChangeHandler}></input>
+                {errors.date && <ErrorText error={errors.date} />}
             </label>
             <label className="email">
                 e-mail:

@@ -2,9 +2,12 @@ import React from 'react';
 
 
 
-function ErrorText() {
+function ErrorText(props) {
+    const defaultErrorText = 'Hasło jest niezgodne';
+    const errorText = props.error ? props.error : defaultErrorText;
+
     return (
-    <span className="error active" aria-live="polite">Hasło jest niezgodne</span>
+    <span className="error active" aria-live="polite">{errorText}</span>
     )
 }
 
