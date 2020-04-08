@@ -1,12 +1,9 @@
 import React from 'react';
-import dayjs from 'dayjs';
 import ErrorText from '../common/ErrorText/ErrorText';
-import {useManagePasswordMatch, useManageFormData} from './hooks';
+import {useManagePasswordMatch, useManageFormData, useManageErrors} from './hooks';
 
 
 function RegisterAccount(){
-
-    const [errors, setErrors] = React.useState({});
 
     const {
         formData,
@@ -19,29 +16,10 @@ function RegisterAccount(){
         submitForm
     } = useManagePasswordMatch(formData);
 
-    function onBirthDateChangeHandler(event) {
-        onChangeHandler(event);
-        const date = dayjs(event.target.value);
-        console.log(date.isValid());
-        if(!date.isValid()){
-            console.log('is not valid')
-            setErrors({
-                ...errors, 
-                [event.target.id]: 'Data jest niepoprawna',
-            });
-            return;
-        }
-        if(date.year() > 2004){
-            setErrors({
-                ...errors, 
-                [event.target.id]: 'Jesteś za młody/a!',
-            });
-            return;
-        }
-        const newErrors = {...errors};
-        delete newErrors[event.target.id];
-        setErrors(newErrors);
-    }
+    const {
+        errors,
+        onBirthDateChangeHandler,
+    } = useManageErrors(onChangeHandler)
     
     
     return (

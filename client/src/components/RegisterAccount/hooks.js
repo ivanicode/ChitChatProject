@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import dayjs from 'dayjs';
 
 export function useManagePasswordMatch(formData) {
     const [isPasswordValid, setIsPasswordValid] = useState(true);
@@ -49,11 +50,40 @@ export function useManageFormData(){
     function onChangeHandler(event){
         const id = event.target.id;
         const value = event.target.value;
-        console.log(id, value);
         const newState = {...formData};
         newState[id] = value;
         setFormData(newState);
     }
 
     return {formData, onChangeHandler}
+}
+
+
+export function useManageErrors(onChangeHandler){
+
+    const [errors, setErrors] = useState({});
+
+    function onBirthDateChangeHandler(event) {
+        onChangeHandler(event);
+        const date = dayjs(event.target.value);
+        if(!date.isValid()){
+            setErrors({
+                ...errors, 
+                [event.target.id]: 'Data jest niepoprawna',
+            });
+            return;
+        }
+        if(date.year() > 2004){
+            setErrors({
+                ...errors, 
+                [event.target.id]: 'Jesteś za młody/a!',
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+    }
+    return {errors, onBirthDateChangeHandler}
+
 }
