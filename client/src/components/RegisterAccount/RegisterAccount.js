@@ -1,27 +1,20 @@
 import React from 'react';
 import ErrorText from '../common/ErrorText/ErrorText';
-import {useManagePasswordMatch, useManageFormData, useManageErrors} from './hooks';
+import { useAllHooks } from './hooks';
 
 
 function RegisterAccount(){
 
     const {
-        formData,
-        onChangeHandler
-    } = useManageFormData();
-
-    const {
         isPasswordValid, 
         inputRepeatedPassword,
-        submitForm
-    } = useManagePasswordMatch(formData);
-
-    const {
+        submitForm,
         errors,
         onBirthDateChangeHandler,
-    } = useManageErrors(onChangeHandler)
-    
-    
+        formData,
+        onChangeHandler
+    } = useAllHooks()
+
     return (
         <form onSubmit={submitForm} noValidate>
         <div className="registerAccount">

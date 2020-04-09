@@ -1,6 +1,34 @@
 import {useState} from 'react';
 import dayjs from 'dayjs';
 
+export function useAllHooks() {
+    const {
+        formData, 
+        onChangeHandler
+    } = useManageFormData();
+
+    const {
+        isPasswordValid, 
+        inputRepeatedPassword,
+        submitForm
+    } = useManagePasswordMatch(formData);
+
+    const {
+        errors,
+        onBirthDateChangeHandler,
+    } = useManageErrors(onChangeHandler)
+
+    return {
+        isPasswordValid, 
+        inputRepeatedPassword,
+        submitForm,
+        errors,
+        onBirthDateChangeHandler,
+        formData,
+        onChangeHandler,
+    }
+}
+
 export function useManagePasswordMatch(formData) {
     const [isPasswordValid, setIsPasswordValid] = useState(true);
 
