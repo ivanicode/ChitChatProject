@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ChatWindow () {
+export function ChatWindow () {
     return (
         <div className="chatWindow">
             <div className="conversation">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProfileEdit(){
+export function ProfileEdit(){
     return (
         <div className="profileEdit">
             <label className="profilePicture">

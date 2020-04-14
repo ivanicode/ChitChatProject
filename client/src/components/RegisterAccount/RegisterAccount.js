@@ -3,7 +3,7 @@ import ErrorText from '../common/ErrorText/ErrorText';
 import { useAllHooks } from './hooks';
 
 
-function RegisterAccount(){
+export function RegisterAccount(){
 
     const {
         isPasswordValid, 

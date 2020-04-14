@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterAccount component should match snapshot 1`] = `
+<form
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <div
+    className="registerAccount"
+  >
+    <label
+      className="firstName"
+    >
+      Imię:
+      <input
+        id="firstName"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      className="lastName"
+    >
+      Nazwisko:
+      <input
+        id="lastName"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <label
+      className="birthDate"
+    >
+      Data urodzenia:
+      <input
+        id="date"
+        max="2004-12-31"
+        min="1900-01-01"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        type="date"
+        value=""
+      />
+    </label>
+    <label
+      className="email"
+    >
+      e-mail:
+      <input
+        id="mail"
+        onChange={[Function]}
+        type="email"
+        value=""
+      />
+    </label>
+    <label
+      className="password"
+    >
+      Hasło:
+      <input
+        id="originalPassword"
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </label>
+    <label
+      className="repeatPassword"
+    >
+      Powtórz hasło:
+      <input
+        id="repeatedPassword"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </label>
+    <div
+      className="createAccountButton"
+    >
+      <button
+        className="createAccountButton"
+        type="button"
+      >
+        Stwórz konto
+      </button>
+    </div>
+  </div>
+</form>
+`;

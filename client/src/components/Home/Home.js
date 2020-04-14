@@ -4,7 +4,7 @@ import ChatWindow from '../ChatWindow/ChatWindow';
 import MyProfile from '../MyProfile/MyProfile';
 import Profile from '../Profile/Profile';
 
-function Home(){
+export function Home(){
     return(
         <div className="page">
             <MyProfile />

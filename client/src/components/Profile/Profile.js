@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Profile () {
+export function Profile () {
     return (
         <div className="profile">
             <div className="mainPictureOfHim">

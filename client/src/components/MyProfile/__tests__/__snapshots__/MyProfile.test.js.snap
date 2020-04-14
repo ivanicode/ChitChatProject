@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyProfile component should match snapshot 1`] = `
+<div
+  className="myProfile"
+>
+  <div
+    className="mainPicture"
+  >
+    Zdjęcie profilowe
+  </div>
+  <div
+    className="nickname"
+  >
+    Nickname
+  </div>
+  <div
+    className="status"
+  />
+  <div
+    className="interests"
+  >
+    <div>
+      Miasto
+    </div>
+    <div>
+      Wiek
+    </div>
+    <div>
+      Główne zainteresowania po przecinku(max 3)
+    </div>
+  </div>
+  <div
+    className="myPage"
+  />
+</div>
+`;

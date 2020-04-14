@@ -10,7 +10,8 @@ import Home from '../Home/Home';
 import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 
-function App(){
+
+export function App(){
     return (
         <BrowserRouter>
             <PageNavigation />

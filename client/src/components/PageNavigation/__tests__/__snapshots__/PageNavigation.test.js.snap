@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageNavigation component should match snapshot 1`] = `
+<nav>
+  <ul
+    className="mainNavigation"
+  >
+    <li>
+      <NavLink
+        activeClassName="activNavLink"
+        className="navLink"
+        to="/"
+      >
+        Home
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="activNavLink"
+        className="navLink"
+        to="/friends"
+      >
+        Znajomi
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="activNavLink"
+        className="navLink"
+        to="/history"
+      >
+        Historia
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="activNavLink"
+        className="navLink"
+        to="/profile/edit"
+      >
+        Edytuj profil
+      </NavLink>
+    </li>
+  </ul>
+</nav>
+`;

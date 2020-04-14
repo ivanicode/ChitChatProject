@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-function ErrorText(props) {
+export function ErrorText(props) {
     const defaultErrorText = 'Hasło jest niezgodne';
     const errorText = props.error ? props.error : defaultErrorText;
 
