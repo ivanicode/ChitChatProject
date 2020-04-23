@@ -3,7 +3,7 @@
 exports[`RegisterAccount component should match snapshot 1`] = `
 <form
   noValidate={true}
-  onSubmit={[Function]}
+  onSubmit={[MockFunction]}
 >
   <div
     className="registerAccount"
@@ -14,9 +14,8 @@ exports[`RegisterAccount component should match snapshot 1`] = `
       Imię:
       <input
         id="firstName"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="text"
-        value=""
       />
     </label>
     <label
@@ -25,9 +24,8 @@ exports[`RegisterAccount component should match snapshot 1`] = `
       Nazwisko:
       <input
         id="lastName"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="text"
-        value=""
       />
     </label>
     <label
@@ -38,10 +36,12 @@ exports[`RegisterAccount component should match snapshot 1`] = `
         id="date"
         max="2004-12-31"
         min="1900-01-01"
-        onChange={[Function]}
-        onKeyPress={[Function]}
+        onChange={[MockFunction]}
+        onKeyPress={[MockFunction]}
         type="date"
-        value=""
+      />
+      <ErrorText
+        error={1}
       />
     </label>
     <label
@@ -50,9 +50,8 @@ exports[`RegisterAccount component should match snapshot 1`] = `
       e-mail:
       <input
         id="mail"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="email"
-        value=""
       />
     </label>
     <label
@@ -61,9 +60,8 @@ exports[`RegisterAccount component should match snapshot 1`] = `
       Hasło:
       <input
         id="originalPassword"
-        onChange={[Function]}
+        onChange={[MockFunction]}
         type="password"
-        value=""
       />
     </label>
     <label
@@ -72,11 +70,11 @@ exports[`RegisterAccount component should match snapshot 1`] = `
       Powtórz hasło:
       <input
         id="repeatedPassword"
-        onBlur={[Function]}
-        onChange={[Function]}
+        onBlur={[MockFunction]}
+        onChange={[MockFunction]}
         type="password"
-        value=""
       />
+      <ErrorText />
     </label>
     <div
       className="createAccountButton"
