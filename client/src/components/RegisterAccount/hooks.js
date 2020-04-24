@@ -40,7 +40,7 @@ export function useManagePasswordMatch(formData) {
         setIsPasswordValid(false) 
     }
     function inputRepeatedPassword() {
-     
+        console.log(formData)
         if (checkIfPasswordMatch()) {
             setIsPasswordValid(true)
             
