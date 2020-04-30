@@ -6,34 +6,42 @@ const notMatchingPasswords = {originalPassword: 'a', repeatedPassword: 'b'};
 
 describe('RegisterAccount hooks', () => {
     describe('useManagePasswordMatch function', () => {
-        let hookResult;
-            beforeAll(() => {
-                hookResult = renderHook(
-                    (props) => useManagePasswordMatch(props),
-                    {
-                        initialProps: matchingPasswords
-                    }
-                )
-            })
+        
             it('should return proper values', () => {
-                console.log(hookResult)
+                const hookResult = renderHook(() => useManagePasswordMatch(matchingPasswords));
+                
                 expect(hookResult.result.current.isPasswordValid).toEqual(true)
                 expect(typeof hookResult.result.current.submitForm).toEqual('function')
                 expect(typeof hookResult.result.current.inputRepeatedPassword).toEqual('function')
             })
-            it('', () => {
+            it('should set isPasswordValid to false if inputRepeatedPassword was called and passwords are not matching', () => {
+                const hookResult = renderHook(() => useManagePasswordMatch(notMatchingPasswords));
+
                 expect(hookResult.result.current.isPasswordValid).toEqual(true)
-                console.log('abc')
-                hookResult.rerender(notMatchingPasswords)
                 act(() => {
                     hookResult.result.current.inputRepeatedPassword()
                 })
-
-                //expect(hookResult.result.current.isPasswordValid).toEqual(false)
+                expect(hookResult.result.current.isPasswordValid).toEqual(false)
             })
         
-        it('should change isPasswordValid to false if showError was called', () => {
+            it('should set isPasswordValid to false if submitForm was called for not matching passwords', () => {
+                const hookResult = renderHook(() => useManagePasswordMatch(notMatchingPasswords));
 
-        })
+                expect(hookResult.result.current.isPasswordValid).toEqual(true)
+                act(() => {
+                    hookResult.result.current.submitForm({preventDefault: jest.fn()})
+                })
+                expect(hookResult.result.current.isPasswordValid).toEqual(false)
+            })
+            it('should not change isPasswordValid if submitForm was called for matching passwords', () => {
+                const hookResult = renderHook(() => useManagePasswordMatch(matchingPasswords));
+
+                expect(hookResult.result.current.isPasswordValid).toEqual(true)
+                act(() => {
+                    hookResult.result.current.submitForm({preventDefault: jest.fn()})
+                })
+                expect(hookResult.result.current.isPasswordValid).toEqual(true)
+
+            })
     })
 })

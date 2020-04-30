@@ -36,31 +36,25 @@ export function useManagePasswordMatch(formData) {
         
         return formData.originalPassword === formData.repeatedPassword;
     }
-    function showError(){
-        setIsPasswordValid(false) 
-    }
+    
     function inputRepeatedPassword() {
-        console.log(formData)
-        if (checkIfPasswordMatch()) {
-            setIsPasswordValid(true)
-            
-        } else {
-          
-          showError();
-        }
+        const result = checkIfPasswordMatch();
+        setIsPasswordValid(result)
       }
-      function submitForm(event) {
-      
-        if(!checkIfPasswordMatch()) {
-          showError();
-          event.preventDefault();
+
+    function submitForm(event) {
+        const result = checkIfPasswordMatch()
+        if(!result) {
+            setIsPasswordValid(result)
+            event.preventDefault();
         }
-      }
-      return {
-          isPasswordValid, 
-          inputRepeatedPassword,
+    }
+    
+    return {
+        isPasswordValid, 
+        inputRepeatedPassword,
         submitForm
-      }
+    }
 }
 
 export const initialState = {
