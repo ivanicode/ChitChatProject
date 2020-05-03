@@ -70,7 +70,6 @@ export function useManageFormData(){
     const [formData, setFormData] = useState(initialState);
 
     function onChangeHandler(event){
-        console.log(event)
         const id = event.target.id;
         const value = event.target.value;
         const newState = {...formData};
