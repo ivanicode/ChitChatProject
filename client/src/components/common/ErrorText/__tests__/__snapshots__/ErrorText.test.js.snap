@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorText component should match snapshot 1`] = `
+<span
+  aria-live="polite"
+  className="error active"
+>
+  Hasło jest niezgodne
+</span>
+`;
+
+exports[`ErrorText component should match snapshot with passed data 1`] = `
+<span
+  aria-live="polite"
+  className="error active"
+>
+  Błąd
+</span>
+`;

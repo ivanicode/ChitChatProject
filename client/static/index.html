@@ -149,7 +149,7 @@
     }
     label {
       padding: 9px 0 9px 100px;
-      width: 280px;
+      width: 290px;
       text-align: right;
     }
     .profileEdit {
@@ -170,6 +170,46 @@
     height: 10px;
     color: gray;
     }
+
+    input:invalid{
+  border-color: #900;
+  background-color: #FDD;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+
+input {
+  border-radius: 5px;
+  margin: 7px;
+
+}
+
+button {
+  margin-top: 30px;
+    background: #ffe6cc;
+    border-radius: 10px;
+    width: 200px;
+    height: 80%;
+}
+
+/* This is the style of our error messages */
+.error {
+  width  : 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.3em;
+}
   </style>
 </head>
 <body>

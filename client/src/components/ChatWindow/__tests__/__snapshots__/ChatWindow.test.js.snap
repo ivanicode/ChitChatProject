@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChatWindow component should match snapshot 1`] = `
+<div
+  className="chatWindow"
+>
+  <div
+    className="conversation"
+  />
+  <textarea
+    className="textArea"
+  />
+  <div
+    className="sendMessageButton"
+  >
+    <button
+      className="sendMessageButton"
+      type="button"
+    >
+      wyślij
+    </button>
+  </div>
+</div>
+`;

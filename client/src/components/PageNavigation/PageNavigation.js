@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-function PageNavigation() {
+export function PageNavigation() {
     return (
         <nav>
             <ul className="mainNavigation">
