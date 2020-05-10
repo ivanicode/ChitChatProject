@@ -7,7 +7,9 @@
     "test": "jest --coverage",
     "dev-client-build": "webpack --config client/webpack.dev.config.js",
     "dev-client-run": "webpack-dev-server --config client/webpack.dev.config.js",
-    "dev-client-eslint": "eslint client/src"
+    "dev-client-eslint": "eslint client/src",
+    "dev-server-run": "nodemon babel-node ./server/src/index.js --inspect",
+    "dev-server-build": "webpack --config server/webpack.dev.config.js"
   },
   "repository": {
     "type": "git",
@@ -24,13 +26,16 @@
   },
   "homepage": "https://github.com/ivanicode/ChitChatProject#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dayjs": "^1.8.23",
+    "express": "^4.17.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
     "@testing-library/react-hooks": "^3.2.1",
@@ -44,6 +49,7 @@
     "eslint-plugin-react": "^7.18.3",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.3.0",
+    "nodemon": "^2.0.3",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
