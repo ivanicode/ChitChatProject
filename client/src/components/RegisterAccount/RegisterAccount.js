@@ -1,6 +1,7 @@
 import React from 'react';
 import ErrorText from '../common/ErrorText/ErrorText';
-import { useAllHooks } from './hooks';
+import { useAllHooks, useBooksFetch } from './hooks';
+
 
 
 export function RegisterAccount(){
@@ -14,6 +15,8 @@ export function RegisterAccount(){
         formData,
         onChangeHandler
     } = useAllHooks()
+
+    const { data } = useBooksFetch();
 
     return (
         <form onSubmit={submitForm} noValidate>
@@ -52,8 +55,26 @@ export function RegisterAccount(){
                 </button>
             </div>
         </div>
+        <div>
+            <h1>Books</h1>
+            {data?.items?.map((book) => (
+                <div key={book.id}>
+                    <div style={{ width: '100px', display: 'inline-block' }}>
+                        {book.id}
+                    </div>
+                    <span>{book.title}</span>
+                </div>
+            ))}
+        </div>
         </form>
     )
 }
 
+RegisterAccount.displayName = 'RegisterAccount';
+RegisterAccount.propTypes = {};
+
 export default RegisterAccount;
+
+
+
+
