@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorText from '../common/ErrorText/ErrorText';
-import { useAllHooks, useBooksFetch } from './hooks';
-
+import { useAllHooks } from './hooks';
+import {useFetch} from '../../common/hooks/useFetchHook'
 
 
 export function RegisterAccount(){
@@ -13,10 +13,11 @@ export function RegisterAccount(){
         errors,
         onBirthDateChangeHandler,
         formData,
-        onChangeHandler
+        onChangeHandler,
+        onNameChangeHandler
     } = useAllHooks()
 
-    const { data } = useBooksFetch();
+    const { data } = useFetch('/api/user');
 
     return (
         <form onSubmit={submitForm} noValidate>
@@ -24,11 +25,13 @@ export function RegisterAccount(){
             {console.log(errors)}
             <label className="firstName">
                 Imię:
-                <input type="text" id="firstName" value={formData.firstName} onChange={onChangeHandler} required></input>
+                <input type="text" id="firstName" value={formData.firstName} onChange={onNameChangeHandler} ></input>
+                {errors.firstName && <ErrorText error={errors.firstName} />}
             </label>
             <label className="lastName">
                 Nazwisko:
-                <input type="text" id="lastName" value={formData.lastName} onChange={onChangeHandler} required></input>
+                <input type="text" id="lastName" value={formData.lastName} onChange={onNameChangeHandler} ></input>
+                {errors.lastName && <ErrorText error={errors.lastName} />}
             </label>
             <label className="birthDate">
                 Data urodzenia:
@@ -42,7 +45,7 @@ export function RegisterAccount(){
             </label>
             <label className="password">
                 Hasło:
-                <input type="password" id="originalPassword" value={formData.originalPassword} onChange={onChangeHandler} required></input>
+                <input type="password" id="originalPassword" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" value={formData.originalPassword} onChange={onChangeHandler} required></input>
             </label>
             <label className="repeatPassword">
                 Powtórz hasło:
@@ -50,7 +53,7 @@ export function RegisterAccount(){
                 {!isPasswordValid && <ErrorText />}
             </label>
             <div className="createAccountButton">
-                <button className="createAccountButton" type="button">
+                <button className="createAccountButton" type="submit">
                 Stwórz konto
                 </button>
             </div>
