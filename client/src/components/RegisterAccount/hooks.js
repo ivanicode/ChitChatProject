@@ -16,6 +16,7 @@ export function useAllHooks() {
     const {
         errors,
         onBirthDateChangeHandler,
+        onNameChangeHandler,
     } = useManageErrors(onChangeHandler)
 
     return {
@@ -26,6 +27,7 @@ export function useAllHooks() {
         onBirthDateChangeHandler,
         formData,
         onChangeHandler,
+        onNameChangeHandler,
     }
 }
 
@@ -106,6 +108,25 @@ export function useManageErrors(onChangeHandler){
         delete newErrors[event.target.id];
         setErrors(newErrors);
     }
-    return {errors, onBirthDateChangeHandler}
+
+    function onNameChangeHandler(event){
+        console.log('onNameChangeHandler')
+        onChangeHandler(event);
+        const name = event.target.value;
+        console.log(name)
+        if(!name.length){
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Musisz wypełnić wszystkie pola'
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+        
+    }
+    return {errors, onBirthDateChangeHandler, onNameChangeHandler}
 
 }
+

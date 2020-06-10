@@ -33,7 +33,13 @@ module.exports = {
         clientLogLevel: 'debug',
         hot: true,
         open: 'google-chrome',
-        port: 8081
+        port: 8081,
+        proxy: {
+            '/api': {
+                changeOrigin: true,
+                target: 'http://localhost:8080'
+      }
+    }
     },
     plugins: [
         new HtmlWebpackPlugin({ template: path.join(__dirname, 'static/index.html') })
