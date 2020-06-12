@@ -14,7 +14,9 @@ export function RegisterAccount(){
         onBirthDateChangeHandler,
         formData,
         onChangeHandler,
-        onNameChangeHandler
+        onNameChangeHandler,
+        onPasswordBlurHandler,
+        onEmailBlurHandler
     } = useAllHooks()
 
     const { data } = useFetch('/api/user');
@@ -36,20 +38,22 @@ export function RegisterAccount(){
             <label className="birthDate">
                 Data urodzenia:
                 <input type="date" max="2004-12-31" min="1900-01-01"
-                id="date" value={formData.date} onChange={onBirthDateChangeHandler} onKeyPress={onBirthDateChangeHandler} required></input>
+                id="date" value={formData.date} onChange={onBirthDateChangeHandler} onKeyPress={onBirthDateChangeHandler} ></input>
                 {errors.date && <ErrorText error={errors.date} />}
             </label>
             <label className="email">
                 e-mail:
-                <input type="email" id="mail" value={formData.mail} onChange={onChangeHandler} required></input>
+                <input type="email" id="mail" value={formData.mail} onBlur={onEmailBlurHandler} onChange={onChangeHandler}></input>
+                {errors.mail && <ErrorText error={errors.mail} />}
             </label>
             <label className="password">
                 Hasło:
-                <input type="password" id="originalPassword" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" value={formData.originalPassword} onChange={onChangeHandler} required></input>
+                <input type="password" id="originalPassword" value={formData.originalPassword} onBlur={onPasswordBlurHandler} onChange={onChangeHandler} ></input>
+                {errors.originalPassword && <ErrorText error={errors.originalPassword} />}
             </label>
             <label className="repeatPassword">
                 Powtórz hasło:
-                <input type="password" id="repeatedPassword" onBlur={inputRepeatedPassword} value={formData.repeatedPassword} onChange={onChangeHandler} required></input>
+                <input type="password" id="repeatedPassword" onBlur={inputRepeatedPassword} value={formData.repeatedPassword} onChange={onChangeHandler} ></input>
                 {!isPasswordValid && <ErrorText />}
             </label>
             <div className="createAccountButton">

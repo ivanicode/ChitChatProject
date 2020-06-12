@@ -17,6 +17,8 @@ export function useAllHooks() {
         errors,
         onBirthDateChangeHandler,
         onNameChangeHandler,
+        onPasswordBlurHandler,
+        onEmailBlurHandler
     } = useManageErrors(onChangeHandler)
 
     return {
@@ -28,6 +30,8 @@ export function useAllHooks() {
         formData,
         onChangeHandler,
         onNameChangeHandler,
+        onPasswordBlurHandler,
+        onEmailBlurHandler
     }
 }
 
@@ -113,7 +117,6 @@ export function useManageErrors(onChangeHandler){
         console.log('onNameChangeHandler')
         onChangeHandler(event);
         const name = event.target.value;
-        console.log(name)
         if(!name.length){
             setErrors({
                 ...errors,
@@ -126,7 +129,41 @@ export function useManageErrors(onChangeHandler){
         setErrors(newErrors);
         
     }
-    return {errors, onBirthDateChangeHandler, onNameChangeHandler}
+
+    function onPasswordBlurHandler(event){
+        
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
+        const value = event.target.value;
+        if(!value.match(pattern)){
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Hasło musi mieć co najmniej jedną dużą literę, jedną małą literę i cyfrę'
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+        
+    }
+
+    function onEmailBlurHandler(event){
+
+        const email = event.target.value;
+        if(!email.length){
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Musisz wypełnić wszystkie pola'
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+
+    }
+
+    return {errors, onBirthDateChangeHandler, onNameChangeHandler, onPasswordBlurHandler, onEmailBlurHandler}
 
 }
 
