@@ -62,17 +62,6 @@ export function RegisterAccount(){
                 </button>
             </div>
         </div>
-        <div>
-            <h1>Books</h1>
-            {data?.items?.map((book) => (
-                <div key={book.id}>
-                    <div style={{ width: '100px', display: 'inline-block' }}>
-                        {book.id}
-                    </div>
-                    <span>{book.title}</span>
-                </div>
-            ))}
-        </div>
         </form>
     )
 }

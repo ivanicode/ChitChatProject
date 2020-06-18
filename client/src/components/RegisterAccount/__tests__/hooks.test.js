@@ -101,7 +101,7 @@ describe('RegisterAccount hooks', () => {
             const properDateEvent = {
                 ...event,
                 target: {
-                    ...event.target, 
+                    ...event.target,
                     value: '1998-03-22'
                 }
             }
@@ -127,10 +127,103 @@ describe('RegisterAccount hooks', () => {
             })
             expect(hookResult.result.current.errors).toEqual({date: 'Jesteś za młody/a!'})
         })
+        it('should change errors to have name error if first and lastName input is empty', () => {
+            const onChangeHandler = jest.fn()
+            const {result} = renderHook(() => useManageErrors(onChangeHandler));
+            expect(typeof result.current.onNameChangeHandler).toEqual('function');
+            expect(result.current.errors).toEqual({});
+            
+            act(() => {
+                result.current.onNameChangeHandler({
+                    ...event,
+                    target: {
+                        ...event.target, 
+                        value: '', 
+                        id: 'name'
+                    }
+                })
+            })
+
+            expect(result.current.errors.name.length).toBeGreaterThan(0);
+
+            act(() => {
+                result.current.onNameChangeHandler({
+                    ...event,
+                    target: {
+                        ...event.target, 
+                        value: 'Kasia', 
+                        id: 'name'
+                    }
+                })
+            })
+
+            expect(result.current.errors.name).toEqual(undefined)
+
+        })
+        it('should change errors to have password error if password does not meet the requirements', () => {
+            const {result} = renderHook(() => useManageErrors());
+            expect(typeof result.current.onPasswordBlurHandler).toEqual('function');
+            expect(result.current.errors).toEqual({});
+
+            act(() => {
+                result.current.onPasswordBlurHandler({
+                    ...event,
+                    target: {
+                        value: 'haslo',
+                        id: 'originalPassword'
+                    }
+                });
+            })
+
+            expect(result.current.errors.originalPassword).toEqual('Hasło musi mieć co najmniej jedną dużą literę, jedną małą literę i cyfrę')
+
+            act(() => {
+                result.current.onPasswordBlurHandler({
+                    ...event,
+                    target: {
+                        value: 'Haslo1',
+                        id: 'originalPassword'
+                    }
+                });
+            })
+
+            expect(result.current.errors.originalPassword).toEqual(undefined)
+        })
+    
+        it('should change errors to have password error if email input is empty', () => {
+            const {result} = renderHook(() => useManageErrors());
+            expect(typeof result.current.onEmailBlurHandler).toEqual('function');
+            expect(result.current.errors).toEqual({});
+
+            act(() => {
+                result.current.onEmailBlurHandler({
+                    ...event,
+                    target: {
+                        value: '',
+                        id: 'mail'
+                    }
+                });
+            })
+
+            expect(result.current.errors.mail).toEqual('Musisz wypełnić wszystkie pola')
+
+            act(() => {
+                result.current.onEmailBlurHandler({
+                    ...event,
+                    target: {
+                        value: 'kaja.bernicka@gmail.com',
+                        id: 'mail'
+                    }
+                });
+            })
+
+            expect(result.current.errors.mail).toEqual(undefined)
+        })
     })
+
     describe('useAllHooks function', () => {
-        it('should return proper data6', () => {
-            const hookResult = renderHook(() => useAllHooks())
+        it('should return proper data', () => {
+            const hookResult = renderHook(() => useAllHooks());
             expect(Object.keys(hookResult.result.current).sort()).toEqual([
                 'errors',
                 'formData',
@@ -138,7 +231,10 @@ describe('RegisterAccount hooks', () => {
                 'isPasswordValid',
                 'onBirthDateChangeHandler',
                 'onChangeHandler',
-                'submitForm'
+                'onEmailBlurHandler',
+                'onNameChangeHandler',
+                'onPasswordBlurHandler',
+                'submitForm',
             ])
         })
     })
