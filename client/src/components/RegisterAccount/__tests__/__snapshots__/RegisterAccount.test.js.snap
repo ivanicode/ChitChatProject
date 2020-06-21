@@ -1,95 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RegisterAccount component should match snapshot 1`] = `
-<form
-  noValidate={true}
-  onSubmit={[MockFunction]}
->
-  <div
-    className="registerAccount"
-  >
-    <label
-      className="firstName"
-    >
-      Imię:
-      <input
-        id="firstName"
-        onChange={[MockFunction]}
-        type="text"
-      />
-    </label>
-    <label
-      className="lastName"
-    >
-      Nazwisko:
-      <input
-        id="lastName"
-        onChange={[MockFunction]}
-        type="text"
-      />
-    </label>
-    <label
-      className="birthDate"
-    >
-      Data urodzenia:
-      <input
-        id="date"
-        max="2004-12-31"
-        min="1900-01-01"
-        onChange={[MockFunction]}
-        onKeyPress={[MockFunction]}
-        type="date"
-      />
-      <ErrorText
-        error={1}
-      />
-    </label>
-    <label
-      className="email"
-    >
-      e-mail:
-      <input
-        id="mail"
-        onChange={[MockFunction]}
-        type="email"
-      />
-    </label>
-    <label
-      className="password"
-    >
-      Hasło:
-      <input
-        id="originalPassword"
-        onChange={[MockFunction]}
-        type="password"
-      />
-    </label>
-    <label
-      className="repeatPassword"
-    >
-      Powtórz hasło:
-      <input
-        id="repeatedPassword"
-        onBlur={[MockFunction]}
-        onChange={[MockFunction]}
-        type="password"
-      />
-      <ErrorText />
-    </label>
-    <div
-      className="createAccountButton"
-    >
-      <button
-        className="createAccountButton"
-        type="button"
-      >
-        Stwórz konto
-      </button>
-    </div>
-  </div>
-</form>
-`;
-
 exports[`RegisterAccount component should match snapshot when errors exist 1`] = `
 <form
   noValidate={true}
@@ -189,11 +99,6 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       </button>
     </div>
   </div>
-  <div>
-    <h1>
-      Books
-    </h1>
-  </div>
 </form>
 `;
 
@@ -280,11 +185,6 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
         Stwórz konto
       </button>
     </div>
-  </div>
-  <div>
-    <h1>
-      Books
-    </h1>
   </div>
 </form>
 `;

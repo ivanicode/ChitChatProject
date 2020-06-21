@@ -1,7 +1,7 @@
 import {useReducer, useEffect} from 'react';
 
 
-const initialData = {
+export const initialData = {
     requesting: false,
     data: null,
     error: null,
@@ -26,9 +26,7 @@ export function useFetch(path) {
   
     useEffect(
         () => {
-            console.log(dispatch)
             dispatch({ type: 'requesting' });
-            console.log('fetch');
             fetch(path)
                 .then(response => response.json())
                 .then(data => {
