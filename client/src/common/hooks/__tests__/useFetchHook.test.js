@@ -34,9 +34,26 @@ describe('useFetchHook', () => {
             let state;
             await act( async () => {
                 const {result} = await renderHook(() => useFetch('abc'))
-                state = await result.current
+                state = await result;
             })
-            console.log(state)
+            expect(state.current.requesting).toEqual(false);
+            expect(state.current.data).toEqual({name: 'Kasia', lastName: 'Stosio'});
+            expect(state.current.error).toEqual(null);
+        })
+        it('should call console.error on error', async () => {
+            global.fetch = jest.fn(
+                () => Promise.reject({
+                    message: 'error'
+                })
+            )
+            let state;
+            await act( async () => {
+                const {result} = await renderHook(() => useFetch('abc'))
+                state = await result;
+            })
+            expect(state.current.requesting).toEqual(false);
+            expect(state.current.data).toEqual(null);
+            expect(state.current.error).toEqual({message: 'error'})
         })
     })
 })
