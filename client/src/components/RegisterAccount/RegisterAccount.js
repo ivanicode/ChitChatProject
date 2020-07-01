@@ -7,8 +7,6 @@ import {useFetch} from '../../common/hooks/useFetchHook'
 export function RegisterAccount(){
 
     const {
-        isPasswordValid, 
-        inputRepeatedPassword,
         submitForm,
         errors,
         onBirthDateChangeHandler,
@@ -16,15 +14,14 @@ export function RegisterAccount(){
         onChangeHandler,
         onNameChangeHandler,
         onPasswordBlurHandler,
-        onEmailBlurHandler
+        onEmailBlurHandler,
+        formIsValid,
+        onRepeatedPasswordChangeHandler
     } = useAllHooks()
-
-    const { data } = useFetch('/api/user');
 
     return (
         <form onSubmit={submitForm} noValidate>
         <div className="registerAccount">
-            {console.log(errors)}
             <label className="firstName">
                 Imię:
                 <input type="text" id="firstName" value={formData.firstName} onChange={onNameChangeHandler} ></input>
@@ -53,11 +50,11 @@ export function RegisterAccount(){
             </label>
             <label className="repeatPassword">
                 Powtórz hasło:
-                <input type="password" id="repeatedPassword" onBlur={inputRepeatedPassword} value={formData.repeatedPassword} onChange={onChangeHandler} ></input>
-                {!isPasswordValid && <ErrorText />}
+                <input type="password" id="repeatedPassword" value={formData.repeatedPassword} onChange={onRepeatedPasswordChangeHandler} ></input>
+                {errors.repeatedPassword && <ErrorText error={errors.repeatedPassword} />}
             </label>
             <div className="createAccountButton">
-                <button className="createAccountButton" type="submit">
+                <button className="createAccountButton" type="button" disabled={!formIsValid} onClick={submitForm}>
                 Stwórz konto
                 </button>
             </div>

@@ -56,6 +56,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       e-mail:
       <input
         id="mail"
+        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="email"
       />
@@ -69,6 +70,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       Hasło:
       <input
         id="originalPassword"
+        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="password"
       />
@@ -82,18 +84,21 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       Powtórz hasło:
       <input
         id="repeatedPassword"
-        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="password"
       />
-      <ErrorText />
+      <ErrorText
+        error={1}
+      />
     </label>
     <div
       className="createAccountButton"
     >
       <button
         className="createAccountButton"
-        type="submit"
+        disabled={true}
+        onClick={[MockFunction]}
+        type="button"
       >
         Stwórz konto
       </button>
@@ -149,6 +154,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       e-mail:
       <input
         id="mail"
+        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="email"
       />
@@ -159,6 +165,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       Hasło:
       <input
         id="originalPassword"
+        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="password"
       />
@@ -169,18 +176,18 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       Powtórz hasło:
       <input
         id="repeatedPassword"
-        onBlur={[MockFunction]}
         onChange={[MockFunction]}
         type="password"
       />
-      <ErrorText />
     </label>
     <div
       className="createAccountButton"
     >
       <button
         className="createAccountButton"
-        type="submit"
+        disabled={true}
+        onClick={[MockFunction]}
+        type="button"
       >
         Stwórz konto
       </button>

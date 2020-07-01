@@ -12,6 +12,5 @@ describe('ErrorText component', () => {
         const wrapper = shallow(<ErrorText error="Błąd"/>)
         expect(wrapper).toMatchSnapshot()
         expect(wrapper.find('span').text()).toEqual("Błąd")
-        console.log(wrapper.find('span').text())
     })    
 })
