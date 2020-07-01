@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 
 export function useAllHooks() {
@@ -8,55 +8,54 @@ export function useAllHooks() {
     } = useManageFormData();
 
     const {
-        isPasswordValid, 
-        inputRepeatedPassword,
-        submitForm
-    } = useManagePasswordMatch(formData);
-
-    const {
         errors,
         onBirthDateChangeHandler,
         onNameChangeHandler,
-    } = useManageErrors(onChangeHandler)
+        onPasswordBlurHandler,
+        onEmailBlurHandler,
+        onRepeatedPasswordChangeHandler
+    } = useManageErrors(onChangeHandler, formData)
+
+    const {
+        formIsValid,
+        submitForm
+    } = useSubmitForm(errors, formData)
 
     return {
-        isPasswordValid, 
-        inputRepeatedPassword,
         submitForm,
         errors,
         onBirthDateChangeHandler,
         formData,
         onChangeHandler,
         onNameChangeHandler,
+        onPasswordBlurHandler,
+        onEmailBlurHandler,
+        formIsValid,
+        onRepeatedPasswordChangeHandler
     }
 }
 
-export function useManagePasswordMatch(formData) {
-    const [isPasswordValid, setIsPasswordValid] = useState(true);
+export function useSubmitForm(errors, formData) {
+    function checkIfAllFieldsAreFilled(){
+       
+        const variable = Object.values(formData).find( function (value){
+            return value === ''
+        })
+        return variable === undefined;
 
-    function checkIfPasswordMatch(){
-        
-        return formData.originalPassword === formData.repeatedPassword;
     }
-    
-    function inputRepeatedPassword() {
-        const result = checkIfPasswordMatch();
-        setIsPasswordValid(result)
-      }
+    const [formIsValid, setFormIsValid] = useState(checkIfAllFieldsAreFilled())
+    useEffect(() => {
+        setFormIsValid(checkIfAllFieldsAreFilled())
+    }, [formData])
 
-    function submitForm(event) {
-        const result = checkIfPasswordMatch()
-        if(!result) {
-            setIsPasswordValid(result)
-            event.preventDefault();
+    function submitForm(event){
+        if(!errors && formIsValid === true){
+            // jeżeli warunki są spełnione to wysłać formData do nodejs
         }
     }
-    
-    return {
-        isPasswordValid, 
-        inputRepeatedPassword,
-        submitForm
-    }
+
+    return {formIsValid, submitForm};
 }
 
 export const initialState = {
@@ -83,7 +82,7 @@ export function useManageFormData(){
 }
 
 
-export function useManageErrors(onChangeHandler){
+export function useManageErrors(onChangeHandler, formData){
 
     const [errors, setErrors] = useState({});
 
@@ -110,10 +109,8 @@ export function useManageErrors(onChangeHandler){
     }
 
     function onNameChangeHandler(event){
-        console.log('onNameChangeHandler')
         onChangeHandler(event);
         const name = event.target.value;
-        console.log(name)
         if(!name.length){
             setErrors({
                 ...errors,
@@ -126,7 +123,57 @@ export function useManageErrors(onChangeHandler){
         setErrors(newErrors);
         
     }
-    return {errors, onBirthDateChangeHandler, onNameChangeHandler}
+
+    function onPasswordBlurHandler(event){
+        
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/;
+        const value = event.target.value;
+        if(!value.match(pattern)){
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Hasło musi mieć co najmniej jedną dużą literę, jedną małą literę i cyfrę'
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+        
+    }
+
+    function onRepeatedPasswordChangeHandler(event){
+    
+        onChangeHandler(event);
+        if(formData.originalPassword !== event.target.value){
+            
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Hasła muszą być takie same'
+            })
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+    }
+
+    function onEmailBlurHandler(event){
+
+        const email = event.target.value;
+        if(!email.length){
+            setErrors({
+                ...errors,
+                [event.target.id]: 'Musisz wypełnić wszystkie pola'
+            });
+            return;
+        }
+        const newErrors = {...errors};
+        delete newErrors[event.target.id];
+        setErrors(newErrors);
+
+    }
+
+    return {errors, onBirthDateChangeHandler, onNameChangeHandler, onPasswordBlurHandler, onEmailBlurHandler, onRepeatedPasswordChangeHandler}
 
 }
 
