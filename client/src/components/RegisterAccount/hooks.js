@@ -36,22 +36,24 @@ export function useAllHooks() {
 }
 
 export function useSubmitForm(errors, formData) {
-    function checkIfAllFieldsAreFilled(){
-       
+   
+    function checkIfFormIsValid(){
         const variable = Object.values(formData).find( function (value){
             return value === ''
         })
-        return variable === undefined;
-
+        return !Object.keys(errors).length && variable === undefined;
     }
-    const [formIsValid, setFormIsValid] = useState(checkIfAllFieldsAreFilled())
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
     useEffect(() => {
-        setFormIsValid(checkIfAllFieldsAreFilled())
-    }, [formData])
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData, errors])
+
 
     function submitForm(event){
-        if(!errors && formIsValid === true){
-            // jeżeli warunki są spełnione to wysłać formData do nodejs
+        if(formIsValid){
+            console.log('zapytowuje sie')
         }
     }
 

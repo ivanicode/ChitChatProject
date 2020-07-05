@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import {useManageFormData, useManageErrors, useAllHooks} from '../hooks';
+import {useManageFormData, useManageErrors, useAllHooks, useSubmitForm} from '../hooks';
 
 const matchingPasswords = {originalPassword: 'a', repeatedPassword: 'a'};
 const notMatchingPasswords = {originalPassword: 'a', repeatedPassword: 'b'};
@@ -211,6 +211,48 @@ describe('RegisterAccount hooks', () => {
             })
 
             expect(result.current.errors.repeatedPassword).toEqual(undefined);
+        })
+    })
+
+    describe('useSubmitForm', () => {
+        const event = {a: 1}
+        it('should return proper data', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {}))
+            expect(result.current.formIsValid).toEqual(true)
+            expect(typeof result.current.submitForm).toEqual('function');
+        })
+        it('', () => {
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {b: ''}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {b: ''}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('', () => {
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {b: 1}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
+            expect(result.current.formIsValid).toEqual(true)
+        })
+        it('', () => {
+            const originalConsoleLog = console.log;
+            console.log = jest.fn()
+
+            expect(console.log).toHaveBeenCalledTimes(0);
+            
+            const {result} = renderHook(() => useSubmitForm({}, {}))
+            expect(result.current.formIsValid).toEqual(true);
+            act(() => {
+                result.current.submitForm()
+            })
+
+            expect(console.log).toHaveBeenCalledTimes(1);
+
+            console.log.mockReset()
+            console.log = originalConsoleLog;
         })
     })
 
