@@ -221,23 +221,23 @@ describe('RegisterAccount hooks', () => {
             expect(result.current.formIsValid).toEqual(true)
             expect(typeof result.current.submitForm).toEqual('function');
         })
-        it('', () => {
+        it('should set formIsValid false when there is an error and at least one form field is empty', () => {
             const {result} = renderHook(() => useSubmitForm({a: 1}, {b: ''}))
             expect(result.current.formIsValid).toEqual(false)
         })
-        it('', () => {
+        it('should set formIsValid false when at least one form field is empty', () => {
             const {result} = renderHook(() => useSubmitForm({}, {b: ''}))
             expect(result.current.formIsValid).toEqual(false)
         })
-        it('', () => {
+        it('should set formIsValid false when there is an error', () => {
             const {result} = renderHook(() => useSubmitForm({a: 1}, {b: 1}))
             expect(result.current.formIsValid).toEqual(false)
         })
-        it('', () => {
+        it('should set formIsValid true when there is not an error and form fields are filled', () => {
             const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
             expect(result.current.formIsValid).toEqual(true)
         })
-        it('', () => {
+        it('should call console.log if form is valid', () => {
             const originalConsoleLog = console.log;
             console.log = jest.fn()
 
@@ -250,6 +250,23 @@ describe('RegisterAccount hooks', () => {
             })
 
             expect(console.log).toHaveBeenCalledTimes(1);
+
+            console.log.mockReset()
+            console.log = originalConsoleLog;
+        })
+        it('should not call console.log if form is not valid', () => {
+            const originalConsoleLog = console.log;
+            console.log = jest.fn()
+
+            expect(console.log).toHaveBeenCalledTimes(0);
+            
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {}))
+            expect(result.current.formIsValid).toEqual(false);
+            act(() => {
+                result.current.submitForm()
+            })
+
+            expect(console.log).toHaveBeenCalledTimes(0);
 
             console.log.mockReset()
             console.log = originalConsoleLog;
