@@ -237,39 +237,32 @@ describe('RegisterAccount hooks', () => {
             const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
             expect(result.current.formIsValid).toEqual(true)
         })
-        it('should call console.log if form is valid', () => {
-            const originalConsoleLog = console.log;
-            console.log = jest.fn()
+        it('should call saveData if form is valid', () => {
 
-            expect(console.log).toHaveBeenCalledTimes(0);
-            
-            const {result} = renderHook(() => useSubmitForm({}, {}))
+            const saveData = jest.fn()
+            const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
             expect(result.current.formIsValid).toEqual(true);
+            expect(saveData).toHaveBeenCalledTimes(0);
             act(() => {
                 result.current.submitForm()
             })
 
-            expect(console.log).toHaveBeenCalledTimes(1);
+            expect(saveData).toHaveBeenCalledTimes(1);
 
-            console.log.mockReset()
-            console.log = originalConsoleLog;
+            saveData.mockReset()
         })
-        it('should not call console.log if form is not valid', () => {
-            const originalConsoleLog = console.log;
-            console.log = jest.fn()
-
-            expect(console.log).toHaveBeenCalledTimes(0);
+        it('should not call saveData if form is not valid', () => {
             
-            const {result} = renderHook(() => useSubmitForm({a: 1}, {}))
+            const saveData = jest.fn()
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {}, saveData))
             expect(result.current.formIsValid).toEqual(false);
             act(() => {
                 result.current.submitForm()
             })
 
-            expect(console.log).toHaveBeenCalledTimes(0);
+            expect(saveData).toHaveBeenCalledTimes(0);
 
-            console.log.mockReset()
-            console.log = originalConsoleLog;
+            saveData.mockReset()
         })
     })
 

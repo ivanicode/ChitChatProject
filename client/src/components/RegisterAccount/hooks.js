@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
+import { useSave } from '../../common/hooks/useSaveHook';
 
 export function useAllHooks() {
     const {
@@ -16,10 +17,14 @@ export function useAllHooks() {
         onRepeatedPasswordChangeHandler
     } = useManageErrors(onChangeHandler, formData)
 
+    const {saveData} = useSave('')
+
     const {
         formIsValid,
         submitForm
-    } = useSubmitForm(errors, formData)
+    } = useSubmitForm(errors, formData, saveData)
+
+    
 
     return {
         submitForm,
@@ -35,7 +40,7 @@ export function useAllHooks() {
     }
 }
 
-export function useSubmitForm(errors, formData) {
+export function useSubmitForm(errors, formData, saveData) {
    
     function checkIfFormIsValid(){
         const variable = Object.values(formData).find( function (value){
@@ -53,7 +58,7 @@ export function useSubmitForm(errors, formData) {
 
     function submitForm(event){
         if(formIsValid){
-            console.log('zapytowuje sie')
+            saveData(formData);
         }
     }
 
