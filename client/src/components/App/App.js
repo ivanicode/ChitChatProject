@@ -9,6 +9,7 @@ import PageNavigation from '../PageNavigation/PageNavigation';
 import Home from '../Home/Home';
 import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
+import Login from '../Login/Login';
 
 
 export function App(){
@@ -22,6 +23,9 @@ export function App(){
                 </Route>
                 <Route path="/register">
                     <RegisterAccount />
+                </Route> 
+                <Route path="/login">
+                    <Login />
                 </Route> 
                 <Route path="/profile/edit">
                     <ProfileEdit />

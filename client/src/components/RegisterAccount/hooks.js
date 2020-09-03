@@ -17,7 +17,7 @@ export function useAllHooks() {
         onRepeatedPasswordChangeHandler
     } = useManageErrors(onChangeHandler, formData)
 
-    const {saveData} = useSave('')
+    const {saveData} = useSave('/api/user')
 
     const {
         formIsValid,

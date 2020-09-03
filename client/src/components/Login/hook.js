@@ -1,29 +1,16 @@
-import {useReducer} from 'react';
+import {useState, useEffect, useReducer} from 'react';
+import dayjs from 'dayjs';
 
 
-export const initialData = {
-    requesting: false,
-    error: null,
-};
-
-
-export function reducer(state, action) {
-    switch(action?.type) {
-        case 'requesting':
-            return { ...state, requesting: true };
-        case 'success':
-            return { ...initialData};
-        case 'error':
-            return { ...state, error: action.error, requesting: false };
-        default:
-            return state;
-    }
+export function useLoginHooks(){
+    return {submitLogin}
 }
 
-/**
- * 
- * @param {string} path ścieżka do wykonania request do serwera 
- */
+const {saveData} = useSave('/Login/api/user')
+
+function submitLogin(event){
+    saveData()
+}
 
 export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
