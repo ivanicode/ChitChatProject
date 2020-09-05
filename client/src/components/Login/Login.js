@@ -3,18 +3,22 @@ import { useLoginHooks } from './hook';
 
 export function Login(){
 
-    const {submitLogin} = useLoginHooks()
+    const {
+        submitLogin,
+        onLoginChangeHandler,
+        loginData
+    } = useLoginHooks()
 
     return (
         <form onSubmit={submitLogin}>
             <div className="login">
                 <label className="loginInput">
                     Login:
-                    <input type="text"></input>
+                    <input type="text" id="login" value={loginData.login} onChange={onLoginChangeHandler} required></input>
                 </label>
                 <label className="loginPasswordInput">
                     Hasło:
-                    <input type="text"></input>
+                    <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required></input>
                 </label>
                 <div className="loginButton">
                     <button className="loginButton" type="button" onClick={submitLogin}>

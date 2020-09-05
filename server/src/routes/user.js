@@ -38,10 +38,37 @@ router.post('', (req, res) => {
   });
 
   res.status(204).send()
-  closeConnection(connection);6
+  closeConnection(connection);
 })
+
 module.exports = router; 
 
-router.post('/Login', (req, res) => {
-  console.log(req.body)
+router.post('/login', (req, res) => {
+  
+  const connection = makeConnection();
+  const data = req.body;
+  console.log(data)
+  
+  let status = 200;
+
+  const dbQuery = `select * from chitchat_account where email = '${data.login}' and password = '${data.loginPassword}'`
+  
+  connection.query(dbQuery, function (error, results) {
+    if (error) {
+      status = 500;
+      res.status(status).send(error) //tu przesyłam obiekt błędu
+      throw error;
+    }
+    console.log(results.length)
+    if(!results.length){
+      status = 404;
+    }
+    const userDoesNotExist = {
+      message: 'Użytkownik nie istnieje' //tylko dla 404, dla statusu 200 obiekt ma być pusty
+    }
+    res.status(status).send(userDoesNotExist) //stworzyć obiekt błędu dla 404 z informacją, że użtkownik nie istnieje
+  });
+  
+  closeConnection(connection);
 })
+
