@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const booksRouter = require('./routes/books');
 const userRouter = require('./routes/user');
@@ -9,8 +10,8 @@ const port = 8080;
 
 const app = express();
 
-app.use(express.static(clientBuildDir));
-
+app.use(express.static(clientBuildDir)); 
+app.use(bodyParser.json());
 app.use('/api/books', booksRouter);
 app.use('/api/user', userRouter);
 

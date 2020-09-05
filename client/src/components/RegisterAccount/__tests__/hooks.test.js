@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import {useManageFormData, useManageErrors, useAllHooks} from '../hooks';
+import {useManageFormData, useManageErrors, useAllHooks, useSubmitForm} from '../hooks';
 
 const matchingPasswords = {originalPassword: 'a', repeatedPassword: 'a'};
 const notMatchingPasswords = {originalPassword: 'a', repeatedPassword: 'b'};
@@ -211,6 +211,58 @@ describe('RegisterAccount hooks', () => {
             })
 
             expect(result.current.errors.repeatedPassword).toEqual(undefined);
+        })
+    })
+
+    describe('useSubmitForm', () => {
+        const event = {a: 1}
+        it('should return proper data', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {}))
+            expect(result.current.formIsValid).toEqual(true)
+            expect(typeof result.current.submitForm).toEqual('function');
+        })
+        it('should set formIsValid false when there is an error and at least one form field is empty', () => {
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {b: ''}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('should set formIsValid false when at least one form field is empty', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {b: ''}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('should set formIsValid false when there is an error', () => {
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {b: 1}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
+        it('should set formIsValid true when there is not an error and form fields are filled', () => {
+            const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
+            expect(result.current.formIsValid).toEqual(true)
+        })
+        it('should call saveData if form is valid', () => {
+
+            const saveData = jest.fn()
+            const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
+            expect(result.current.formIsValid).toEqual(true);
+            expect(saveData).toHaveBeenCalledTimes(0);
+            act(() => {
+                result.current.submitForm()
+            })
+
+            expect(saveData).toHaveBeenCalledTimes(1);
+
+            saveData.mockReset()
+        })
+        it('should not call saveData if form is not valid', () => {
+            
+            const saveData = jest.fn()
+            const {result} = renderHook(() => useSubmitForm({a: 1}, {}, saveData))
+            expect(result.current.formIsValid).toEqual(false);
+            act(() => {
+                result.current.submitForm()
+            })
+
+            expect(saveData).toHaveBeenCalledTimes(0);
+
+            saveData.mockReset()
         })
     })
 

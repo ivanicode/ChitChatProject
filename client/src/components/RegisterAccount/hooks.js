@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
+import { useSave } from '../../common/hooks/useSaveHook';
 
 export function useAllHooks() {
     const {
@@ -16,10 +17,14 @@ export function useAllHooks() {
         onRepeatedPasswordChangeHandler
     } = useManageErrors(onChangeHandler, formData)
 
+    const {saveData} = useSave('/api/user')
+
     const {
         formIsValid,
         submitForm
-    } = useSubmitForm(errors, formData)
+    } = useSubmitForm(errors, formData, saveData)
+
+    
 
     return {
         submitForm,
@@ -35,23 +40,25 @@ export function useAllHooks() {
     }
 }
 
-export function useSubmitForm(errors, formData) {
-    function checkIfAllFieldsAreFilled(){
-       
+export function useSubmitForm(errors, formData, saveData) {
+   
+    function checkIfFormIsValid(){
         const variable = Object.values(formData).find( function (value){
             return value === ''
         })
-        return variable === undefined;
-
+        return !Object.keys(errors).length && variable === undefined;
     }
-    const [formIsValid, setFormIsValid] = useState(checkIfAllFieldsAreFilled())
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
     useEffect(() => {
-        setFormIsValid(checkIfAllFieldsAreFilled())
-    }, [formData])
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData, errors])
+
 
     function submitForm(event){
-        if(!errors && formIsValid === true){
-            // jeżeli warunki są spełnione to wysłać formData do nodejs
+        if(formIsValid){
+            saveData(formData);
         }
     }
 
