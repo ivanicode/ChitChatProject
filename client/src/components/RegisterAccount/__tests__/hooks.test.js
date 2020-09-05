@@ -240,6 +240,7 @@ describe('RegisterAccount hooks', () => {
         it('should call saveData if form is valid', () => {
 
             const saveData = jest.fn()
+            
             const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
             expect(result.current.formIsValid).toEqual(true);
             expect(saveData).toHaveBeenCalledTimes(0);

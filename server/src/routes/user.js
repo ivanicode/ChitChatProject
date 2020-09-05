@@ -63,10 +63,12 @@ router.post('/login', (req, res) => {
     if(!results.length){
       status = 404;
     }
-    const userDoesNotExist = {
-      message: 'Użytkownik nie istnieje' //tylko dla 404, dla statusu 200 obiekt ma być pusty
+  
+    let returnObject = results[0];
+    if(status = 404){
+      returnObject = {message: 'Użytkownik nie istnieje'}
     }
-    res.status(status).send(userDoesNotExist) //stworzyć obiekt błędu dla 404 z informacją, że użtkownik nie istnieje
+    res.status(status).send(returnObject) //stworzyć obiekt błędu dla 404 z informacją, że użtkownik nie istnieje
   });
   
   closeConnection(connection);
