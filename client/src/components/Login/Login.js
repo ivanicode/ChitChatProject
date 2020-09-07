@@ -6,11 +6,15 @@ export function Login(){
     const {
         submitLogin,
         onLoginChangeHandler,
-        loginData
+        loginData,
+        saveState
     } = useLoginHooks()
+    console.log('saveState: ', saveState)
+    const errorMessage = saveState.error ? (<div>error</div>) : null;
 
     return (
         <form onSubmit={submitLogin}>
+            {errorMessage}
             <div className="login">
                 <label className="loginInput">
                     Login:
