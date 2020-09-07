@@ -4,6 +4,7 @@ import {useReducer} from 'react';
 export const initialData = {
     requesting: false,
     error: null,
+    response: null
 };
 
 
@@ -12,7 +13,7 @@ export function reducer(state, action) {
         case 'requesting':
             return { ...state, requesting: true };
         case 'success':
-            return { ...initialData};
+            return { ...initialData, success: action.response};
         case 'error':
             return { ...state, error: action.error, requesting: false };
         default:
@@ -38,8 +39,8 @@ export function useSave(path) {
             },
             body: JSON.stringify(data)
         })
-        .then(() => {
-            dispatch({ type: 'success'});
+        .then((response) => {
+            dispatch({ type: 'success', response});
         })
         .catch(error => {
             dispatch({ type: 'error', error});

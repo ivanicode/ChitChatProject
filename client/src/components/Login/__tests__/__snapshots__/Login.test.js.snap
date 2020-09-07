@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login component should match snapshot when no errors 1`] = `
+<form
+  onSubmit={[MockFunction]}
+>
+  <div
+    className="login"
+  >
+    <label
+      className="loginInput"
+    >
+      Login:
+      <input
+        id="login"
+        onChange={[MockFunction]}
+        required={true}
+        type="text"
+      />
+    </label>
+    <label
+      className="loginPasswordInput"
+    >
+      Hasło:
+      <input
+        id="loginPassword"
+        onChange={[MockFunction]}
+        required={true}
+        type="password"
+      />
+    </label>
+    <div
+      className="loginButton"
+    >
+      <button
+        className="loginButton"
+        onClick={[MockFunction]}
+        type="button"
+      >
+        Zaloguj
+      </button>
+    </div>
+  </div>
+</form>
+`;

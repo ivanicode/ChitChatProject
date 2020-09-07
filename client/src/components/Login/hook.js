@@ -45,7 +45,6 @@ export function useManageLoginData(){
 }
 
 export function useSubmitLogin(saveData, loginData){
-    console.log(saveData)
     function submitLogin(event){
         saveData(loginData)
     }
