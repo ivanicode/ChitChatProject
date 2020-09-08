@@ -46,14 +46,11 @@ export function useSave(path) {
             } else {
                 dispatch({ type: 'error', error: response});
             }
-            
-            //console.log('response.status', response.status)
         })
         .catch(error => {
             dispatch({ type: 'error', error});
             console.error(error);
         })
     }
-    console.log('saveSate', saveState)
     return {saveState, saveData};
 } 

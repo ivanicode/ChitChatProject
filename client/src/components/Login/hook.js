@@ -6,7 +6,6 @@ import {useState, useEffect} from 'react';
 export function useLoginHooks(){
    
     const {saveData, saveState} = useSave('/api/user/login')
-    console.log(saveState.error)
 
     const {
         onLoginChangeHandler,
@@ -18,7 +17,8 @@ export function useLoginHooks(){
     return {
         submitLogin,
         onLoginChangeHandler,
-        loginData
+        loginData,
+        saveState
     }
 }
 
@@ -47,6 +47,7 @@ export function useManageLoginData(){
 export function useSubmitLogin(saveData, loginData){
     function submitLogin(event){
         saveData(loginData)
+        console.log(loginData)
     }
     return {submitLogin}
 }

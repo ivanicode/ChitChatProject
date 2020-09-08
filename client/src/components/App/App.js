@@ -10,6 +10,7 @@ import Home from '../Home/Home';
 import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 import Login from '../Login/Login';
+import RegisterProfile from '../RegisterProfile/RegisterProfile';
 
 
 export function App(){
@@ -29,7 +30,10 @@ export function App(){
                 </Route> 
                 <Route path="/profile/edit">
                     <ProfileEdit />
-                </Route>  
+                </Route>
+                <Route path="/register/profile">
+                    <RegisterProfile />
+                </Route>
             </Switch>
         </BrowserRouter>
     )
