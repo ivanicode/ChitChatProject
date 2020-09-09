@@ -31,7 +31,7 @@ export function App(){
                 <Route path="/profile/edit">
                     <ProfileEdit />
                 </Route>
-                <Route path="/register/profile">
+                <Route path="/account/create">
                     <RegisterProfile />
                 </Route>
             </Switch>

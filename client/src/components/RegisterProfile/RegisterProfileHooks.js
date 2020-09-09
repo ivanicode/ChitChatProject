@@ -1,12 +1,2 @@
 
 
-export function useRegisterProfileHooks(){
-
-
-
-    return {
-
-    }
-
-  
-}

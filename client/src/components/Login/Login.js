@@ -29,7 +29,7 @@ export function Login(){
                     </label>
                 </div>
                 <div className="loginButton">
-                    <button className="loginButton" type="button" onClick={submitLogin}>
+                    <button className="loginButton" type="submit" onClick={submitLogin}>
                         Zaloguj
                     </button>
                 </div>

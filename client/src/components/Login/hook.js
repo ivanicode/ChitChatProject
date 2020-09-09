@@ -46,7 +46,11 @@ export function useManageLoginData(){
 
 export function useSubmitLogin(saveData, loginData){
     function submitLogin(event){
-        saveData(loginData)
+        
+        if(loginData.login && loginData.loginPassword){
+            event.preventDefault();
+            saveData(loginData)
+        }
         console.log(loginData)
     }
     return {submitLogin}
