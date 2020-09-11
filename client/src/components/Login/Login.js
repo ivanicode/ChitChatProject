@@ -21,11 +21,11 @@ export function Login(){
                 <div className="loginLabels">
                     <label className="loginInput">
                         Login:
-                        <input type="text" id="login" value={loginData.login} onChange={onLoginChangeHandler} required="required"></input>
+                        <input type="text" id="login" value={loginData.login} onChange={onLoginChangeHandler} required></input>
                     </label>
                     <label className="loginPasswordInput">
                         Hasło:
-                        <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required="required"></input>
+                        <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required></input>
                     </label>
                 </div>
                 <div className="loginButton">

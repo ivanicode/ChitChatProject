@@ -28,6 +28,11 @@ exports[`App component should match snapshot 1`] = `
     >
       <ProfileEdit />
     </Route>
+    <Route
+      path="/account/create"
+    >
+      <RegisterProfile />
+    </Route>
   </Switch>
 </BrowserRouter>
 `;

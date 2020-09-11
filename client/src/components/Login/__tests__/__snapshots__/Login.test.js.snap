@@ -2,40 +2,45 @@
 
 exports[`Login component should match snapshot when no errors 1`] = `
 <form
+  className="loginInputForm"
   onSubmit={[MockFunction]}
 >
   <div
     className="login"
   >
-    <label
-      className="loginInput"
+    <div
+      className="loginLabels"
     >
-      Login:
-      <input
-        id="login"
-        onChange={[MockFunction]}
-        required={true}
-        type="text"
-      />
-    </label>
-    <label
-      className="loginPasswordInput"
-    >
-      Hasło:
-      <input
-        id="loginPassword"
-        onChange={[MockFunction]}
-        required={true}
-        type="password"
-      />
-    </label>
+      <label
+        className="loginInput"
+      >
+        Login:
+        <input
+          id="login"
+          onChange={[MockFunction]}
+          required={true}
+          type="text"
+        />
+      </label>
+      <label
+        className="loginPasswordInput"
+      >
+        Hasło:
+        <input
+          id="loginPassword"
+          onChange={[MockFunction]}
+          required={true}
+          type="password"
+        />
+      </label>
+    </div>
     <div
       className="loginButton"
     >
       <button
         className="loginButton"
         onClick={[MockFunction]}
-        type="button"
+        type="submit"
       >
         Zaloguj
       </button>
