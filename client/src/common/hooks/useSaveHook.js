@@ -4,7 +4,8 @@ import {useReducer} from 'react';
 export const initialData = {
     requesting: false,
     error: null,
-    response: null
+    success: null,
+    status: 200,
 };
 
 
@@ -39,14 +40,21 @@ export function useSave(path) {
             },
             body: JSON.stringify(data)
         })
-        .then((response) => {
-            dispatch({ type: 'success', response});
+        .then( async (response) => {
+            const status = response.status;
+            const body = await response.json()
+            if(status < 400){
+                dispatch({ type: 'success', response: {status, body}});
+            } else {
+                dispatch({ type: 'error', error: {status, body}});
+            }
+            
         })
         .catch(error => {
             dispatch({ type: 'error', error});
             console.error(error);
         })
     }
-    console.log('saveSate', saveState)
+    
     return {saveState, saveData};
 } 

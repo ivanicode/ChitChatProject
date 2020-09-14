@@ -26,9 +26,7 @@ router.get('/:id?', (req, res) => {
 router.post('', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log(data)
   const dbQuery = `insert into chitchat_account (first_name, last_name, birth_date, email, password) values ('${data.firstName}', '${data.lastName}', '${data.date}', '${data.mail}', '${data.originalPassword}')`
-  console.log(dbQuery)
 
   connection.query(dbQuery, function (error, results) {
     if (error) {
@@ -47,7 +45,6 @@ router.post('/login', (req, res) => {
   
   const connection = makeConnection();
   const data = req.body;
-  console.log(data)
   
   let status = 200;
 
@@ -59,13 +56,11 @@ router.post('/login', (req, res) => {
       res.status(status).send(error) //tu przesyłam obiekt błędu
       throw error;
     }
-    console.log(results.length)
     if(!results.length){
       status = 404;
     }
-  
-    let returnObject = results[0];
-    if(status = 404){
+    let returnObject = JSON.stringify(results[0]);
+    if(status === 404){
       returnObject = {message: 'Użytkownik nie istnieje'}
     }
     res.status(status).send(returnObject) //stworzyć obiekt błędu dla 404 z informacją, że użtkownik nie istnieje

@@ -8,6 +8,7 @@ describe('Login component', () => {
         hook.useLoginHooks = jest.fn().mockImplementation(
             () => ({
                 loginData: {},
+                saveState: {},
                 submitLogin: jest.fn(),
                 onLoginChangeHandler: jest.fn()
             })

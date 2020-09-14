@@ -19,8 +19,8 @@ describe('useSaveHook', () => {
         })
         it('should return proper state if action type is success', () => {
             const state = {};
-            const action = { type: 'success', data: [] };
-            expect(reducer(state, action)).toEqual({requesting: false, error: null}, )
+            const action = { type: 'success', response: [] };
+            expect(reducer(state, action)).toEqual({requesting: false, error: null, status: 200, success: []}, )
         })
         it('should return proper state if action type is error', () => {
             const state = {};
@@ -46,6 +46,36 @@ describe('useSaveHook', () => {
                 result.current.saveData()
             })
             expect(result.current.saveState.error).toEqual({message: 'error'})
+        })
+        it('should update saveState.success on success', async () => {
+            
+            const {result} = renderHook(() => useSave('abc'))
+            global.fetch = jest.fn(
+                () => Promise.resolve({
+                    message: 'success',
+                    status: 200,
+                })
+            )
+            expect(result.current.saveState.success).toEqual(null)
+            await act( async () => {
+                result.current.saveData()
+            })
+            expect(result.current.saveState.success).toEqual({message: 'success', status: 200})
+        })
+        it('should update saveState.success on success', async () => {
+            
+            const {result} = renderHook(() => useSave('abc'))
+            global.fetch = jest.fn(
+                () => Promise.resolve({
+                    message: 'error',
+                    status: 404,
+                })
+            )
+            expect(result.current.saveState.error).toEqual(null)
+            await act( async () => {
+                result.current.saveData()
+            })
+            expect(result.current.saveState.error).toEqual({message: 'error', status: 404})
         })
     })
 })

@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterProfile component should match snapshot when no errors 1`] = `
+<form
+  className="createProfileForm"
+>
+  <div
+    className="createProfileDiv"
+  >
+    <div
+      className="formDiv"
+    >
+      <div
+        className="greetings"
+      >
+        <h3>
+          Witaj na portalu ChitChat
+        </h3>
+        <h4>
+          Wypełnij podstawowe dane, które wyświetlą się na Twoim profilu
+        </h4>
+      </div>
+      <div
+        className="nicknameInput"
+      >
+        <input
+          placeholder="Wpisz swój nickname"
+          type="text"
+        />
+      </div>
+      <div
+        className="cityInput"
+      >
+        <input
+          placeholder="Nazwa Twojej miejscowości"
+          type="text"
+        />
+      </div>
+      <div
+        className="genderRadioButton"
+      >
+        <p>
+          Wybierz swoją płeć:
+        </p>
+        <input
+          type="radio"
+        />
+        Kobieta
+        <br />
+        <input
+          type="radio"
+        />
+        Mężczyzna
+        <br />
+        <input
+          type="radio"
+        />
+        Inna
+      </div>
+      <div
+        className="addMainPicture"
+      >
+        <p>
+          Wybierz swoje zdjęcie profilowe
+        </p>
+        <input
+          accept="image/png, image/jpeg"
+          id="avatar"
+          name="avatar"
+          type="file"
+        />
+      </div>
+      <div
+        className="interestsSelect"
+      >
+        <p>
+          Wybierz min. jedno zainteresowanie (max 3)
+        </p>
+        <select>
+          <option
+            name="sport"
+          >
+            Sport
+          </option>
+          <option
+            name="books"
+          >
+            Książki
+          </option>
+          <option
+            name="series"
+          >
+            Seriale
+          </option>
+          <option
+            name="travels"
+          >
+            Podróże
+          </option>
+          <option
+            name="informatics"
+          >
+            Informatyka
+          </option>
+          <option
+            name="diving"
+          >
+            Nurkowanie
+          </option>
+          <option
+            name="cooking"
+          >
+            Gotowanie
+          </option>
+          <option
+            name="music"
+          >
+            Muzyka
+          </option>
+          <option
+            name="languages"
+          >
+            Języki obce
+          </option>
+          <option
+            name="gaming"
+          >
+            Gry online
+          </option>
+          <option
+            name="gardening"
+          >
+            Uprawianie ogrodu
+          </option>
+          <option
+            name="fashion"
+          >
+            Moda
+          </option>
+          <option
+            name="artistic"
+          >
+            Plastyka
+          </option>
+          <option
+            name="automotive"
+          >
+            Motoryzacja
+          </option>
+          <option
+            name="fishing"
+          >
+            Wędkarstwo
+          </option>
+          <option
+            name="climbing"
+          >
+            Wspinaczki
+          </option>
+          <option
+            name="horsmenship"
+          >
+            Jeździectwo
+          </option>
+          <option
+            name="animals"
+          >
+            Zwierzęta
+          </option>
+          <option
+            name="rekreationalSport"
+          >
+            Sport rekreacyjny
+          </option>
+          <option
+            name="groupSport"
+          >
+            Sporty grupowe
+          </option>
+          <option
+            name="extremeSports"
+          >
+            Sporty ekstremalne
+          </option>
+          <option
+            name="combatSports"
+          >
+            Sporty walki
+          </option>
+          <option
+            name="tattoos"
+          >
+            Tatuaże
+          </option>
+        </select>
+      </div>
+      <div
+        className="relationshipButton"
+      >
+        <p>
+          Jakiego rodzaju znajomości poszukujesz?
+        </p>
+        <input
+          type="radio"
+        />
+        Relacji romantycznej
+        <br />
+        <input
+          type="radio"
+        />
+        Relacji koleżeńskiej
+        <br />
+        <input
+          type="radio"
+        />
+        Otwarta/y na obie relacje
+      </div>
+    </div>
+    <div
+      className="buttonDiv"
+    >
+      <button
+        className="nextSubmit"
+        type="submit"
+      >
+        Dalej
+      </button>
+    </div>
+  </div>
+</form>
+`;

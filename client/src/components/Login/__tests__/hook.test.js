@@ -33,28 +33,43 @@ describe('Login hooks', () => {
             const {result} = renderHook(() => useSubmitLogin({}))
             expect(typeof result.current.submitLogin).toEqual('function');
         })
-        it('should call saveData', () => {
+        it('should call saveData if login and loginPassword exist', () => {
+            
+            const saveData = jest.fn()
+            const {result} = renderHook(() => useSubmitLogin(saveData, {login: 'a', loginPassword: 'b'}))
+            expect(saveData).toHaveBeenCalledTimes(0);
+            
+            act(() => {
+                result.current.submitLogin({preventDefault: jest.fn()})
+            })
+
+            expect(saveData).toHaveBeenCalledTimes(1);
+            
+            saveData.mockReset()
+            
+        })
+        it('should not call saveData if login and loginPassword does not exist', () => {
 
             const saveData = jest.fn()
-           
-            const {result} = renderHook(() => useSubmitLogin(saveData, {}))
+            const {result} = renderHook(() => useSubmitLogin(saveData, {login: '', loginPassword: ''}))
             expect(saveData).toHaveBeenCalledTimes(0);
+            
             act(() => {
                 result.current.submitLogin()
             })
 
-            expect(saveData).toHaveBeenCalledTimes(1);
+            expect(saveData).toHaveBeenCalledTimes(0);
 
             saveData.mockReset()
         })
     })
-
     describe('useLoginHooks function', () => {
         it('should return proper data', () => {
             const hookResult = renderHook(() => useLoginHooks());
             expect(Object.keys(hookResult.result.current).sort()).toEqual([
                 'loginData',
                 'onLoginChangeHandler',
+                'saveState',
                 'submitLogin',
             ])
         })
