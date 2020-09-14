@@ -28,10 +28,10 @@ export function App(){
                 <Route path="/login">
                     <Login />
                 </Route> 
-                <Route path="/profile/edit">
+                <Route exact path="/profile/edit">
                     <ProfileEdit />
                 </Route>
-                <Route path="/account/create">
+                <Route exact path="/profile/create">
                     <RegisterProfile />
                 </Route>
             </Switch>

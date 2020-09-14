@@ -40,17 +40,21 @@ export function useSave(path) {
             },
             body: JSON.stringify(data)
         })
-        .then((response) => {
-            if(response.status < 400){
-                dispatch({ type: 'success', response});
+        .then( async (response) => {
+            const status = response.status;
+            const body = await response.json()
+            if(status < 400){
+                dispatch({ type: 'success', response: {status, body}});
             } else {
-                dispatch({ type: 'error', error: response});
+                dispatch({ type: 'error', error: {status, body}});
             }
+            
         })
         .catch(error => {
             dispatch({ type: 'error', error});
             console.error(error);
         })
     }
+    
     return {saveState, saveData};
 } 

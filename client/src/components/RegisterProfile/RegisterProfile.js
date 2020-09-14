@@ -20,9 +20,9 @@ export function RegisterProfile(){
                     </div>
                     <div className="genderRadioButton">
                         <p>Wybierz swoją płeć:</p>
-                        <input type="radio" />Kobieta<br />
-                        <input type="radio" />Mężczyzna<br />
-                        <input type="radio" />Inna
+                        <input type="radio" name="gender"/>Kobieta<br />
+                        <input type="radio" name="gender"/>Mężczyzna<br />
+                        <input type="radio" name="gender"/>Inna
                     </div>
                     <div className="addMainPicture">
                         <p>Wybierz swoje zdjęcie profilowe</p>
@@ -58,9 +58,9 @@ export function RegisterProfile(){
                     </div>
                     <div className="relationshipButton">
                         <p>Jakiego rodzaju znajomości poszukujesz?</p>
-                        <input type="radio" />Relacji romantycznej<br />
-                        <input type="radio" />Relacji koleżeńskiej<br />
-                        <input type="radio" />Otwarta/y na obie relacje
+                        <input type="radio" name="relationship"/>Relacji romantycznej<br />
+                        <input type="radio" name="relationship"/>Relacji koleżeńskiej<br />
+                        <input type="radio" name="relationship"/>Otwarta/y na obie relacje
                     </div>
                 </div>
                 <div className="buttonDiv">

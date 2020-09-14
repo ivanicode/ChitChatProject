@@ -1,10 +1,12 @@
 import { useSave } from '../../common/hooks/useSaveHook';
 import {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
+import {setCookie} from '../helpers/cookie';
 
 
 
 export function useLoginHooks(){
-   
+    const history = useHistory();
     const {saveData, saveState} = useSave('/api/user/login')
 
     const {
@@ -13,6 +15,18 @@ export function useLoginHooks(){
     } = useManageLoginData()
 
     const {submitLogin} = useSubmitLogin(saveData, loginData)
+
+    
+
+    useEffect(() => {
+        if(!saveState.requesting && saveState.success?.status === 200){
+            console.log(saveState.success.body.id)
+            setCookie('user', saveState.success.body.id)
+            
+            //tu mają być cookie, dane beda w success
+            history.push('/profile/create');
+        }
+    })
 
     return {
         submitLogin,
@@ -51,7 +65,6 @@ export function useSubmitLogin(saveData, loginData){
             event.preventDefault();
             saveData(loginData)
         }
-        console.log(loginData)
     }
     return {submitLogin}
 }
