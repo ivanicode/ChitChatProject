@@ -11,6 +11,7 @@ import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 import Login from '../Login/Login';
 import RegisterProfile from '../RegisterProfile/RegisterProfile';
+import PairingChats from '../PairingChats/PairingChats'
 
 
 export function App(){
@@ -33,6 +34,9 @@ export function App(){
                 </Route>
                 <Route exact path="/profile/create">
                     <RegisterProfile />
+                </Route>
+                <Route exact path="/pairing/chats">
+                    <PairingChats />
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -1,8 +1,9 @@
 import React from 'react';
+import {useProfileHooks} from './RegisterProfileHooks'
 
 export function RegisterProfile(){
 
-    //const {} = useRegisterProfileHooks()
+    const {submitRegisterProfile} = useProfileHooks()
 
     return (
         <form className="createProfileForm">
@@ -64,7 +65,7 @@ export function RegisterProfile(){
                     </div>
                 </div>
                 <div className="buttonDiv">
-                    <button type="submit" className="nextSubmit">Dalej</button>
+                    <button type="button" className="nextSubmit" onClick={submitRegisterProfile}>Dalej</button>
                 </div>
             </div>
     </form>
