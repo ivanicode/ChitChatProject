@@ -24,12 +24,14 @@ exports[`App component should match snapshot 1`] = `
       <Login />
     </Route>
     <Route
+      exact={true}
       path="/profile/edit"
     >
       <ProfileEdit />
     </Route>
     <Route
-      path="/account/create"
+      exact={true}
+      path="/profile/create"
     >
       <RegisterProfile />
     </Route>

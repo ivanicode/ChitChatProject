@@ -43,16 +43,19 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
           Wybierz swoją płeć:
         </p>
         <input
+          name="gender"
           type="radio"
         />
         Kobieta
         <br />
         <input
+          name="gender"
           type="radio"
         />
         Mężczyzna
         <br />
         <input
+          name="gender"
           type="radio"
         />
         Inna
@@ -201,16 +204,19 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
           Jakiego rodzaju znajomości poszukujesz?
         </p>
         <input
+          name="relationship"
           type="radio"
         />
         Relacji romantycznej
         <br />
         <input
+          name="relationship"
           type="radio"
         />
         Relacji koleżeńskiej
         <br />
         <input
+          name="relationship"
           type="radio"
         />
         Otwarta/y na obie relacje

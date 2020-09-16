@@ -1,5 +1,9 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import {useLoginHooks, useManageLoginData, useSubmitLogin} from '../hook'
+import {useLoginHooks, useManageLoginData, useSubmitLogin} from '../hook';
+import * as saveHooks from '../../../common/hooks/useSaveHook';
+import * as helpers from '../../helpers/cookie';
+
+const useSave = saveHooks.useSave;
 
 describe('Login hooks', () => {
 
@@ -72,6 +76,22 @@ describe('Login hooks', () => {
                 'saveState',
                 'submitLogin',
             ])
+        })
+        it('should save cookie and make redirect if user is found', () => {
+            saveHooks.useSave = jest.fn().mockImplementation(() => ({
+                saveState: {requesting: false, success: {status: 200, body: {id: 1}}}
+            }))
+            helpers.setCookie = jest.fn();
+            expect(helpers.setCookie).toHaveBeenCalledTimes(0)
+            expect(global.historyPushFn).toHaveBeenCalledTimes(0)
+            const hookResult = renderHook(() => useLoginHooks());
+
+            expect(helpers.setCookie).toHaveBeenCalledTimes(1)
+            expect(helpers.setCookie).toHaveBeenCalledWith('user',1)
+            expect(global.historyPushFn).toHaveBeenCalledTimes(1)
+            expect(global.historyPushFn).toHaveBeenCalledWith('/profile/create')
+            saveHooks.useSave.mockReset();
+            saveHooks.useSave = useSave;
         })
     })
 })
