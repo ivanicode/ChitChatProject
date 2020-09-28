@@ -69,7 +69,8 @@ describe('Login hooks', () => {
     })
     describe('useLoginHooks function', () => {
         it('should return proper data', () => {
-            const hookResult = renderHook(() => useLoginHooks());
+            const setUserData = jest.fn()
+            const hookResult = renderHook(() => useLoginHooks(setUserData));
             expect(Object.keys(hookResult.result.current).sort()).toEqual([
                 'loginData',
                 'onLoginChangeHandler',
@@ -82,14 +83,18 @@ describe('Login hooks', () => {
                 saveState: {requesting: false, success: {status: 200, body: {id: 1}}}
             }))
             helpers.setCookie = jest.fn();
+            const setUserData = jest.fn();
             expect(helpers.setCookie).toHaveBeenCalledTimes(0)
             expect(global.historyPushFn).toHaveBeenCalledTimes(0)
-            const hookResult = renderHook(() => useLoginHooks());
+            expect(setUserData).toHaveBeenCalledTimes(0)
+            const hookResult = renderHook(() => useLoginHooks(setUserData));
 
             expect(helpers.setCookie).toHaveBeenCalledTimes(1)
             expect(helpers.setCookie).toHaveBeenCalledWith('user',1)
             expect(global.historyPushFn).toHaveBeenCalledTimes(1)
             expect(global.historyPushFn).toHaveBeenCalledWith('/profile/create')
+            expect(setUserData).toHaveBeenCalledTimes(1)
+            expect(setUserData).toHaveBeenCalledWith({id: 1})
             saveHooks.useSave.mockReset();
             saveHooks.useSave = useSave;
         })

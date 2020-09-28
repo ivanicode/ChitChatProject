@@ -14,7 +14,7 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         className="greetings"
       >
         <h3>
-          Witaj na portalu ChitChat
+          Witaj na portalu ChitChat, 
         </h3>
         <h4>
           Wypełnij podstawowe dane, które wyświetlą się na Twoim profilu
@@ -227,7 +227,8 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
     >
       <button
         className="nextSubmit"
-        type="submit"
+        onClick={[Function]}
+        type="button"
       >
         Dalej
       </button>
