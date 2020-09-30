@@ -1,7 +1,7 @@
 export const gender = [
-    {id: 1, label: 'Kobieta'},
-    {id: 2, label: 'Mężczyzna'},
-    {id: 3, label: 'Inna'},
+    {type: 'radio', name: 'gender', id: 1, label: 'Kobieta'},
+    {type: 'radio', name: 'gender', id: 2, label: 'Mężczyzna'},
+    {type: 'radio', name: 'gender', id: 3, label: 'Inna'},
 ]
 
 export const hobby = [
@@ -31,7 +31,7 @@ export const hobby = [
 ]               
 
 export const relationship = [
-    {id: 1, label: 'Relacji romantycznej'},
-    {id: 2, label: 'Relacji koleżeńskiej'},
-    {id: 3, label: 'Otwarta/y na obie relacje'},
+    {type: 'radio', name: 'relationship', id: 1, label: 'Relacji romantycznej'},
+    {type: 'radio', name: 'relationship', id: 2, label: 'Relacji koleżeńskiej'},
+    {type: 'radio', name: 'relationship', id: 3, label: 'Otwarta/y na obie relacje'},
 ]
