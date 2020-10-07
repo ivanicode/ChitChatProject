@@ -4,8 +4,12 @@ import { string } from 'prop-types';
 import {gender, hobby, relationship} from './dictionary'
 
 export function RegisterProfile({userName}){
-    console.log(userName)
-    const {submitRegisterProfile} = useProfileHooks()
+
+    const {
+        submitRegisterProfile,
+        formData,
+        onChangeHandler
+    } = useProfileHooks()
     
 
     return (
@@ -17,28 +21,28 @@ export function RegisterProfile({userName}){
                         <h4>Wypełnij podstawowe dane, które wyświetlą się na Twoim profilu</h4>
                     </div>
                     <div className="nicknameInput">
-                        <input type="text" placeholder="Wpisz swój nickname" />
+                        <input type="text" placeholder="Wpisz swój nickname" id="nickname" value={formData.nickname} onChange={onChangeHandler} />
                     </div>
                     <div className="cityInput">
-                        <input type="text" placeholder="Nazwa Twojej miejscowości" />
+                        <input type="text" placeholder="Nazwa Twojej miejscowości" id="city" value={formData.city} onChange={onChangeHandler} />
                     </div>
                     <div className="genderRadioButton">
                         <p>Wybierz swoją płeć:</p>
                         {gender.map(el => (
                             <div key={el.id} >
-                            <input type={el.type} name={el.name} value={el.id} />{el.label}
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="gender"/>{el.label}
                             </div>
                         ))}
                     </div>
                     <div className="addMainPicture">
                         <p>Wybierz swoje zdjęcie profilowe</p>
-                        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" key="1" />
+                        <input type="file" id="picture" name="avatar" accept="image/png, image/jpeg" key="1" value={formData.picture} onChange={onChangeHandler} />
                     </div>
                     <div className="interestsSelect">
                         <p>Wybierz min. jedno zainteresowanie (max 3)</p>
-                        <select>
+                        <select multiple="multiple" size="10" onChange={onChangeHandler} id="interests" >
                         {hobby.map(el => (
-                            <option value={el.id} key={el.id}>{el.label}</option>
+                            <option value={el.id} key={el.id} selected={formData.interests.find((element) => element === el.id.toString())}>{el.label}</option>
                         ))}
                         </select>
                     </div>
@@ -46,7 +50,7 @@ export function RegisterProfile({userName}){
                         <p>Jakiego rodzaju znajomości poszukujesz?</p>
                         {relationship.map(el => (
                             <div key={el.id}>
-                            <input type={el.type} name={el.name} value={el.id} />{el.label}
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="relationship" />{el.label}
                             </div>
                         ))}
                     </div>

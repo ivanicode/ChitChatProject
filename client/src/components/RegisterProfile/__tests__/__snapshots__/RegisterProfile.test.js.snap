@@ -24,16 +24,22 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         className="nicknameInput"
       >
         <input
+          id="nickname"
+          onChange={[Function]}
           placeholder="Wpisz swój nickname"
           type="text"
+          value=""
         />
       </div>
       <div
         className="cityInput"
       >
         <input
+          id="city"
+          onChange={[Function]}
           placeholder="Nazwa Twojej miejscowości"
           type="text"
+          value=""
         />
       </div>
       <div
@@ -42,23 +48,42 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         <p>
           Wybierz swoją płeć:
         </p>
-        <input
-          name="gender"
-          type="radio"
-        />
-        Kobieta
-        <br />
-        <input
-          name="gender"
-          type="radio"
-        />
-        Mężczyzna
-        <br />
-        <input
-          name="gender"
-          type="radio"
-        />
-        Inna
+        <div
+          key="1"
+        >
+          <input
+            id="gender"
+            name="gender"
+            onChange={[Function]}
+            type="radio"
+            value={1}
+          />
+          Kobieta
+        </div>
+        <div
+          key="2"
+        >
+          <input
+            id="gender"
+            name="gender"
+            onChange={[Function]}
+            type="radio"
+            value={2}
+          />
+          Mężczyzna
+        </div>
+        <div
+          key="3"
+        >
+          <input
+            id="gender"
+            name="gender"
+            onChange={[Function]}
+            type="radio"
+            value={3}
+          />
+          Inna
+        </div>
       </div>
       <div
         className="addMainPicture"
@@ -68,9 +93,12 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         </p>
         <input
           accept="image/png, image/jpeg"
-          id="avatar"
+          id="picture"
+          key="1"
           name="avatar"
+          onChange={[Function]}
           type="file"
+          value=""
         />
       </div>
       <div
@@ -79,119 +107,147 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         <p>
           Wybierz min. jedno zainteresowanie (max 3)
         </p>
-        <select>
+        <select
+          id="interests"
+          multiple="multiple"
+          onChange={[Function]}
+          size="10"
+        >
           <option
-            name="sport"
+            key="1"
+            value={1}
           >
             Sport
           </option>
           <option
-            name="books"
+            key="2"
+            value={2}
           >
             Książki
           </option>
           <option
-            name="series"
+            key="3"
+            value={3}
           >
             Seriale
           </option>
           <option
-            name="travels"
+            key="4"
+            value={4}
           >
             Podróże
           </option>
           <option
-            name="informatics"
+            key="5"
+            value={5}
           >
             Informatyka
           </option>
           <option
-            name="diving"
+            key="6"
+            value={6}
           >
             Nurkowanie
           </option>
           <option
-            name="cooking"
+            key="7"
+            value={7}
           >
             Gotowanie
           </option>
           <option
-            name="music"
+            key="8"
+            value={8}
           >
             Muzyka
           </option>
           <option
-            name="languages"
+            key="9"
+            value={9}
           >
             Języki obce
           </option>
           <option
-            name="gaming"
+            key="10"
+            value={10}
           >
             Gry online
           </option>
           <option
-            name="gardening"
+            key="11"
+            value={11}
           >
             Uprawianie ogrodu
           </option>
           <option
-            name="fashion"
+            key="12"
+            value={12}
           >
             Moda
           </option>
           <option
-            name="artistic"
+            key="13"
+            value={13}
           >
             Plastyka
           </option>
           <option
-            name="automotive"
+            key="14"
+            value={14}
           >
             Motoryzacja
           </option>
           <option
-            name="fishing"
+            key="15"
+            value={15}
           >
             Wędkarstwo
           </option>
           <option
-            name="climbing"
+            key="16"
+            value={16}
           >
             Wspinaczki
           </option>
           <option
-            name="horsmenship"
+            key="17"
+            value={17}
           >
             Jeździectwo
           </option>
           <option
-            name="animals"
+            key="18"
+            value={18}
           >
             Zwierzęta
           </option>
           <option
-            name="rekreationalSport"
+            key="19"
+            value={19}
           >
             Sport rekreacyjny
           </option>
           <option
-            name="groupSport"
+            key="20"
+            value={20}
           >
             Sporty grupowe
           </option>
           <option
-            name="extremeSports"
+            key="21"
+            value={21}
           >
             Sporty ekstremalne
           </option>
           <option
-            name="combatSports"
+            key="22"
+            value={22}
           >
             Sporty walki
           </option>
           <option
-            name="tattoos"
+            key="23"
+            value={23}
           >
             Tatuaże
           </option>
@@ -203,23 +259,42 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
         <p>
           Jakiego rodzaju znajomości poszukujesz?
         </p>
-        <input
-          name="relationship"
-          type="radio"
-        />
-        Relacji romantycznej
-        <br />
-        <input
-          name="relationship"
-          type="radio"
-        />
-        Relacji koleżeńskiej
-        <br />
-        <input
-          name="relationship"
-          type="radio"
-        />
-        Otwarta/y na obie relacje
+        <div
+          key="1"
+        >
+          <input
+            id="relationship"
+            name="relationship"
+            onChange={[Function]}
+            type="radio"
+            value={1}
+          />
+          Relacji romantycznej
+        </div>
+        <div
+          key="2"
+        >
+          <input
+            id="relationship"
+            name="relationship"
+            onChange={[Function]}
+            type="radio"
+            value={2}
+          />
+          Relacji koleżeńskiej
+        </div>
+        <div
+          key="3"
+        >
+          <input
+            id="relationship"
+            name="relationship"
+            onChange={[Function]}
+            type="radio"
+            value={3}
+          />
+          Otwarta/y na obie relacje
+        </div>
       </div>
     </div>
     <div

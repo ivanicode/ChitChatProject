@@ -20,7 +20,6 @@ export function useLoginHooks(setUserData){
 
     useEffect(() => {
         if(!saveState.requesting && saveState.success?.status === 200){
-            console.log('saveState.succes.body', saveState.success.body)
             setCookie('user', saveState.success.body.id)
             setUserData(saveState.success.body)
 

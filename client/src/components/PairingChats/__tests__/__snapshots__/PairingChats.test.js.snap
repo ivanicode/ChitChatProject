@@ -23,91 +23,110 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       <p>
         Ustaw jaka odległość powinna dzielić Cię od rozmówcy
       </p>
-      <select>
+      <select
+        id="distance"
+        onChange={[Function]}
+      >
         <option
-          name="distance"
+          key="1"
+          value={1}
         >
           Losowo
         </option>
         <option
-          name="distance"
+          key="2"
+          value={2}
         >
           Tylko moja miejscowość
         </option>
         <option
-          name="distance"
+          key="3"
+          value={3}
         >
           do 10km
         </option>
         <option
-          name="distance"
+          key="4"
+          value={4}
         >
           do 20km
         </option>
         <option
-          name="distance"
+          key="5"
+          value={5}
         >
           do 30km
         </option>
         <option
-          name="distance"
+          key="6"
+          value={6}
         >
           do 40km
         </option>
         <option
-          name="distance"
+          key="7"
+          value={7}
         >
           do 50km
         </option>
         <option
-          name="distance"
+          key="8"
+          value={8}
         >
           do 60km
         </option>
         <option
-          name="distance"
+          key="9"
+          value={9}
         >
           do 70km
         </option>
         <option
-          name="distance"
+          key="10"
+          value={10}
         >
           do 80km
         </option>
         <option
-          name="distance"
+          key="11"
+          value={11}
         >
           do 90km
         </option>
         <option
-          name="distance"
+          key="12"
+          value={12}
         >
           do 100km
         </option>
         <option
-          name="distance"
+          key="13"
+          value={13}
         >
           do 150km
         </option>
         <option
-          name="distance"
+          key="14"
+          value={14}
         >
           do 200km
         </option>
         <option
-          name="distance"
+          key="15"
+          value={15}
         >
           do 300km
         </option>
         <option
-          name="distance"
+          key="16"
+          value={16}
         >
           do i powyżej 400km
         </option>
       </select>
     </div>
     <div
-      className="interstDiv"
+      className="interestDiv"
     >
       <p>
         Zainteresowania:
@@ -115,30 +134,66 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       <p>
         Ustaw w jaki sposób chaty mają się parować pod względem zainteresowań
       </p>
-      <input
-        type="radio"
-      />
-      Losowo (bez wględu na zainteresowania)
-      <br />
-      <input
-        type="radio"
-      />
-      Według moich zaintersowań
-      <br />
-      <input
-        type="radio"
-      />
-      Według mojego pierwszego zainteresowania
-      <br />
-      <input
-        type="radio"
-      />
-      Według mojego drugiego zainteresowania
-      <br />
-      <input
-        type="radio"
-      />
-      Według mojego trzeciego zainteresowania
+      <div
+        key="1"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={1}
+        />
+        Losowo (bez wględu na zainteresowania)
+      </div>
+      <div
+        key="2"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={2}
+        />
+        Według moich zaintersowań
+      </div>
+      <div
+        key="3"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={3}
+        />
+        Według mojego pierwszego zainteresowania
+      </div>
+      <div
+        key="4"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={4}
+        />
+        Według mojego drugiego zainteresowania
+      </div>
+      <div
+        key="5"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={5}
+        />
+        Według mojego trzeciego zainteresowania
+      </div>
     </div>
     <div
       className="genderSelectDiv"
@@ -149,24 +204,31 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       <p>
         Możesz zdecydować jakiej płci mają być Twoi rozmówcy
       </p>
-      <select>
+      <select
+        id="gender"
+        onChange={[Function]}
+      >
         <option
-          name="gender"
+          key="1"
+          value={1}
         >
           Losowo
         </option>
         <option
-          name="gender"
+          key="2"
+          value={2}
         >
           Mężczyzna
         </option>
         <option
-          name="gender"
+          key="3"
+          value={3}
         >
           Kobieta
         </option>
         <option
-          name="gender"
+          key="4"
+          value={4}
         >
           Inna
         </option>
@@ -181,66 +243,81 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       <p>
         Zdecyduj jaka różnica wieku ma być między Tobą a rozmówcą. Różnica będzie wynosiła maksymalnie 10lat
       </p>
-      <select>
+      <select
+        id="age"
+        onChange={[Function]}
+      >
         <option
-          name="age"
+          key="1"
+          value={1}
         >
           Losowo
         </option>
         <option
-          name="age"
+          key="2"
+          value={2}
         >
           Tylko w moim wieku
         </option>
         <option
-          name="age"
+          key="3"
+          value={3}
         >
           Do 1 roku różnicy
         </option>
         <option
-          name="age"
+          key="4"
+          value={4}
         >
-          Do 2 lat różnicy
+          Do 2 roku różnicy
         </option>
         <option
-          name="age"
+          key="5"
+          value={5}
         >
-          Do 3 lat różnicy
+          Do 3 roku różnicy
         </option>
         <option
-          name="age"
+          key="6"
+          value={6}
         >
-          Do 4 lat różnicy
+          Do 4 roku różnicy
         </option>
         <option
-          name="age"
+          key="7"
+          value={7}
         >
-          Do 5 lat różnicy
+          Do 5 roku różnicy
         </option>
         <option
-          name="age"
+          key="8"
+          value={8}
         >
-          Do 6 lat różnicy
+          Do 6 roku różnicy
         </option>
         <option
-          name="age"
+          key="9"
+          value={9}
         >
-          Do 7 lat różnicy
+          Do 7 roku różnicy
         </option>
         <option
-          name="age"
+          key="10"
+          value={10}
         >
-          Do 8 lat różnicy
+          Do 8 roku różnicy
         </option>
         <option
-          name="age"
+          key="11"
+          value={11}
         >
-          Do 9 lat różnicy
+          Do 9 roku różnicy
         </option>
         <option
-          name="age"
+          key="12"
+          value={12}
         >
-          Do 10 lat różnicy
+          Do 10 roku różnicy
         </option>
       </select>
     </div>
@@ -248,6 +325,7 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
   <div>
     <button
       className="submitPairingChats"
+      onClick={[Function]}
       type="submit"
     >
       Dalej

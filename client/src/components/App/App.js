@@ -17,7 +17,6 @@ import { useAppHooks } from './AppHooks';
 
 export function App(){
     const {userData, setUserData} = useAppHooks()
-    console.log(userData.first_name)
     return (
         <BrowserRouter>
             <PageNavigation />
