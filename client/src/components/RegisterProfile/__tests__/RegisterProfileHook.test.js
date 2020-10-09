@@ -53,7 +53,7 @@ describe('RegisterProfile hooks', () => {
 
             const hookResult = renderHook(() => useManageFormData())
 
-            expect(hookResult.result.current.formData.interests).toEqual(['Informatyka', 'Podróże', 'Książki'])
+            expect(hookResult.result.current.formData.interests).toEqual([])
 
             const event = {target: {id: 'interests', options: [{selected: true, value: 'Sport'}]}}
             act(() => {

@@ -10,6 +10,7 @@ module.exports = {
         main: path.join(__dirname, 'src/index.js'),
     },
     mode: 'development',
+    devtool: 'source-map',
     output: {
         filename: '[name].bundle.js',
         path: dist,

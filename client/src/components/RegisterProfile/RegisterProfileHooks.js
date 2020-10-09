@@ -1,15 +1,19 @@
 import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
+import { useSave } from '../../common/hooks/useSaveHook';
 
 export function useProfileHooks(){
-    const {
-        submitRegisterProfile
-    } = useSubmitRegisterProfile()
 
     const {
         formData,
         onChangeHandler
     } = useManageFormData()
+
+    const {saveData} = useSave('/api/user/details')
+
+    const {
+        submitRegisterProfile
+    } = useSubmitRegisterProfile(saveData, formData)
 
     return {
         submitRegisterProfile,
@@ -18,11 +22,11 @@ export function useProfileHooks(){
     }
 }
 
-export function useSubmitRegisterProfile(){
+export function useSubmitRegisterProfile(saveData, formData){
     const history = useHistory();
     function submitRegisterProfile(){
-        
-        history.push('/pairing/chats');
+        saveData(formData)
+        //history.push('/pairing/chats');
     }
     return {submitRegisterProfile}
 }

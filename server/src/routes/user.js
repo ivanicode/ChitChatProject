@@ -39,6 +39,22 @@ router.post('', (req, res) => {
   closeConnection(connection);
 })
 
+router.post('/details', (req, res) => {
+  const connection = makeConnection();
+  const data = req.body;
+  /*const dbQuery = `insert into chitchat_user_details (user_id, nickname, city, gender, picture, interests, relationship, distance, interest_pairing, gender_pairing, age_pairing) values ('${}', '${data.lastName}', '${data.date}', '${data.mail}', '${data.originalPassword}')`
+
+  connection.query(dbQuery, function (error, results) {
+    if (error) {
+      throw error;
+    }
+    console.log(results);
+  });*/
+
+  res.status(204).send()
+  closeConnection(connection);
+})
+
 module.exports = router; 
 
 router.post('/login', (req, res) => {
