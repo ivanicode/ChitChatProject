@@ -1,40 +1,37 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react';
+import {useState} from 'react'
 
-export function useProfileHooks(){
+export function usePairingHooks(){
     const {
-        submitRegisterProfile
-    } = useSubmitRegisterProfile()
+        submitPairingChats
+    } = useSubmitPairingChats()
 
     const {
-        formData,
-        onChangeHandler
+        onChangeHandler,
+        formData
     } = useManageFormData()
-
+    
     return {
-        submitRegisterProfile,
-        formData,
-        onChangeHandler
+        submitPairingChats,
+        onChangeHandler,
+        formData
     }
 }
 
-export function useSubmitRegisterProfile(){
+export function useSubmitPairingChats(){
     const history = useHistory();
-    function submitRegisterProfile(){
+    function submitPairingChats(){
         
-        history.push('/pairing/chats');
+        history.push('');
     }
-    return {submitRegisterProfile}
+    return {submitPairingChats}
 }
-
 
 export const initialState = {
-    nickname: '',
-    city: '',
+    distance: '',
+    interests: '',
     gender: '',
-    picture: '',
-    interests: [],
-    relationship: ''
+    age: ''
 }
 
 export function useManageFormData(){
@@ -46,14 +43,15 @@ export function useManageFormData(){
         const id = event.target.id;
         const value = event.target.value;
         const newState = {...formData};
-        if(id === 'interests') {
-            const checkedInterestsArray = Array.from(options).filter((element) => {
+        newState[id] = value;
+        if(id === 'distance' || id === 'gender' || id === 'age') {
+            const variable = Array.from(options).filter((element) => {
                 return element.selected;
             }).map((el) => {
                 return el.value;
             })
-            if(checkedInterestsArray.length < 4){
-                newState[id] = checkedInterestsArray;
+            if(variable.length < 2){
+                newState[id] = variable;
             }
         } else {
             newState[id] = value;
@@ -62,5 +60,3 @@ export function useManageFormData(){
     }
     return {formData, onChangeHandler}
 }
-
-

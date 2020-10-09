@@ -1,0 +1,335 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PairingChats component should match snapshot when no errors 1`] = `
+<form
+  className="relationship-form"
+>
+  <div
+    className="relationshipFormDiv"
+  >
+    <div
+      className="h3Div"
+    >
+      <h3>
+        Ostatnim krokiem do rozpoczęcia korzystania z ChitChat pozostaje ustawić parametry dla jakich będziemy znajdywać dla Ciebie ChitChaterów
+      </h3>
+    </div>
+    <div
+      className="distanceDiv"
+    >
+      <p>
+        Odległość:
+      </p>
+      <p>
+        Ustaw jaka odległość powinna dzielić Cię od rozmówcy
+      </p>
+      <select
+        id="distance"
+        onChange={[Function]}
+      >
+        <option
+          key="1"
+          value={1}
+        >
+          Losowo
+        </option>
+        <option
+          key="2"
+          value={2}
+        >
+          Tylko moja miejscowość
+        </option>
+        <option
+          key="3"
+          value={3}
+        >
+          do 10km
+        </option>
+        <option
+          key="4"
+          value={4}
+        >
+          do 20km
+        </option>
+        <option
+          key="5"
+          value={5}
+        >
+          do 30km
+        </option>
+        <option
+          key="6"
+          value={6}
+        >
+          do 40km
+        </option>
+        <option
+          key="7"
+          value={7}
+        >
+          do 50km
+        </option>
+        <option
+          key="8"
+          value={8}
+        >
+          do 60km
+        </option>
+        <option
+          key="9"
+          value={9}
+        >
+          do 70km
+        </option>
+        <option
+          key="10"
+          value={10}
+        >
+          do 80km
+        </option>
+        <option
+          key="11"
+          value={11}
+        >
+          do 90km
+        </option>
+        <option
+          key="12"
+          value={12}
+        >
+          do 100km
+        </option>
+        <option
+          key="13"
+          value={13}
+        >
+          do 150km
+        </option>
+        <option
+          key="14"
+          value={14}
+        >
+          do 200km
+        </option>
+        <option
+          key="15"
+          value={15}
+        >
+          do 300km
+        </option>
+        <option
+          key="16"
+          value={16}
+        >
+          do i powyżej 400km
+        </option>
+      </select>
+    </div>
+    <div
+      className="interestDiv"
+    >
+      <p>
+        Zainteresowania:
+      </p>
+      <p>
+        Ustaw w jaki sposób chaty mają się parować pod względem zainteresowań
+      </p>
+      <div
+        key="1"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={1}
+        />
+        Losowo (bez wględu na zainteresowania)
+      </div>
+      <div
+        key="2"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={2}
+        />
+        Według moich zaintersowań
+      </div>
+      <div
+        key="3"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={3}
+        />
+        Według mojego pierwszego zainteresowania
+      </div>
+      <div
+        key="4"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={4}
+        />
+        Według mojego drugiego zainteresowania
+      </div>
+      <div
+        key="5"
+      >
+        <input
+          id="interests"
+          name="interests"
+          onChange={[Function]}
+          type="radio"
+          value={5}
+        />
+        Według mojego trzeciego zainteresowania
+      </div>
+    </div>
+    <div
+      className="genderSelectDiv"
+    >
+      <p>
+        Płeć:
+      </p>
+      <p>
+        Możesz zdecydować jakiej płci mają być Twoi rozmówcy
+      </p>
+      <select
+        id="gender"
+        onChange={[Function]}
+      >
+        <option
+          key="1"
+          value={1}
+        >
+          Losowo
+        </option>
+        <option
+          key="2"
+          value={2}
+        >
+          Mężczyzna
+        </option>
+        <option
+          key="3"
+          value={3}
+        >
+          Kobieta
+        </option>
+        <option
+          key="4"
+          value={4}
+        >
+          Inna
+        </option>
+      </select>
+    </div>
+    <div
+      className="ageDifferenceDiv"
+    >
+      <p>
+        Wiek:
+      </p>
+      <p>
+        Zdecyduj jaka różnica wieku ma być między Tobą a rozmówcą. Różnica będzie wynosiła maksymalnie 10lat
+      </p>
+      <select
+        id="age"
+        onChange={[Function]}
+      >
+        <option
+          key="1"
+          value={1}
+        >
+          Losowo
+        </option>
+        <option
+          key="2"
+          value={2}
+        >
+          Tylko w moim wieku
+        </option>
+        <option
+          key="3"
+          value={3}
+        >
+          Do 1 roku różnicy
+        </option>
+        <option
+          key="4"
+          value={4}
+        >
+          Do 2 roku różnicy
+        </option>
+        <option
+          key="5"
+          value={5}
+        >
+          Do 3 roku różnicy
+        </option>
+        <option
+          key="6"
+          value={6}
+        >
+          Do 4 roku różnicy
+        </option>
+        <option
+          key="7"
+          value={7}
+        >
+          Do 5 roku różnicy
+        </option>
+        <option
+          key="8"
+          value={8}
+        >
+          Do 6 roku różnicy
+        </option>
+        <option
+          key="9"
+          value={9}
+        >
+          Do 7 roku różnicy
+        </option>
+        <option
+          key="10"
+          value={10}
+        >
+          Do 8 roku różnicy
+        </option>
+        <option
+          key="11"
+          value={11}
+        >
+          Do 9 roku różnicy
+        </option>
+        <option
+          key="12"
+          value={12}
+        >
+          Do 10 roku różnicy
+        </option>
+      </select>
+    </div>
+  </div>
+  <div>
+    <button
+      className="submitPairingChats"
+      onClick={[Function]}
+      type="submit"
+    >
+      Dalej
+    </button>
+  </div>
+</form>
+`;

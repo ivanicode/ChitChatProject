@@ -16,4 +16,16 @@ describe('Login component', () => {
         const wrapper = shallow(<Login />)
         expect(wrapper).toMatchSnapshot()
     })
+    it('should match snapshot when error exist', () => {
+        hook.useLoginHooks = jest.fn().mockImplementation(
+            () => ({
+                loginData: {},
+                saveState: {error: {}},
+                submitLogin: jest.fn(),
+                onLoginChangeHandler: jest.fn()
+            })
+        )
+        const wrapper = shallow(<Login />)
+        expect(wrapper).toMatchSnapshot()
+    } )
 })

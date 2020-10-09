@@ -21,17 +21,27 @@ exports[`App component should match snapshot 1`] = `
     <Route
       path="/login"
     >
-      <Login />
+      <Login
+        setUserData={[Function]}
+      />
     </Route>
     <Route
+      exact={true}
       path="/profile/edit"
     >
       <ProfileEdit />
     </Route>
     <Route
-      path="/account/create"
+      exact={true}
+      path="/profile/create"
     >
       <RegisterProfile />
+    </Route>
+    <Route
+      exact={true}
+      path="/pairing/chats"
+    >
+      <PairingChats />
     </Route>
   </Switch>
 </BrowserRouter>

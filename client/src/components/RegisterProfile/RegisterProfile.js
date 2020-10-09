@@ -1,74 +1,69 @@
 import React from 'react';
+import {useProfileHooks} from './RegisterProfileHooks'
+import { string } from 'prop-types';
+import {gender, hobby, relationship} from './dictionary'
 
-export function RegisterProfile(){
+export function RegisterProfile({userName}){
 
-    //const {} = useRegisterProfileHooks()
+    const {
+        submitRegisterProfile,
+        formData,
+        onChangeHandler
+    } = useProfileHooks()
+    
 
     return (
         <form className="createProfileForm">
             <div className="createProfileDiv">
                 <div className="formDiv">
                     <div className="greetings">
-                        <h3>Witaj na portalu ChitChat</h3>
+                        <h3>Witaj na portalu ChitChat, {userName}</h3>
                         <h4>Wypełnij podstawowe dane, które wyświetlą się na Twoim profilu</h4>
                     </div>
                     <div className="nicknameInput">
-                        <input type="text" placeholder="Wpisz swój nickname" />
+                        <input type="text" placeholder="Wpisz swój nickname" id="nickname" value={formData.nickname} onChange={onChangeHandler} />
                     </div>
                     <div className="cityInput">
-                        <input type="text" placeholder="Nazwa Twojej miejscowości" />
+                        <input type="text" placeholder="Nazwa Twojej miejscowości" id="city" value={formData.city} onChange={onChangeHandler} />
                     </div>
                     <div className="genderRadioButton">
                         <p>Wybierz swoją płeć:</p>
-                        <input type="radio" name="gender"/>Kobieta<br />
-                        <input type="radio" name="gender"/>Mężczyzna<br />
-                        <input type="radio" name="gender"/>Inna
+                        {gender.map(el => (
+                            <div key={el.id} >
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="gender"/>{el.label}
+                            </div>
+                        ))}
                     </div>
                     <div className="addMainPicture">
                         <p>Wybierz swoje zdjęcie profilowe</p>
-                        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
+                        <input type="file" id="picture" name="avatar" accept="image/png, image/jpeg" key="1" value={formData.picture} onChange={onChangeHandler} />
                     </div>
                     <div className="interestsSelect">
                         <p>Wybierz min. jedno zainteresowanie (max 3)</p>
-                        <select>
-                            <option name="sport">Sport</option>
-                            <option name="books">Książki</option>
-                            <option name="series">Seriale</option>
-                            <option name="travels">Podróże</option>
-                            <option name="informatics">Informatyka</option>
-                            <option name="diving">Nurkowanie</option>
-                            <option name="cooking">Gotowanie</option>
-                            <option name="music">Muzyka</option>
-                            <option name="languages">Języki obce</option>
-                            <option name="gaming">Gry online</option>
-                            <option name="gardening">Uprawianie ogrodu</option>
-                            <option name="fashion">Moda</option>
-                            <option name="artistic">Plastyka</option>
-                            <option name="automotive">Motoryzacja</option>
-                            <option name="fishing">Wędkarstwo</option>
-                            <option name="climbing">Wspinaczki</option>
-                            <option name="horsmenship">Jeździectwo</option>
-                            <option name="animals">Zwierzęta</option>
-                            <option name="rekreationalSport">Sport rekreacyjny</option>
-                            <option name="groupSport">Sporty grupowe</option>
-                            <option name="extremeSports">Sporty ekstremalne</option>
-                            <option name="combatSports">Sporty walki</option>
-                            <option name="tattoos">Tatuaże</option>
+                        <select multiple="multiple" size="10" onChange={onChangeHandler} id="interests" >
+                        {hobby.map(el => (
+                            <option value={el.id} key={el.id} selected={formData.interests.find((element) => element === el.id.toString())}>{el.label}</option>
+                        ))}
                         </select>
                     </div>
                     <div className="relationshipButton">
                         <p>Jakiego rodzaju znajomości poszukujesz?</p>
-                        <input type="radio" name="relationship"/>Relacji romantycznej<br />
-                        <input type="radio" name="relationship"/>Relacji koleżeńskiej<br />
-                        <input type="radio" name="relationship"/>Otwarta/y na obie relacje
+                        {relationship.map(el => (
+                            <div key={el.id}>
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="relationship" />{el.label}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="buttonDiv">
-                    <button type="submit" className="nextSubmit">Dalej</button>
+                    <button type="button" className="nextSubmit" onClick={submitRegisterProfile}>Dalej</button>
                 </div>
             </div>
     </form>
     )
 }
-
+RegisterProfile.displayName = 'RegisterProfile';
+RegisterProfile.propTypes = {
+    userName: string
+}
 export default RegisterProfile;

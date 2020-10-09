@@ -11,9 +11,12 @@ import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 import Login from '../Login/Login';
 import RegisterProfile from '../RegisterProfile/RegisterProfile';
+import PairingChats from '../PairingChats/PairingChats'
+import { useAppHooks } from './AppHooks';
 
 
 export function App(){
+    const {userData, setUserData} = useAppHooks()
     return (
         <BrowserRouter>
             <PageNavigation />
@@ -26,13 +29,16 @@ export function App(){
                     <RegisterAccount />
                 </Route> 
                 <Route path="/login">
-                    <Login />
+                    <Login setUserData={setUserData} />
                 </Route> 
                 <Route exact path="/profile/edit">
                     <ProfileEdit />
                 </Route>
                 <Route exact path="/profile/create">
-                    <RegisterProfile />
+                    <RegisterProfile userName={userData.first_name} />
+                </Route>
+                <Route exact path="/pairing/chats">
+                    <PairingChats />
                 </Route>
             </Switch>
         </BrowserRouter>

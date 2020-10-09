@@ -5,7 +5,7 @@ import {setCookie} from '../helpers/cookie';
 
 
 
-export function useLoginHooks(){
+export function useLoginHooks(setUserData){
     const history = useHistory();
     const {saveData, saveState} = useSave('/api/user/login')
 
@@ -20,10 +20,9 @@ export function useLoginHooks(){
 
     useEffect(() => {
         if(!saveState.requesting && saveState.success?.status === 200){
-            console.log(saveState.success.body.id)
             setCookie('user', saveState.success.body.id)
-            
-            //tu mają być cookie, dane beda w success
+            setUserData(saveState.success.body)
+
             history.push('/profile/create');
         }
     })

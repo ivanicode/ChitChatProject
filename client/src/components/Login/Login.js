@@ -1,14 +1,15 @@
 import React from 'react';
 import { useLoginHooks } from './hook';
+import { func } from 'prop-types';
 
-export function Login(){
+export function Login({setUserData}){
 
     const {
         submitLogin,
         onLoginChangeHandler,
         loginData,
         saveState
-    } = useLoginHooks()
+    } = useLoginHooks(setUserData)
 
     const errorMessage = saveState.error ? (<div className="errorTextForNoUser">
         Nie ma takiego użytkownika
@@ -38,5 +39,8 @@ export function Login(){
     )
 }
 
-
+Login.displayName = 'Login';
+Login.propTypes = {
+    setUserData: func
+}
 export default Login;

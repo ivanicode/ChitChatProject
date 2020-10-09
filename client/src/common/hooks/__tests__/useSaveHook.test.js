@@ -49,33 +49,40 @@ describe('useSaveHook', () => {
         })
         it('should update saveState.success on success', async () => {
             
-            const {result} = renderHook(() => useSave('abc'))
+            const {result} = renderHook(() => useSave('abc'));
+            
             global.fetch = jest.fn(
                 () => Promise.resolve({
                     message: 'success',
                     status: 200,
+                    json: () => {
+                        return {id: 1}
+                    }
                 })
             )
             expect(result.current.saveState.success).toEqual(null)
             await act( async () => {
                 result.current.saveData()
             })
-            expect(result.current.saveState.success).toEqual({message: 'success', status: 200})
+            expect(result.current.saveState.success).toEqual({status: 200, body: {id: 1} })
         })
-        it('should update saveState.success on success', async () => {
+        it('should update saveState.error on error', async () => {
             
             const {result} = renderHook(() => useSave('abc'))
             global.fetch = jest.fn(
                 () => Promise.resolve({
                     message: 'error',
                     status: 404,
+                    json: () => {
+                        return {message: 'error'}
+                    }
                 })
             )
             expect(result.current.saveState.error).toEqual(null)
             await act( async () => {
                 result.current.saveData()
             })
-            expect(result.current.saveState.error).toEqual({message: 'error', status: 404})
+            expect(result.current.saveState.error).toEqual({status: 404, body: {message: 'error'}})
         })
     })
 })
