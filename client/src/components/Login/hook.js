@@ -19,16 +19,13 @@ export function useLoginHooks(setUserData){
     
 
     useEffect(() => {
-        async function abc(){
-            if(!saveState.requesting && saveState.success?.status === 200){
-                await setCookie('user', saveState.success.body.id)
-                setUserData(saveState.success.body)
-    
-                history.push('/profile/create');
-            }
+        if(!saveState.requesting && saveState.success?.status === 200){
+            setCookie('user', saveState.success.body.id)
+            setUserData(saveState.success.body)
+            console.log('user', saveState.success.body.id)
+            history.push('/profile/create');
         }
-        abc()
-    })
+    }, [saveState.requesting])
 
     return {
         submitLogin,
