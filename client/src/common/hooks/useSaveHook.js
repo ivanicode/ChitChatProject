@@ -31,6 +31,7 @@ export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
     function saveData(data){
+        console.log(data)
         dispatch({ type: 'requesting' });
         fetch(path, {
             method: 'POST',

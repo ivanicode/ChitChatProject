@@ -26,7 +26,7 @@ export function useSubmitRegisterProfile(saveData, formData){
     const history = useHistory();
     function submitRegisterProfile(){
         saveData(formData)
-        //history.push('/pairing/chats');
+        history.push('/pairing/chats');
     }
     return {submitRegisterProfile}
 }

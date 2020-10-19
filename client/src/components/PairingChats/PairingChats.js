@@ -1,5 +1,6 @@
 import React from 'react';
 import {distance, genderPrefference, ageDifference, interest} from './dictionary';
+import { string } from 'prop-types';
 import {usePairingHooks} from './PairingChatsHooks';
 
 export function PairingChats(){
@@ -21,7 +22,7 @@ export function PairingChats(){
                     <p>Ustaw jaka odległość powinna dzielić Cię od rozmówcy</p>
                     <select onChange={onChangeHandler} id="distance">
                         {distance.map(el => (
-                            <option value={el.id} key={el.id}>{el.label}</option>
+                            <option value={el.id} key={el.id} selected={formData.distance}>{el.label}</option>
                         ))}
                     </select>
                 </div>
@@ -39,7 +40,7 @@ export function PairingChats(){
                     <p>Możesz zdecydować jakiej płci mają być Twoi rozmówcy</p>
                     <select onChange={onChangeHandler} id="gender">
                         {genderPrefference.map(el => (
-                            <option value={el.id} key={el.id}>{el.label}</option>
+                            <option value={el.id} key={el.id} selected={formData.gender}>{el.label}</option>
                         ))}
                     </select>
                 </div>
@@ -48,7 +49,7 @@ export function PairingChats(){
                     <p>Zdecyduj jaka różnica wieku ma być między Tobą a rozmówcą. Różnica będzie wynosiła maksymalnie 10lat</p>
                     <select onChange={onChangeHandler} id="age">
                         {ageDifference.map(el => (
-                            <option value={el.id} key={el.id}>{el.label}</option>
+                            <option value={el.id} key={el.id} selected={formData.age}>{el.label}</option>
                         ))}
                     </select>
                 </div>
@@ -58,6 +59,11 @@ export function PairingChats(){
             </div>
         </form>
     )
+}
+
+PairingChats.displayName = 'PairingChats';
+PairingChats.propTypes = {
+    userName: string
 }
 
 export default PairingChats;

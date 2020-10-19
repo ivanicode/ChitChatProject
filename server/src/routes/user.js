@@ -56,20 +56,20 @@ router.post('/details', (req, res) => {
   closeConnection(connection);
 })
 
-router.post('/details/2', (req, res) => {
+router.post('/details2', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log(req.cookie, req.cookies)
+  console.log('req.body', req.body)
   const dbQuery = `UPDATE chitchat_user_details 
   SET 
   distance = '${data.distance}',
-  interest_pairing = '${data.interest_pairing}',
-  gender_pairing = '${data.gender_pairing}',
-  age_pairing = '${data.age_pairing}'
+  interest_pairing = '${data.interests}',
+  gender_pairing = '${data.gender}',
+  age_pairing = '${data.age}'
 
   WHERE
   user_id = ${parseInt(req.cookies.user, 10)}`
-
+  console.log('dbQuery', dbQuery)
   connection.query(dbQuery, function (error, results) {
     if (error) {
       throw error;

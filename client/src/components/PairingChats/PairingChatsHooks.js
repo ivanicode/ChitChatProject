@@ -1,16 +1,20 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react'
+import {useState} from 'react';
+import { useSave } from '../../common/hooks/useSaveHook';
 
 export function usePairingHooks(){
-    const {
-        submitPairingChats
-    } = useSubmitPairingChats()
 
     const {
-        onChangeHandler,
-        formData
+        formData,
+        onChangeHandler
     } = useManageFormData()
-    
+
+    const {saveData} = useSave('/api/user/details2')
+
+    const {
+        submitPairingChats
+    } = useSubmitPairingChats(saveData, formData)
+
     return {
         submitPairingChats,
         onChangeHandler,
@@ -18,20 +22,20 @@ export function usePairingHooks(){
     }
 }
 
-export function useSubmitPairingChats(){
+export function useSubmitPairingChats(saveData, formData){
     const history = useHistory();
     function submitPairingChats(){
-        
+        saveData(formData);
         history.push('');
     }
     return {submitPairingChats}
 }
 
 export const initialState = {
-    distance: '',
+    distance: [],
     interests: '',
-    gender: '',
-    age: ''
+    gender: [],
+    age: []
 }
 
 export function useManageFormData(){
@@ -51,12 +55,13 @@ export function useManageFormData(){
                 return el.value;
             })
             if(variable.length < 2){
-                newState[id] = variable;
+                newState[id] = variable.toString();
             }
         } else {
             newState[id] = value;
         }
         setFormData(newState);
     }
+    console.log(formData)
     return {formData, onChangeHandler}
 }
