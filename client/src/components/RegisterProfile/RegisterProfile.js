@@ -36,7 +36,7 @@ export function RegisterProfile({userName}){
                     </div>
                     <div className="addMainPicture">
                         <p>Wybierz swoje zdjęcie profilowe</p>
-                        <input type="file" id="picture" name="avatar" accept="image/png, image/jpeg" key="1" value={formData.picture} onChange={onChangeHandler} />
+                        <input type="file" id="picture" name="avatar" accept="image/png, image/jpeg" key="1" onChange={onChangeHandler} />
                     </div>
                     <div className="interestsSelect">
                         <p>Wybierz min. jedno zainteresowanie (max 3)</p>

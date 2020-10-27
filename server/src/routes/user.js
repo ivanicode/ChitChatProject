@@ -1,7 +1,11 @@
 const express = require('express');
 const dbHelpers = require('../helpers/db');
+const multer = require('multer');
+
+const fileHelpers = require('../helpers/files')
 
 const router = express.Router();
+const upload = multer({dest: '/tmp'});
 
 const {makeConnection, closeConnection} = dbHelpers;
 
@@ -39,13 +43,26 @@ router.post('', (req, res) => {
   closeConnection(connection);
 })
 
-router.post('/details', (req, res) => {
+router.post('/details', upload.single('picture'), (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log(req.cookie, req.cookies)
-  const dbQuery = `insert into chitchat_user_details (user_id, nickname, city, gender, picture, interests, relationship) values (${parseInt(req.cookies.user, 10)}, '${data.nickname}', '${data.city}', '${data.gender}', '${data.picture}', '${data.interests}', '${data.relationship}')`
+  console.log('req.file', req.file)
+  const inputfile = req.file.path;
+  const photo = fileHelpers.readImageFile(inputfile); 
 
-  connection.query(dbQuery, function (error, results) {
+  const dbQuery = "insert into chitchat_user_details (user_id, nickname, city, gender, picture, interests, relationship) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+  const values = [
+    parseInt(req.cookies.user, 10),
+    data.nickname,
+    data.city,
+    data.gender,
+    photo,
+    data.interests,
+    data.relationship
+  ];
+   
+  connection.query(dbQuery, values, function (error, results) {
     if (error) {
       throw error;
     }

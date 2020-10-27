@@ -30,16 +30,19 @@ export function reducer(state, action) {
 export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
-    function saveData(data){
+    function saveData(data, contentType = 'application/json'){
         console.log(data)
+        const headers = contentType ? {
+            'Content-Type': contentType
+        } : {};
+        const body = data instanceof FormData ? data : JSON.stringify(data);
+        //if data is instance of FormData don't stringify it 
         dispatch({ type: 'requesting' });
         fetch(path, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers,
             credentials: 'include',
-            body: JSON.stringify(data)
+            body,
         })
         .then( async (response) => {
             const status = response.status;

@@ -25,7 +25,13 @@ export function useProfileHooks(){
 export function useSubmitRegisterProfile(saveData, formData){
     const history = useHistory();
     function submitRegisterProfile(){
-        saveData(formData)
+        const formDataObj = new FormData()
+        /*Object.keys(formData).forEach((propName) => {
+            formDataObj.append(propName, formData[propName])
+        })*/
+        formDataObj.append('picture', formData.picture);
+        formDataObj.append('form', formData)
+        saveData(formDataObj, null)
         history.push('/pairing/chats');
     }
     return {submitRegisterProfile}
@@ -59,6 +65,8 @@ export function useManageFormData(){
             if(checkedInterestsArray.length < 4){
                 newState[id] = checkedInterestsArray;
             }
+        } else  if(id === 'picture') {
+            newState[id] = event.target.files[0]
         } else {
             newState[id] = value;
         }
