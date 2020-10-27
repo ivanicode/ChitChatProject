@@ -25,14 +25,16 @@ export function useProfileHooks(){
 export function useSubmitRegisterProfile(saveData, formData){
     const history = useHistory();
     function submitRegisterProfile(){
-        const formDataObj = new FormData()
-        /*Object.keys(formData).forEach((propName) => {
-            formDataObj.append(propName, formData[propName])
-        })*/
+        const formDataObj = new FormData();
         formDataObj.append('picture', formData.picture);
-        formDataObj.append('form', formData)
-        saveData(formDataObj, null)
-        history.push('/pairing/chats');
+        formDataObj.append('form', JSON.stringify(formData))
+
+        function onSuccess(){
+            history.push('/pairing/chats');
+        }
+
+        saveData(formDataObj, null, onSuccess)
+        
     }
     return {submitRegisterProfile}
 }

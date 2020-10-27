@@ -45,8 +45,8 @@ router.post('', (req, res) => {
 
 router.post('/details', upload.single('picture'), (req, res) => {
   const connection = makeConnection();
-  const data = req.body;
-  console.log('req.file', req.file)
+  const data = JSON.parse(req.body.form);
+  console.log('=====!', data)
   const inputfile = req.file.path;
   const photo = fileHelpers.readImageFile(inputfile); 
 
@@ -58,10 +58,10 @@ router.post('/details', upload.single('picture'), (req, res) => {
     data.city,
     data.gender,
     photo,
-    data.interests,
+    data.interests.toString(),
     data.relationship
   ];
-   
+   console.log(values)
   connection.query(dbQuery, values, function (error, results) {
     if (error) {
       throw error;
@@ -69,7 +69,7 @@ router.post('/details', upload.single('picture'), (req, res) => {
     console.log(results);
   });
 
-  res.status(204).send()
+  res.status(204).send({})
   closeConnection(connection);
 })
 
