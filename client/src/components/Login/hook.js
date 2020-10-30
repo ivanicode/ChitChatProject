@@ -22,7 +22,6 @@ export function useLoginHooks(setUserData){
         if(!saveState.requesting && saveState.success?.status === 200){
             setCookie('user', saveState.success.body.id)
             setUserData(saveState.success.body)
-            console.log('user', saveState.success.body.id)
             history.push('/profile/create');
         }
     }, [saveState.requesting])

@@ -98,7 +98,6 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
           name="avatar"
           onChange={[Function]}
           type="file"
-          value=""
         />
       </div>
       <div

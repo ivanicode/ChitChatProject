@@ -43,25 +43,11 @@ export function useManageFormData(){
     const [formData, setFormData] = useState(initialState);
 
     function onChangeHandler(event){
-        const options = event.target.options;
         const id = event.target.id;
         const value = event.target.value;
         const newState = {...formData};
         newState[id] = value;
-        if(id === 'distance' || id === 'gender' || id === 'age') {
-            const variable = Array.from(options).filter((element) => {
-                return element.selected;
-            }).map((el) => {
-                return el.value;
-            })
-            if(variable.length < 2){
-                newState[id] = variable.toString();
-            }
-        } else {
-            newState[id] = value;
-        }
         setFormData(newState);
     }
-    console.log(formData)
     return {formData, onChangeHandler}
 }

@@ -3,7 +3,6 @@ export async function setCookie(name, value){
         const cookieName = encodeURIComponent(name);
         const cookieValue = encodeURIComponent(value);
         const cookieText = `${cookieName}=${cookieValue}; max-age=14400`;
-        console.log(cookieText)
         document.cookie = cookieText;
 
     }

@@ -1,6 +1,7 @@
 import {useHistory} from 'react-router-dom';
 import {useState} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
+import {redirectToPairingChats} from '../helpers/location'
 
 export function useProfileHooks(){
 
@@ -29,11 +30,9 @@ export function useSubmitRegisterProfile(saveData, formData){
         formDataObj.append('picture', formData.picture);
         formDataObj.append('form', JSON.stringify(formData))
 
-        function onSuccess(){
-            history.push('/pairing/chats');
-        }
+        
 
-        saveData(formDataObj, null, onSuccess)
+        saveData(formDataObj, null, redirectToPairingChats)
         
     }
     return {submitRegisterProfile}

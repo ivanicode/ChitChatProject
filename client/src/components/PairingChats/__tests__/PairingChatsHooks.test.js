@@ -4,8 +4,8 @@ import { useSubmitPairingChats, useManageFormData } from '../PairingChatsHooks';
 describe('PairingChats hooks', () => {
     describe('useSubmitPairingChats', () => {
         it('should return proper data', () => {
-            const hookResult = renderHook(() => useSubmitPairingChats());
-
+            const saveData = jest.fn()
+            const hookResult = renderHook(() => useSubmitPairingChats(saveData, {}));
             expect(typeof hookResult.result.current.submitPairingChats).toEqual('function');
             expect(global.historyPushFn).toHaveBeenCalledTimes(0);
 
@@ -20,7 +20,6 @@ describe('PairingChats hooks', () => {
         it('should return proper data', () => {
 
             const hookResult = renderHook(() => useManageFormData())
-
             expect(typeof hookResult.result.current.onChangeHandler).toEqual('function')
             expect(Object.keys(hookResult.result.current.formData).sort()).toEqual(['age',
             'distance','gender','interests'])
@@ -28,19 +27,18 @@ describe('PairingChats hooks', () => {
         it('should change gender from formData if onChangeHandler function was called with the new value of gender', () => {
 
             const hookResult = renderHook(() => useManageFormData())
+            expect(hookResult.result.current.formData.gender).toEqual([])
 
-            expect(hookResult.result.current.formData.gender).toEqual('')
-
-            const event = {target: {id: 'gender', options: [{selected: true, value: 'Kobieta'}]}}
+            const event = {target: {id: 'gender',value: 'Kobieta'}}
             act(() => {
                 hookResult.result.current.onChangeHandler(event)
             })
-            expect(hookResult.result.current.formData.gender).toEqual(['Kobieta'])
+            expect(hookResult.result.current.formData.gender).toEqual('Kobieta')
+
         })
         it('should change nickname from formData if onChangeHandler function was called with the new value of nickname', () => {
 
             const hookResult = renderHook(() => useManageFormData())
-
             expect(hookResult.result.current.formData.interests).toEqual('')
 
             const event = {target: {id: 'interests' , value: 'Według moich zaintersowań'}}

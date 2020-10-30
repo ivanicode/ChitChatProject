@@ -4,7 +4,7 @@
   "description": "chitchat project in react",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage", 
     "dev-client-build": "webpack --config client/webpack.dev.config.js",
     "dev-client-run": "webpack-dev-server --config client/webpack.dev.config.js",
     "dev-client-eslint": "eslint client/src",
