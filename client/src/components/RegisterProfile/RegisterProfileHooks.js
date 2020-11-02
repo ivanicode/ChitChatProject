@@ -1,7 +1,6 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
-import {redirectToPairingChats} from '../helpers/location'
 
 export function useProfileHooks(){
 
@@ -24,16 +23,33 @@ export function useProfileHooks(){
 }
 
 export function useSubmitRegisterProfile(saveData, formData){
+
     const history = useHistory();
+
+    function checkIfFormIsValid(){
+        const valuesForValidation = Object.values(formData).find( function (value){
+            return value === '' || value === [];
+        })
+        return valuesForValidation === undefined;
+    }
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
+    useEffect(() => {
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData])
+
     function submitRegisterProfile(){
-        const formDataObj = new FormData();
-        formDataObj.append('picture', formData.picture);
-        formDataObj.append('form', JSON.stringify(formData))
-
-        
-
-        saveData(formDataObj, null, redirectToPairingChats)
-        
+        if(formIsValid){
+            function redirectToPairingChats(){
+                history.push('/pairing/chats') 
+            }
+            const formDataObj = new FormData();
+            formDataObj.append('picture', formData.picture);
+            formDataObj.append('form', JSON.stringify(formData))
+    
+            saveData(formDataObj, null, redirectToPairingChats)
+        }
     }
     return {submitRegisterProfile}
 }

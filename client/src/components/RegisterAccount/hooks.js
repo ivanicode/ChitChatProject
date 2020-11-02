@@ -44,7 +44,7 @@ export function useSubmitForm(errors, formData, saveData) {
    
     function checkIfFormIsValid(){
         const variable = Object.values(formData).find( function (value){
-            return value === ''
+            return value === '';
         })
         return !Object.keys(errors).length && variable === undefined;
     }

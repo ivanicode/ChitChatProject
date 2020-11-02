@@ -1,5 +1,5 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
 
 export function usePairingHooks(){
@@ -24,9 +24,24 @@ export function usePairingHooks(){
 
 export function useSubmitPairingChats(saveData, formData){
     const history = useHistory();
+    function checkIfFormIsValid(){
+        const valuesForValidation = Object.values(formData).find( function (value){
+            return value === '' || value === [];
+        })
+        return valuesForValidation === undefined;
+    }
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
+    useEffect(() => {
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData])
+
     function submitPairingChats(){
-        saveData(formData);
-        history.push('');
+        if(formIsValid){
+            saveData(formData);
+            history.push('');
+        }
     }
     return {submitPairingChats}
 }

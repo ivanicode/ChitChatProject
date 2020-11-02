@@ -55,7 +55,7 @@ export function PairingChats(){
                 </div>
             </div>
             <div>
-                <button type="submit" className="submitPairingChats" onClick={submitPairingChats}>Dalej</button>
+                <button type="button" className="submitPairingChats" onClick={submitPairingChats}>Dalej</button>
             </div>
         </form>
     )

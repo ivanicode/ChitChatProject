@@ -30,7 +30,7 @@ export function RegisterProfile({userName}){
                         <p>Wybierz swoją płeć:</p>
                         {gender.map(el => (
                             <div key={el.id} >
-                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="gender"/>{el.label}
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="gender" required/>{el.label}
                             </div>
                         ))}
                     </div>
