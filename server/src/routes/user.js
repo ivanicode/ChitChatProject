@@ -9,24 +9,6 @@ const upload = multer({dest: '/tmp'});
 
 const {makeConnection, closeConnection} = dbHelpers;
 
-router.get('/:id?', (req, res) => {
-  console.log(req.params);
-
-  const connection = makeConnection();
-
-  connection.query('SELECT 1 + 1 AS solution', function (error, results) {
-    if (error) {
-      throw error;
-    }
-    console.log('The solution is: ', results[0].solution);
-  });
-
-  res
-    .status(200)
-    .send({ params: req.params });
-
-    closeConnection(connection);
-});
 router.post('', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
@@ -46,7 +28,6 @@ router.post('', (req, res) => {
 router.post('/details', upload.single('picture'), (req, res) => {
   const connection = makeConnection();
   const data = JSON.parse(req.body.form);
-  console.log('=====!', data)
   const inputfile = req.file.path;
   const photo = fileHelpers.readImageFile(inputfile); 
 
@@ -61,7 +42,6 @@ router.post('/details', upload.single('picture'), (req, res) => {
     data.interests.toString(),
     data.relationship
   ];
-   console.log(values)
   connection.query(dbQuery, values, function (error, results) {
     if (error) {
       throw error;
@@ -69,14 +49,13 @@ router.post('/details', upload.single('picture'), (req, res) => {
     console.log(results);
   });
 
-  res.status(204).send({})
+  res.status(200).send({interests: data.interests})
   closeConnection(connection);
 })
 
 router.post('/details2', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log('req.body', req.body)
   const dbQuery = `UPDATE chitchat_user_details 
   SET 
   distance = '${data.distance}',
@@ -86,7 +65,6 @@ router.post('/details2', (req, res) => {
 
   WHERE
   user_id = ${parseInt(req.cookies.user, 10)}`
-  console.log('dbQuery', dbQuery)
   connection.query(dbQuery, function (error, results) {
     if (error) {
       throw error;
@@ -131,21 +109,49 @@ router.post('/login', (req, res) => {
 router.get('/details', (req, res) => {
   
   const connection = makeConnection();
-  const data = req.body;
   
   let status = 200;
 
-  const dbQuery = `select * from chitchat_user_details where user_id = '${parseInt(req.cookies.user, 10)}'`
-  
+  const dbQuery = `select * from chitchat_user_details where user_id = ${parseInt(req.cookies.user, 10)}`
   connection.query(dbQuery, function (error, results) {
-    if (error) {
+    if(error){
+      res.status(500).send(error)
+    }
+    res.status(200).send(results[0])
+    /*if (error) {
       status = 500;
       res.status(status).send(error) //tu przesyłam obiekt błędu
       throw error;
     } else {
       status = 200;
       res.status(status).send(results)
-    } 
+    }*/
+  closeConnection(connection);
+  })
+})
+router.get('', (req, res) => {
+  
+  const connection = makeConnection();
+  
+  let status = 200;
+
+  const dbQuery = `select * from chitchat_account where id = ${parseInt(req.cookies.user, 10)}`
+  console.log('dbQuery!!!', dbQuery)
+  connection.query(dbQuery, function (error, results) {
+    if(error){
+      res.status(500).send(error)
+    }
+    console.log('results!!!!!', results[0])
+
+    res.status(200).send(results[0])
+    /*if (error) {
+      status = 500;
+      res.status(status).send(error) //tu przesyłam obiekt błędu
+      throw error;
+    } else {
+      status = 200;
+      res.status(status).send(results)
+    }*/
   closeConnection(connection);
   })
 })

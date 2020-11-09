@@ -1,9 +1,11 @@
 import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
+import { hobby } from '../RegisterProfile/dictionary'
+
 
 export function usePairingHooks(){
-
+    const history = useHistory();
     const {
         formData,
         onChangeHandler
@@ -13,17 +15,21 @@ export function usePairingHooks(){
 
     const {
         submitPairingChats
-    } = useSubmitPairingChats(saveData, formData)
+    } = useSubmitPairingChats(saveData, formData, history)
+    const chosenHobbys = history.location.search.substring(1).split('&').find((el) => el.includes('interest')).split('=')[1];
+    const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id))
 
     return {
         submitPairingChats,
         onChangeHandler,
-        formData
+        formData,
+        hobbys
     }
 }
 
-export function useSubmitPairingChats(saveData, formData){
-    const history = useHistory();
+export function useSubmitPairingChats(saveData, formData, history){
+    
+    
     function checkIfFormIsValid(){
         const valuesForValidation = Object.values(formData).find( function (value){
             return value === '' || value === [];
@@ -39,8 +45,10 @@ export function useSubmitPairingChats(saveData, formData){
 
     function submitPairingChats(){
         if(formIsValid){
-            saveData(formData);
-            history.push('');
+            function redirectToHome(){
+                history.push('') 
+            }
+            saveData({data: formData, onSuccess: redirectToHome});
         }
     }
     return {submitPairingChats}

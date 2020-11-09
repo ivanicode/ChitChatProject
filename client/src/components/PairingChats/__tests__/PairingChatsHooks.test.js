@@ -15,6 +15,10 @@ describe('PairingChats hooks', () => {
             expect(global.historyPushFn).toHaveBeenCalledTimes(1);
             expect(global.historyPushFn).toHaveBeenCalledWith('')
         })
+        it('should set formIsValid false if at least one form field is empty', () =>{
+            const {result} = renderHook(() => useSubmitPairingChats({interests: ''}))
+            expect(result.current.formIsValid).toEqual(false)
+        })
     })
     describe('useManageFormData', () => {
         it('should return proper data', () => {

@@ -30,7 +30,7 @@ export function reducer(state, action) {
 export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
-    function saveData(data, contentType = 'application/json', onSuccess, onError){
+    function saveData({data, contentType = 'application/json', onSuccess, onError}){
         const headers = contentType ? {
             'Content-Type': contentType
         } : {};

@@ -41,14 +41,14 @@ export function useSubmitRegisterProfile(saveData, formData){
 
     function submitRegisterProfile(){
         if(formIsValid){
-            function redirectToPairingChats(){
-                history.push('/pairing/chats') 
+            function redirectToPairingChats(body){
+                history.push(`/pairing/chats?interest=${body.interests.toString()}` ) 
             }
             const formDataObj = new FormData();
             formDataObj.append('picture', formData.picture);
             formDataObj.append('form', JSON.stringify(formData))
     
-            saveData(formDataObj, null, redirectToPairingChats)
+            saveData({data: formDataObj, contentType: null, onSuccess: redirectToPairingChats})
         }
     }
     return {submitRegisterProfile}

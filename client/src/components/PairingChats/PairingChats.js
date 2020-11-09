@@ -3,12 +3,14 @@ import {distance, genderPrefference, ageDifference, interest} from './dictionary
 import { string } from 'prop-types';
 import {usePairingHooks} from './PairingChatsHooks';
 
+
 export function PairingChats(){
 
     const {
         submitPairingChats,
         formData,
-        onChangeHandler
+        onChangeHandler,
+        hobbys
     } = usePairingHooks()
 
     return (
@@ -29,9 +31,9 @@ export function PairingChats(){
                 <div className="interestDiv">
                     <p>Zainteresowania:</p>
                     <p>Ustaw w jaki sposób chaty mają się parować pod względem zainteresowań</p>
-                        {interest.map(el => (
+                        {interest.map((el, index) => (
                             <div key={el.id}>
-                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="interests"/>{el.label}
+                            <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="interests"/>{el.label} {hobbys[index-2] && hobbys[index-2].label}
                             </div>
                         ))}
                 </div>

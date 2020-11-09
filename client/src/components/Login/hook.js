@@ -61,7 +61,7 @@ export function useSubmitLogin(saveData, loginData){
         
         if(loginData.login && loginData.loginPassword){
             event.preventDefault();
-            saveData(loginData)
+            saveData({data: loginData})
         }
     }
     return {submitLogin}
