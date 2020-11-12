@@ -29,7 +29,7 @@ export function Login({setUserData}){
                         <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required></input>
                     </label>
                 </div>
-                <div className="loginButton">
+                <div className="loginButtonDiv">
                     <button className="loginButton" type="submit" onClick={submitLogin}>
                         Zaloguj
                     </button>

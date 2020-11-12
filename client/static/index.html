@@ -5,6 +5,7 @@
   <title>ChitChat Project</title>
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <style>
+    /*2d3142 blue, 4f5d75 light-blue, bfc0c0 grey, ffffff white, ef8354 orange */
     body {
       padding: 0;
       margin: 0;
@@ -31,6 +32,143 @@
     div {
       box-sizing: border-box;
     }
+    
+    /*Start component*/
+
+    .start {
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      flex-direction: column;
+      width: 400px;
+      margin-top: 200px;
+    }
+    .logo {
+      justify-content: center;
+    }
+    .startButtons {
+      justify-content: center;
+      flex-direction: row;
+    }
+    .startLogInButton {
+      width: 180px;
+      height: 50px;
+      border: solid 3px #bfc0c0;
+      border-radius: 10px;
+      background: white;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: grey;
+      margin-right: 10px;
+    }
+    .startRegisterButton {
+      width: 180px;
+      height: 50px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*Login Component*/
+    
+    .loginInputForm {
+      display: flex;
+      margin: auto;;
+      justify-content: center;
+      flex-direction: column;
+      width: 500px;
+      margin-top: 100px;
+      border: #ef8354 5px dashed;
+      background-color: white;
+      border-radius: 10px;
+    }
+    .login {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-bottom: 10px;
+    }
+    .loginLabels {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      font-family: sans-serif;
+    } 
+    .loginInput {
+      padding: 9px 70px 9px 30px;
+      margin-left: 10%
+    }
+    .loginPasswordInput {
+      padding: 9px 70px 9px 30px;
+      margin-left: 10%
+    }
+    .loginButtonDiv {
+      text-align: right;
+      padding-right: 12px;
+    }
+    .loginButton {
+      width: 100px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+    .errorTextForNoUser {
+      color: red;
+      margin: auto;
+      margin-top: 10px; 
+    }
+
+    /*register account component*/
+
+    .registerAccount {
+      font-family: sans-serif;
+      margin: 0 auto;
+      margin-top: 50px;
+      border: #ef8354 5px dashed;
+      width: 30%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px
+    }
+
+    .registerAccountLabels {
+      padding-top: 15px;
+      padding-right: 28%;
+      text-align: right;
+    }
+    .createAccountButtonDiv {
+      margin-top: 10px;
+      margin-bottom: 12px;
+      text-align: right;
+      padding-right: 12px;
+    }
+    .createAccountButton {
+      width: 200px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*profile create component*/
+    /*2d3142 blue, 4f5d75 light-blue, bfc0c0 grey, ffffff white, ef8354 orange */
+
+    
     .mainNavigation {
       list-style: none;
       padding: 0;
@@ -165,20 +303,7 @@
       width: 70%;
       height: 350px;
     }
-    .registerAccount {
-      margin: 0 auto;
-      border: black 1px solid;
-      width: 30%;
-      height: 750px;
-      text-align: center;
-      display: flex;
-      flex-direction: column; 
-    }
-    label {
-      padding: 9px 0 9px 100px;
-      width: 290px;
-      text-align: right;
-    }
+    
     .profileEdit {
       margin: 0 auto;
       border: black 1px solid;
@@ -199,8 +324,8 @@
     }
 
     input:invalid{
-  border-color: #a07c3a;
-  background-color: #f8efdd;
+  border-color: #003300;
+  background-color: #f2f2f2;
 }
 
 input:focus:invalid {
@@ -213,13 +338,7 @@ input {
 
 }
 
-button {
-  margin-top: 30px;
-    background: #ffe6cc;
-    border-radius: 10px;
-    width: 200px;
-    height: 80%;
-}
+
 
 /* This is the style of our error messages */
 .error {
@@ -238,47 +357,6 @@ button {
   padding: 0.3em;
 }
 
-.loginInputForm {
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  flex-direction: column;
-  width: 400px;
-  margin-top: 100px;
-  border-style: ridge;
-  border-color: #c49248;
-  background-color: #dfd5a0;
-}
-
-.login {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-bottom: 10px;
-}
-
-.loginLabels {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-} 
-
-.loginInput {
-  padding: 9px 70px 9px 30px;
-}
-.loginPasswordInput {
-  padding: 9px 70px 9px 30px;
-}
-
-.errorTextForNoUser {
-  color: red;
-  margin: auto;
-  margin-top: 10px;
-  
-}
-.loginButton {
-  margin: auto;
-}
 
 .createProfileDiv {
   width: 50%;
@@ -297,10 +375,6 @@ button {
   flex-direction: column;
 }
 
-.buttonDiv {
-  display: flex;
-}
-
 .greetings {
   text-align: center;
 }
@@ -314,22 +388,12 @@ button {
   margin-bottom: 3%;
 }
 
-.genderRadioButton {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
 .addMainPicture {
   margin-left: 10%;
   margin-bottom: 3%;
 }
 
 .interestsSelect {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.relationshipButton {
   margin-left: 10%;
   margin-bottom: 3%;
 }

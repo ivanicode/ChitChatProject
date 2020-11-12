@@ -13,6 +13,7 @@ import Login from '../Login/Login';
 import RegisterProfile from '../RegisterProfile/RegisterProfile';
 import PairingChats from '../PairingChats/PairingChats'
 import { useAppHooks } from './AppHooks';
+import Start from '../Start/Start';
 
 
 export function App(){
@@ -23,6 +24,9 @@ export function App(){
             <h1>ChitChat</h1>
             <Switch>
                 <Route exact path="/">
+                    <Start />
+                </Route>
+                <Route exact path="/home">
                     <Home />
                 </Route>
                 <Route path="/register">
@@ -40,6 +44,7 @@ export function App(){
                 <Route exact path="/pairing/chats">
                     <PairingChats />
                 </Route>
+                
             </Switch>
         </BrowserRouter>
     )
