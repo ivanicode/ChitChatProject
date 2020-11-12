@@ -4,7 +4,7 @@
   "description": "chitchat project in react",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage", 
     "dev-client-build": "webpack --config client/webpack.dev.config.js",
     "dev-client-run": "webpack-dev-server --config client/webpack.dev.config.js",
     "dev-client-eslint": "eslint client/src",
@@ -28,8 +28,10 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.11.5",
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "dayjs": "^1.8.23",
     "express": "^4.17.1",
+    "multer": "^1.4.2",
     "mysql": "^2.18.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

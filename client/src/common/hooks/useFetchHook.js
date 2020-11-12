@@ -39,6 +39,6 @@ export function useFetch(path) {
         },
         []
     );
-  
+        console.log('fetchState', fetchState)
     return fetchState;
 } 

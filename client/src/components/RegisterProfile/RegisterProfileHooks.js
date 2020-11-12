@@ -1,15 +1,19 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import { useSave } from '../../common/hooks/useSaveHook';
 
 export function useProfileHooks(){
-    const {
-        submitRegisterProfile
-    } = useSubmitRegisterProfile()
 
     const {
         formData,
         onChangeHandler
     } = useManageFormData()
+
+    const {saveData} = useSave('/api/user/details')
+
+    const {
+        submitRegisterProfile
+    } = useSubmitRegisterProfile(saveData, formData)
 
     return {
         submitRegisterProfile,
@@ -18,11 +22,34 @@ export function useProfileHooks(){
     }
 }
 
-export function useSubmitRegisterProfile(){
+export function useSubmitRegisterProfile(saveData, formData){
+
     const history = useHistory();
+
+    function checkIfFormIsValid(){
+        const valuesForValidation = Object.values(formData).find( function (value){
+            return value === '' || value === [];
+        })
+        return valuesForValidation === undefined;
+    }
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
+    useEffect(() => {
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData])
+
     function submitRegisterProfile(){
-        
-        history.push('/pairing/chats');
+        if(formIsValid){
+            function redirectToPairingChats(body){
+                history.push(`/pairing/chats?interest=${body.interests.toString()}` ) 
+            }
+            const formDataObj = new FormData();
+            formDataObj.append('picture', formData.picture);
+            formDataObj.append('form', JSON.stringify(formData))
+    
+            saveData({data: formDataObj, contentType: null, onSuccess: redirectToPairingChats})
+        }
     }
     return {submitRegisterProfile}
 }
@@ -55,6 +82,8 @@ export function useManageFormData(){
             if(checkedInterestsArray.length < 4){
                 newState[id] = checkedInterestsArray;
             }
+        } else  if(id === 'picture') {
+            newState[id] = event.target.files[0]
         } else {
             newState[id] = value;
         }

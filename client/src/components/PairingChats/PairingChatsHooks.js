@@ -1,37 +1,64 @@
 import {useHistory} from 'react-router-dom';
-import {useState} from 'react'
+import {useState, useEffect} from 'react';
+import { useSave } from '../../common/hooks/useSaveHook';
+import { hobby } from '../RegisterProfile/dictionary'
+
 
 export function usePairingHooks(){
+    const history = useHistory();
     const {
-        submitPairingChats
-    } = useSubmitPairingChats()
+        formData,
+        onChangeHandler
+    } = useManageFormData()
+
+    const {saveData} = useSave('/api/user/details2')
 
     const {
-        onChangeHandler,
-        formData
-    } = useManageFormData()
-    
+        submitPairingChats
+    } = useSubmitPairingChats(saveData, formData, history)
+    const chosenHobbys = history.location.search.substring(1).split('&').find((el) => el.includes('interest')).split('=')[1];
+    const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id))
+
     return {
         submitPairingChats,
         onChangeHandler,
-        formData
+        formData,
+        hobbys
     }
 }
 
-export function useSubmitPairingChats(){
-    const history = useHistory();
+export function useSubmitPairingChats(saveData, formData, history){
+    
+    
+    function checkIfFormIsValid(){
+        const valuesForValidation = Object.values(formData).find( function (value){
+            return value === '' || value === [];
+        })
+        return valuesForValidation === undefined;
+    }
+
+    const [formIsValid, setFormIsValid] = useState(checkIfFormIsValid())
+
+    useEffect(() => {
+        setFormIsValid(checkIfFormIsValid())
+    }, [formData])
+
     function submitPairingChats(){
-        
-        history.push('');
+        if(formIsValid){
+            function redirectToHome(){
+                history.push('') 
+            }
+            saveData({data: formData, onSuccess: redirectToHome});
+        }
     }
     return {submitPairingChats}
 }
 
 export const initialState = {
-    distance: '',
+    distance: [],
     interests: '',
-    gender: '',
-    age: ''
+    gender: [],
+    age: []
 }
 
 export function useManageFormData(){
@@ -39,23 +66,10 @@ export function useManageFormData(){
     const [formData, setFormData] = useState(initialState);
 
     function onChangeHandler(event){
-        const options = event.target.options;
         const id = event.target.id;
         const value = event.target.value;
         const newState = {...formData};
         newState[id] = value;
-        if(id === 'distance' || id === 'gender' || id === 'age') {
-            const variable = Array.from(options).filter((element) => {
-                return element.selected;
-            }).map((el) => {
-                return el.value;
-            })
-            if(variable.length < 2){
-                newState[id] = variable;
-            }
-        } else {
-            newState[id] = value;
-        }
         setFormData(newState);
     }
     return {formData, onChangeHandler}

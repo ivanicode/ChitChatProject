@@ -1,3 +1,5 @@
+
+
 export const distance = [
     {id: 1, label: 'Losowo'}, 
     {id: 2, label: 'Tylko moja miejscowość'},
@@ -20,9 +22,9 @@ export const distance = [
 export const interest = [
     {type: 'radio', name: 'interests', id: 1, label: 'Losowo (bez wględu na zainteresowania)'},
     {type: 'radio', name: 'interests', id: 2, label: 'Według moich zaintersowań'},
-    {type: 'radio', name: 'interests', id: 3, label: 'Według mojego pierwszego zainteresowania'},
-    {type: 'radio', name: 'interests', id: 4, label: 'Według mojego drugiego zainteresowania'},
-    {type: 'radio', name: 'interests', id: 5, label: 'Według mojego trzeciego zainteresowania'},
+    {type: 'radio', name: 'interests', id: 3, label: 'Według mojego pierwszego zainteresowania:'},
+    {type: 'radio', name: 'interests', id: 4, label: 'Według mojego drugiego zainteresowania:'},
+    {type: 'radio', name: 'interests', id: 5, label: 'Według mojego trzeciego zainteresowania:'},
 ]
 
 export const genderPrefference = [

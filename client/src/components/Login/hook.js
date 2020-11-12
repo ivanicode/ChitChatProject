@@ -22,10 +22,9 @@ export function useLoginHooks(setUserData){
         if(!saveState.requesting && saveState.success?.status === 200){
             setCookie('user', saveState.success.body.id)
             setUserData(saveState.success.body)
-
             history.push('/profile/create');
         }
-    })
+    }, [saveState.requesting])
 
     return {
         submitLogin,
@@ -62,7 +61,7 @@ export function useSubmitLogin(saveData, loginData){
         
         if(loginData.login && loginData.loginPassword){
             event.preventDefault();
-            saveData(loginData)
+            saveData({data: loginData})
         }
     }
     return {submitLogin}

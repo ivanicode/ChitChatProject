@@ -1,21 +1,29 @@
 import React from 'react';
+import {useMyProfileHooks} from './MyProfileHooks'
+
 
 export function MyProfile () {
+
+    
+const {data, hobbys, age} = useMyProfileHooks()
+
     return (
         <div className="myProfile">
             <div className="mainPicture">
-                Zdjęcie profilowe
-            </div>
-            <div className="nickname">
-                Nickname
-            </div>
-            <div className="status">
                 
             </div>
+            <div className="statusNickname">
+                <div className="nickname">
+                    {data?.nickname}
+                </div>
+                <div className="status">
+                    status
+                </div>
+            </div>
             <div className="interests">               
-                <div>Miasto</div>
-                <div>Wiek</div>
-                <div>Główne zainteresowania po przecinku(max 3)</div>
+                <div className="city">{data?.city}</div>
+                <div className="age">{age}</div>
+                <div className="hobbys">{hobbys.join(', ')}</div>
             </div>
             <div className="myPage">
                 

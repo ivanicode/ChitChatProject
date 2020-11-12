@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const booksRouter = require('./routes/books');
 const userRouter = require('./routes/user');
@@ -12,6 +13,7 @@ const app = express();
 
 app.use(express.static(clientBuildDir)); 
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use('/api/books', booksRouter);
 app.use('/api/user', userRouter);
 

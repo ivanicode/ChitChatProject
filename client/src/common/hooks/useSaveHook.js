@@ -30,29 +30,41 @@ export function reducer(state, action) {
 export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
-    function saveData(data){
-    
+    function saveData({data, contentType = 'application/json', onSuccess, onError}){
+        const headers = contentType ? {
+            'Content-Type': contentType
+        } : {};
+        const body = data instanceof FormData ? data : JSON.stringify(data);
+        //if data is instance of FormData don't stringify it 
         dispatch({ type: 'requesting' });
         fetch(path, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            headers,
+            credentials: 'include',
+            body,
         })
         .then( async (response) => {
             const status = response.status;
-            const body = await response.json()
+            const body = response.statusText.toLowerCase() === 'no content' ? null : await response.json()
             if(status < 400){
                 dispatch({ type: 'success', response: {status, body}});
+                if(typeof onSuccess === 'function'){
+                    onSuccess(body)
+                }
             } else {
                 dispatch({ type: 'error', error: {status, body}});
+                if(typeof onError === 'function'){
+                    onError(body)
+                }
             }
             
         })
         .catch(error => {
             dispatch({ type: 'error', error});
             console.error(error);
+            if(typeof onError === 'function'){
+                onError(error)
+            }
         })
     }
     
