@@ -40,9 +40,9 @@ export function RegisterProfile({userName}){
                     </div>
                     <div className="interestsSelect">
                         <p>Wybierz min. jedno zainteresowanie (max 3)</p>
-                        <select multiple="multiple" size="10" onChange={onChangeHandler} id="interests" >
+                        <select multiple="multiple" size="7" onChange={onChangeHandler} id="interests" value={formData.interests}>
                         {hobby.map(el => (
-                            <option value={el.id} key={el.id} selected={formData.interests.find((element) => element === el.id.toString())}>{el.label}</option>
+                            <option value={el.id} key={el.id}>{el.label}</option>
                         ))}
                         </select>
                     </div>

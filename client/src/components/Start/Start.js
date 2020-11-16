@@ -1,6 +1,6 @@
 import React from 'react';
 import { func } from 'prop-types';
-import { useRedirect } from './StartHook'
+import { useRedirect } from './StartHook';
 
 export function Start(){
 
@@ -12,7 +12,7 @@ export function Start(){
     return (
         <div className="start">
             <div className="logo">
-                <img src="/projects/ChitChatProject/logo.png" alt="logo"></img>
+                <img src="/logo.png" alt="logo"></img>
             </div>
             <div className="startButtons">
                 <button className="startLogInButton" onClick={redirectToLogin}>Zaloguj się</button>

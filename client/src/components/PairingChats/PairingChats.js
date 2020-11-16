@@ -22,9 +22,9 @@ export function PairingChats(){
                 <div className="distanceDiv">
                     <p>Odległość:</p>
                     <p>Ustaw jaka odległość powinna dzielić Cię od rozmówcy</p>
-                    <select onChange={onChangeHandler} id="distance">
+                    <select onChange={onChangeHandler} id="distance" value={formData.distance}>
                         {distance.map(el => (
-                            <option value={el.id} key={el.id} selected={formData.distance}>{el.label}</option>
+                            <option value={el.id} key={el.id}>{el.label}</option>
                         ))}
                     </select>
                 </div>
@@ -40,18 +40,18 @@ export function PairingChats(){
                 <div className="genderSelectDiv">
                     <p>Płeć:</p>
                     <p>Możesz zdecydować jakiej płci mają być Twoi rozmówcy</p>
-                    <select onChange={onChangeHandler} id="gender">
+                    <select onChange={onChangeHandler} id="gender" value={formData.gender}>
                         {genderPrefference.map(el => (
-                            <option value={el.id} key={el.id} selected={formData.gender}>{el.label}</option>
+                            <option value={el.id} key={el.id}>{el.label}</option>
                         ))}
                     </select>
                 </div>
                 <div className="ageDifferenceDiv">
                     <p>Wiek:</p>
                     <p>Zdecyduj jaka różnica wieku ma być między Tobą a rozmówcą. Różnica będzie wynosiła maksymalnie 10lat</p>
-                    <select onChange={onChangeHandler} id="age">
+                    <select onChange={onChangeHandler} id="age" value={formData.age}>
                         {ageDifference.map(el => (
-                            <option value={el.id} key={el.id} selected={formData.age}>{el.label}</option>
+                            <option value={el.id} key={el.id}>{el.label}</option>
                         ))}
                     </select>
                 </div>

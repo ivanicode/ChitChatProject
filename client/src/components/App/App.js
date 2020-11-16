@@ -20,8 +20,6 @@ export function App(){
     const {userData, setUserData} = useAppHooks()
     return (
         <BrowserRouter>
-            <PageNavigation />
-            <h1>ChitChat</h1>
             <Switch>
                 <Route exact path="/">
                     <Start />

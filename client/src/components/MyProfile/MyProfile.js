@@ -16,9 +16,7 @@ const {data, hobbys, age} = useMyProfileHooks()
                 <div className="nickname">
                     {data?.nickname}
                 </div>
-                <div className="status">
-                    status
-                </div>
+                <div className="status"></div>
             </div>
             <div className="interests">               
                 <div className="city">{data?.city}</div>

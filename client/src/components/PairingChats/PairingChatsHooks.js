@@ -32,7 +32,7 @@ export function useSubmitPairingChats(saveData, formData, history){
     
     function checkIfFormIsValid(){
         const valuesForValidation = Object.values(formData).find( function (value){
-            return value === '' || value === [];
+            return value === '';
         })
         return valuesForValidation === undefined;
     }
@@ -46,7 +46,7 @@ export function useSubmitPairingChats(saveData, formData, history){
     function submitPairingChats(){
         if(formIsValid){
             function redirectToHome(){
-                history.push('') 
+                history.push('/home') 
             }
             saveData({data: formData, onSuccess: redirectToHome});
         }
@@ -55,10 +55,10 @@ export function useSubmitPairingChats(saveData, formData, history){
 }
 
 export const initialState = {
-    distance: [],
+    distance: '',
     interests: '',
-    gender: [],
-    age: []
+    gender: '',
+    age: ''
 }
 
 export function useManageFormData(){
