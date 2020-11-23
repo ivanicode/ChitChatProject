@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useSubmitRegisterProfile, useManageFormData } from '../RegisterProfileHooks';
+import { useSubmitRegisterProfile, useManageFormData } from '../registerProfileHooks';
 
 describe('RegisterProfile hooks', () => {
     describe('useSubmitRegisterProfile', () => {

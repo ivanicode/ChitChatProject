@@ -2,14 +2,16 @@
 
 exports[`App component should match snapshot 1`] = `
 <BrowserRouter>
-  <PageNavigation />
-  <h1>
-    ChitChat
-  </h1>
   <Switch>
     <Route
       exact={true}
       path="/"
+    >
+      <Start />
+    </Route>
+    <Route
+      exact={true}
+      path="/home"
     >
       <Home />
     </Route>

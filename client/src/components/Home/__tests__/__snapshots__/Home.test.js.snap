@@ -4,6 +4,7 @@ exports[`Home component should match snapshot 1`] = `
 <div
   className="page"
 >
+  <PageNavigation />
   <MyProfile />
   <ChatWindow />
   <Profile />

@@ -1,23 +1,42 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useSubmitPairingChats, useManageFormData } from '../PairingChatsHooks';
+import { useSubmitPairingChats, useManageFormData, usePairingHooks } from '../pairingChatsHooks';
 
 describe('PairingChats hooks', () => {
+    describe('usePairingHooks hook', () => {
+        it('should return proper data', () => {
+            const hookResult = renderHook(() => usePairingHooks())
+            expect(Object.keys(hookResult.result.current).sort()).toEqual([
+                'formData',
+                'hobbys',
+                'onChangeHandler',
+                'submitPairingChats',
+            ])
+        })
+    })
     describe('useSubmitPairingChats', () => {
         it('should return proper data', () => {
             const saveData = jest.fn()
-            const hookResult = renderHook(() => useSubmitPairingChats(saveData, {}));
+           
+            const hookResult = renderHook(() => useSubmitPairingChats(saveData, {}, global.testHistoryObject));
+            
             expect(typeof hookResult.result.current.submitPairingChats).toEqual('function');
-            expect(global.historyPushFn).toHaveBeenCalledTimes(0);
 
             act(() => {
-                hookResult.result.current.submitPairingChats();
+                hookResult.result.current.submitPairingChats(saveData, {}, global.testHistoryObject);
             })
-            expect(global.historyPushFn).toHaveBeenCalledTimes(1);
-            expect(global.historyPushFn).toHaveBeenCalledWith('')
+            expect(saveData).toHaveBeenCalledTimes(1)
+            expect(Object.keys(saveData.mock.calls[0][0])).toEqual(['data', 'onSuccess'])
+            const onSuccess = saveData.mock.calls[0][0].onSuccess
+            expect(typeof onSuccess).toEqual('function');
+            expect(global.historyPushFn).toHaveBeenCalledTimes(0)
+            onSuccess()
+            expect(global.historyPushFn).toHaveBeenCalledTimes(1)
+            expect(global.historyPushFn).toHaveBeenCalledWith('/home')
         })
-        it('should set formIsValid false if at least one form field is empty', () =>{
-            const {result} = renderHook(() => useSubmitPairingChats({interests: ''}))
-            expect(result.current.formIsValid).toEqual(false)
+        it('should set formIsValid false if at least one form field is empty', () => {
+            const saveData = jest.fn();
+            const {result} = renderHook(() => useSubmitPairingChats(saveData, {interests: ''}, global.testHistoryObject))
+            expect(saveData).toHaveBeenCalledTimes(0)
         })
     })
     describe('useManageFormData', () => {
@@ -31,7 +50,7 @@ describe('PairingChats hooks', () => {
         it('should change gender from formData if onChangeHandler function was called with the new value of gender', () => {
 
             const hookResult = renderHook(() => useManageFormData())
-            expect(hookResult.result.current.formData.gender).toEqual([])
+            expect(hookResult.result.current.formData.gender).toEqual('')
 
             const event = {target: {id: 'gender',value: 'Kobieta'}}
             act(() => {

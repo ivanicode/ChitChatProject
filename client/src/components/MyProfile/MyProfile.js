@@ -1,5 +1,5 @@
 import React from 'react';
-import {useMyProfileHooks} from './MyProfileHooks'
+import {useMyProfileHooks} from './myProfileHooks'
 
 
 export function MyProfile () {

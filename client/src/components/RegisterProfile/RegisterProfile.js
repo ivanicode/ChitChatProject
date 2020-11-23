@@ -1,5 +1,5 @@
 import React from 'react';
-import {useProfileHooks} from './RegisterProfileHooks'
+import {useProfileHooks} from './registerProfileHooks'
 import { string } from 'prop-types';
 import {gender, hobby, relationship} from './dictionary'
 

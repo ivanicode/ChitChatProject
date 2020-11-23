@@ -9,7 +9,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
     className="registerAccount"
   >
     <label
-      className="firstName"
+      className="registerAccountLabels"
     >
       Imię:
       <input
@@ -22,7 +22,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <label
-      className="lastName"
+      className="registerAccountLabels"
     >
       Nazwisko:
       <input
@@ -35,7 +35,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <label
-      className="birthDate"
+      className="registerAccountLabels"
     >
       Data urodzenia:
       <input
@@ -51,7 +51,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <label
-      className="email"
+      className="registerAccountLabels"
     >
       e-mail:
       <input
@@ -65,7 +65,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <label
-      className="password"
+      className="registerAccountLabels"
     >
       Hasło:
       <input
@@ -79,7 +79,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <label
-      className="repeatPassword"
+      className="registerAccountLabels"
     >
       Powtórz hasło:
       <input
@@ -92,7 +92,7 @@ exports[`RegisterAccount component should match snapshot when errors exist 1`] =
       />
     </label>
     <div
-      className="createAccountButton"
+      className="createAccountButtonDiv"
     >
       <button
         className="createAccountButton"
@@ -116,7 +116,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
     className="registerAccount"
   >
     <label
-      className="firstName"
+      className="registerAccountLabels"
     >
       Imię:
       <input
@@ -126,7 +126,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <label
-      className="lastName"
+      className="registerAccountLabels"
     >
       Nazwisko:
       <input
@@ -136,7 +136,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <label
-      className="birthDate"
+      className="registerAccountLabels"
     >
       Data urodzenia:
       <input
@@ -149,7 +149,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <label
-      className="email"
+      className="registerAccountLabels"
     >
       e-mail:
       <input
@@ -160,7 +160,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <label
-      className="password"
+      className="registerAccountLabels"
     >
       Hasło:
       <input
@@ -171,7 +171,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <label
-      className="repeatPassword"
+      className="registerAccountLabels"
     >
       Powtórz hasło:
       <input
@@ -181,7 +181,7 @@ exports[`RegisterAccount component should match snapshot when no errors 1`] = `
       />
     </label>
     <div
-      className="createAccountButton"
+      className="createAccountButtonDiv"
     >
       <button
         className="createAccountButton"

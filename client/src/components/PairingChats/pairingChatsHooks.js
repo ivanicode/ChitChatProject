@@ -17,6 +17,7 @@ export function usePairingHooks(){
         submitPairingChats
     } = useSubmitPairingChats(saveData, formData, history)
     const chosenHobbys = history.location.search.substring(1).split('&').find((el) => el.includes('interest')).split('=')[1];
+
     const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id))
 
     return {

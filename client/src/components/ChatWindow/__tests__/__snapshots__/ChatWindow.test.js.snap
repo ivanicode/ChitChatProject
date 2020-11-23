@@ -9,9 +9,10 @@ exports[`ChatWindow component should match snapshot 1`] = `
   />
   <textarea
     className="textArea"
+    placeholder="Napisz wiadomość..."
   />
   <div
-    className="sendMessageButton"
+    className="sendMessageButtonDiv"
   >
     <button
       className="sendMessageButton"

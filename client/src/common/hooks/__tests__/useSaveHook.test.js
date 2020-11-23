@@ -45,14 +45,14 @@ describe('useSaveHook', () => {
             )
             expect(result.current.saveState.error).toEqual(null)
             await act( async () => {
-                result.current.saveData()
+                result.current.saveData({})
             })
             expect(result.current.saveState.error).toEqual({message: 'error'})
             expect(onSuccess).toHaveBeenCalledTimes(0)
             expect(onError).toHaveBeenCalledTimes(0)
 
             await act( async () => {
-                result.current.saveData({}, '', onSuccess, onError)
+                result.current.saveData({data: {}, contentType: '', onSuccess, onError})
             })
 
             expect(onSuccess).toHaveBeenCalledTimes(0)
@@ -77,7 +77,7 @@ describe('useSaveHook', () => {
 
             expect(result.current.saveState.success).toEqual(null)
             await act( async () => {
-                result.current.saveData()
+                result.current.saveData({})
             })
             expect(result.current.saveState.success).toEqual({status: 200, body: {id: 1} })
             expect(onSuccess).toHaveBeenCalledTimes(0)
@@ -95,7 +95,7 @@ describe('useSaveHook', () => {
             )
 
             await act( async () => {
-                result.current.saveData({}, '', onSuccess, onError)
+                result.current.saveData({data: {}, contentType: '', onSuccess, onError})
             })
 
             expect(onSuccess).toHaveBeenCalledTimes(1)
@@ -121,14 +121,14 @@ describe('useSaveHook', () => {
             )
             expect(result.current.saveState.error).toEqual(null)
             await act( async () => {
-                result.current.saveData()
+                result.current.saveData({})
             })
             expect(result.current.saveState.error).toEqual({status: 404, body: {message: 'error'}})
             expect(onSuccess).toHaveBeenCalledTimes(0)
             expect(onError).toHaveBeenCalledTimes(0)
 
             await act( async () => {
-                result.current.saveData(new FormData, '', onSuccess, onError)
+                result.current.saveData({data: new FormData, contentType: '', onSuccess, onError})
             })
 
             expect(onSuccess).toHaveBeenCalledTimes(0)

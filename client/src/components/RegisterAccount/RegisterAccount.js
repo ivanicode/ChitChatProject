@@ -1,6 +1,6 @@
 import React from 'react';
 import ErrorText from '../common/ErrorText/ErrorText';
-import { useAllHooks } from './hooks';
+import { useAllHooks } from './registerAccountHooks';
 import {useFetch} from '../../common/hooks/useFetchHook'
 
 

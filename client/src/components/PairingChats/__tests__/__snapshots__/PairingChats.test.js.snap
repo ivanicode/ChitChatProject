@@ -25,116 +25,100 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       </p>
       <select
         id="distance"
-        onChange={[Function]}
+        onChange={[MockFunction]}
       >
         <option
           key="1"
-          selected={Array []}
           value={1}
         >
           Losowo
         </option>
         <option
           key="2"
-          selected={Array []}
           value={2}
         >
           Tylko moja miejscowość
         </option>
         <option
           key="3"
-          selected={Array []}
           value={3}
         >
           do 10km
         </option>
         <option
           key="4"
-          selected={Array []}
           value={4}
         >
           do 20km
         </option>
         <option
           key="5"
-          selected={Array []}
           value={5}
         >
           do 30km
         </option>
         <option
           key="6"
-          selected={Array []}
           value={6}
         >
           do 40km
         </option>
         <option
           key="7"
-          selected={Array []}
           value={7}
         >
           do 50km
         </option>
         <option
           key="8"
-          selected={Array []}
           value={8}
         >
           do 60km
         </option>
         <option
           key="9"
-          selected={Array []}
           value={9}
         >
           do 70km
         </option>
         <option
           key="10"
-          selected={Array []}
           value={10}
         >
           do 80km
         </option>
         <option
           key="11"
-          selected={Array []}
           value={11}
         >
           do 90km
         </option>
         <option
           key="12"
-          selected={Array []}
           value={12}
         >
           do 100km
         </option>
         <option
           key="13"
-          selected={Array []}
           value={13}
         >
           do 150km
         </option>
         <option
           key="14"
-          selected={Array []}
           value={14}
         >
           do 200km
         </option>
         <option
           key="15"
-          selected={Array []}
           value={15}
         >
           do 300km
         </option>
         <option
           key="16"
-          selected={Array []}
           value={16}
         >
           do i powyżej 400km
@@ -156,11 +140,12 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
         <input
           id="interests"
           name="interests"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="radio"
           value={1}
         />
         Losowo (bez wględu na zainteresowania)
+         
       </div>
       <div
         key="2"
@@ -168,11 +153,12 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
         <input
           id="interests"
           name="interests"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="radio"
           value={2}
         />
         Według moich zaintersowań
+         
       </div>
       <div
         key="3"
@@ -180,11 +166,12 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
         <input
           id="interests"
           name="interests"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="radio"
           value={3}
         />
-        Według mojego pierwszego zainteresowania
+        Według mojego pierwszego zainteresowania:
+         
       </div>
       <div
         key="4"
@@ -192,11 +179,12 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
         <input
           id="interests"
           name="interests"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="radio"
           value={4}
         />
-        Według mojego drugiego zainteresowania
+        Według mojego drugiego zainteresowania:
+         
       </div>
       <div
         key="5"
@@ -204,11 +192,12 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
         <input
           id="interests"
           name="interests"
-          onChange={[Function]}
+          onChange={[MockFunction]}
           type="radio"
           value={5}
         />
-        Według mojego trzeciego zainteresowania
+        Według mojego trzeciego zainteresowania:
+         
       </div>
     </div>
     <div
@@ -222,32 +211,28 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       </p>
       <select
         id="gender"
-        onChange={[Function]}
+        onChange={[MockFunction]}
       >
         <option
           key="1"
-          selected={Array []}
           value={1}
         >
           Losowo
         </option>
         <option
           key="2"
-          selected={Array []}
           value={2}
         >
           Mężczyzna
         </option>
         <option
           key="3"
-          selected={Array []}
           value={3}
         >
           Kobieta
         </option>
         <option
           key="4"
-          selected={Array []}
           value={4}
         >
           Inna
@@ -265,88 +250,76 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       </p>
       <select
         id="age"
-        onChange={[Function]}
+        onChange={[MockFunction]}
       >
         <option
           key="1"
-          selected={Array []}
           value={1}
         >
           Losowo
         </option>
         <option
           key="2"
-          selected={Array []}
           value={2}
         >
           Tylko w moim wieku
         </option>
         <option
           key="3"
-          selected={Array []}
           value={3}
         >
           Do 1 roku różnicy
         </option>
         <option
           key="4"
-          selected={Array []}
           value={4}
         >
           Do 2 roku różnicy
         </option>
         <option
           key="5"
-          selected={Array []}
           value={5}
         >
           Do 3 roku różnicy
         </option>
         <option
           key="6"
-          selected={Array []}
           value={6}
         >
           Do 4 roku różnicy
         </option>
         <option
           key="7"
-          selected={Array []}
           value={7}
         >
           Do 5 roku różnicy
         </option>
         <option
           key="8"
-          selected={Array []}
           value={8}
         >
           Do 6 roku różnicy
         </option>
         <option
           key="9"
-          selected={Array []}
           value={9}
         >
           Do 7 roku różnicy
         </option>
         <option
           key="10"
-          selected={Array []}
           value={10}
         >
           Do 8 roku różnicy
         </option>
         <option
           key="11"
-          selected={Array []}
           value={11}
         >
           Do 9 roku różnicy
         </option>
         <option
           key="12"
-          selected={Array []}
           value={12}
         >
           Do 10 roku różnicy
@@ -357,8 +330,8 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
   <div>
     <button
       className="submitPairingChats"
-      onClick={[Function]}
-      type="submit"
+      onClick={[MockFunction]}
+      type="button"
     >
       Dalej
     </button>

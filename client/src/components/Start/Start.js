@@ -1,6 +1,6 @@
 import React from 'react';
 import { func } from 'prop-types';
-import { useRedirect } from './StartHook';
+import { useRedirect } from './startHooks';
 
 export function Start(){
 
@@ -20,10 +20,5 @@ export function Start(){
             </div>
         </div>
     )
-
-    Start.displayName = 'Start';
-    Start.propTypes = {
-        setUserData: func
-    }
 }
 export default Start;

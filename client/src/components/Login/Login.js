@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoginHooks } from './hook';
+import { useLoginHooks } from './loginHooks';
 import { func } from 'prop-types';
 
 export function Login({setUserData}){

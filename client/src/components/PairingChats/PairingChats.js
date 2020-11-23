@@ -1,7 +1,7 @@
 import React from 'react';
 import {distance, genderPrefference, ageDifference, interest} from './dictionary';
 import { string } from 'prop-types';
-import {usePairingHooks} from './PairingChatsHooks';
+import {usePairingHooks} from './pairingChatsHooks';
 
 
 export function PairingChats(){
