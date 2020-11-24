@@ -57,6 +57,9 @@ module.exports = {
         new CopyPlugin({
             patterns: [
               { from: path.join(images, 'logo.png'), to: path.join(dist, 'logo.png') },
+              { from: path.join(images, 'diamond.png'), to: path.join(dist, 'diamond.png') },
+              { from: path.join(images, 'heart.png'), to: path.join(dist, 'heart.png') },
+              { from: path.join(images, 'heart&diamond.png'), to: path.join(dist, 'heart&diamond.png') }
             ],
           })
     ],

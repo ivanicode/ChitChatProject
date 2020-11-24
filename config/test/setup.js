@@ -11,9 +11,13 @@ const dom = new JSDOM()
 global.document = dom.window.document
 global.window = dom.window
 
+global.historyLocation = {
+  search: ''
+}
 global.historyPushFn = jest.fn();
 global.testHistoryObject = {
-  push: global.historyPushFn
+  push: global.historyPushFn,
+  location: global.historyLocation
 }
 jest.doMock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), 

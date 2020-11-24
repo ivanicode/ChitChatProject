@@ -4,6 +4,7 @@ import { useSubmitPairingChats, useManageFormData, usePairingHooks } from '../pa
 describe('PairingChats hooks', () => {
     describe('usePairingHooks hook', () => {
         it('should return proper data', () => {
+            global.historyLocation.search = '?interest=2,3,4'
             const hookResult = renderHook(() => usePairingHooks())
             expect(Object.keys(hookResult.result.current).sort()).toEqual([
                 'formData',

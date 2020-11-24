@@ -14,6 +14,11 @@ describe('RegisterProfile hooks', () => {
                 hookResult.result.current.submitRegisterProfile();
             })
             expect(saveData).toHaveBeenCalledTimes(1);
+            expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['contentType', 'data', 'onSuccess'])
+            const onSuccess = saveData.mock.calls[0][0].onSuccess
+            expect(global.historyPushFn).toHaveBeenCalledTimes(0)
+            onSuccess({interests: '2, 3, 4'})
+            expect(global.historyPushFn).toHaveBeenCalledTimes(1)
         })
     })
     describe('useManageFormData', () => {

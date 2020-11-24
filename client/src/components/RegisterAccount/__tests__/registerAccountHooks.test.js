@@ -244,15 +244,16 @@ describe('RegisterAccount hooks', () => {
             const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
             expect(result.current.formIsValid).toEqual(true);
             expect(saveData).toHaveBeenCalledTimes(0);
-            expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['data', 'onSuccess'])
-            const onSuccess = saveData.mock.calls[0][0].onSuccess
+            
 
             act(() => {
                 result.current.submitForm()
             })
-
             expect(saveData).toHaveBeenCalledTimes(1);
-
+            expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['data', 'onSuccess'])
+            const onSuccess = saveData.mock.calls[0][0].onSuccess
+            expect(typeof onSuccess).toEqual('function')
+            
             onSuccess()
 
             expect(global.historyPushFn).toHaveBeenCalledTimes(1)
