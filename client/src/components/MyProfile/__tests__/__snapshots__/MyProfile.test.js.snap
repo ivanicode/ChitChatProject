@@ -15,7 +15,12 @@ exports[`MyProfile component should match snapshot 1`] = `
     />
     <div
       className="status"
-    />
+    >
+      <img
+        className="statusImg"
+        src="/undefined.png"
+      />
+    </div>
   </div>
   <div
     className="interests"

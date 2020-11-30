@@ -16,7 +16,9 @@ const {data, hobbys, age} = useMyProfileHooks()
                 <div className="nickname">
                     {data?.nickname}
                 </div>
-                <div className="status"></div>
+                <div className="status">
+                    <img src={'/' + data?.relationship + '.png'} className="statusImg"></img>
+                </div>
             </div>
             <div className="interests">               
                 <div className="city">{data?.city}</div>
