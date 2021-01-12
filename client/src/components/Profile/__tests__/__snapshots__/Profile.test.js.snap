@@ -6,27 +6,35 @@ exports[`Profile component should match snapshot 1`] = `
 >
   <div
     className="mainPictureOfHim"
-  >
-    Zdjęcie profilowe
-  </div>
-  <div
-    className="nicknameOfHim"
-  >
-    Nickname
-  </div>
-  <div
-    className="statusOfHim"
   />
   <div
-    className="interestsOfHim"
+    className="statusNicknameOfHimDiv"
   >
-    <div>
+    <div
+      className="nicknameOfHim"
+    >
+      Nickname
+    </div>
+    <div
+      className="statusOfHim"
+    />
+  </div>
+  <div
+    className="interestsAndTheRestOfHim"
+  >
+    <div
+      className="cityOfHim"
+    >
       Miasto
     </div>
-    <div>
+    <div
+      className="ageOfHim"
+    >
       Wiek
     </div>
-    <div>
+    <div
+      className="interestsOfHim"
+    >
       Główne zainteresowania po przecinku(max 3)
     </div>
   </div>

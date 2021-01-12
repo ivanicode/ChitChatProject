@@ -6,10 +6,10 @@ export function ChatWindow () {
             <div className="conversation">
             
             </div>
-            <textarea className="textArea">
+            <textarea className="textArea" placeholder="Napisz wiadomość...">
 
             </textarea>
-            <div className="sendMessageButton">
+            <div className="sendMessageButtonDiv">
                 <button className="sendMessageButton" type="button">
                 wyślij
                 </button>

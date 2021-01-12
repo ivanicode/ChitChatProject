@@ -1,4 +1,4 @@
-import {hobby} from '../RegisterProfile/dictionary'
+import {hobby} from '../RegisterProfile/dictionary';
 import { useFetch } from '../../common/hooks/useFetchHook';
 import { useState, useEffect } from 'react'
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoginHooks } from './hook';
+import { useLoginHooks } from './loginHooks';
 import { func } from 'prop-types';
 
 export function Login({setUserData}){
@@ -16,26 +16,31 @@ export function Login({setUserData}){
     </div>) : null;
 
     return (
-        <form onSubmit={submitLogin} className="loginInputForm">
-            {errorMessage}
-            <div className="login">
-                <div className="loginLabels">
-                    <label className="loginInput">
-                        Login:
-                        <input type="text" id="login" value={loginData.login} onChange={onLoginChangeHandler} required></input>
-                    </label>
-                    <label className="loginPasswordInput">
-                        Hasło:
-                        <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required></input>
-                    </label>
+        <div>
+            <form onSubmit={submitLogin} className="loginInputForm">
+                <div className="logo">
+                    <img src="/logo.png" alt="logo"></img>
                 </div>
-                <div className="loginButton">
-                    <button className="loginButton" type="submit" onClick={submitLogin}>
-                        Zaloguj
-                    </button>
+                {errorMessage}
+                <div className="login">
+                    <div className="loginLabels">
+                        <label className="loginInput">
+                            Login:
+                            <input type="text" id="login" value={loginData.login} onChange={onLoginChangeHandler} required></input>
+                        </label>
+                        <label className="loginPasswordInput">
+                            Hasło:
+                            <input type="password" id="loginPassword" value={loginData.loginPassword} onChange={onLoginChangeHandler} required></input>
+                        </label>
+                    </div>
+                    <div className="loginButtonDiv">
+                        <button className="loginButton" type="submit" onClick={submitLogin}>
+                            Zaloguj
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }
 

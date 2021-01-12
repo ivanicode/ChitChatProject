@@ -56,6 +56,7 @@ router.post('/details', upload.single('picture'), (req, res) => {
 router.post('/details2', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
+  console.log(data)
   const dbQuery = `UPDATE chitchat_user_details 
   SET 
   distance = '${data.distance}',

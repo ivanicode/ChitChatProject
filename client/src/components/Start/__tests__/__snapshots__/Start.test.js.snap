@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Start component should match snapshot when no errors 1`] = `
+<div
+  className="start"
+>
+  <div
+    className="logo"
+  >
+    <img
+      alt="logo"
+      src="/logo.png"
+    />
+  </div>
+  <div
+    className="startButtons"
+  >
+    <button
+      className="startLogInButton"
+      onClick={[Function]}
+    >
+      Zaloguj się
+    </button>
+    <button
+      className="startRegisterButton"
+      onClick={[Function]}
+    >
+      Zarejestruj się
+    </button>
+  </div>
+</div>
+`;

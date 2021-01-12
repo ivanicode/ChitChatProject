@@ -1,104 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login component should match snapshot when error exist 1`] = `
-<form
-  className="loginInputForm"
-  onSubmit={[MockFunction]}
->
-  <div
-    className="errorTextForNoUser"
-  >
-    Nie ma takiego użytkownika
-  </div>
-  <div
-    className="login"
+<div>
+  <form
+    className="loginInputForm"
+    onSubmit={[MockFunction]}
   >
     <div
-      className="loginLabels"
+      className="logo"
     >
-      <label
-        className="loginInput"
-      >
-        Login:
-        <input
-          id="login"
-          onChange={[MockFunction]}
-          required={true}
-          type="text"
-        />
-      </label>
-      <label
-        className="loginPasswordInput"
-      >
-        Hasło:
-        <input
-          id="loginPassword"
-          onChange={[MockFunction]}
-          required={true}
-          type="password"
-        />
-      </label>
+      <img
+        alt="logo"
+        src="/logo.png"
+      />
     </div>
     <div
-      className="loginButton"
+      className="errorTextForNoUser"
     >
-      <button
-        className="loginButton"
-        onClick={[MockFunction]}
-        type="submit"
-      >
-        Zaloguj
-      </button>
+      Nie ma takiego użytkownika
     </div>
-  </div>
-</form>
+    <div
+      className="login"
+    >
+      <div
+        className="loginLabels"
+      >
+        <label
+          className="loginInput"
+        >
+          Login:
+          <input
+            id="login"
+            onChange={[MockFunction]}
+            required={true}
+            type="text"
+          />
+        </label>
+        <label
+          className="loginPasswordInput"
+        >
+          Hasło:
+          <input
+            id="loginPassword"
+            onChange={[MockFunction]}
+            required={true}
+            type="password"
+          />
+        </label>
+      </div>
+      <div
+        className="loginButtonDiv"
+      >
+        <button
+          className="loginButton"
+          onClick={[MockFunction]}
+          type="submit"
+        >
+          Zaloguj
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
 `;
 
 exports[`Login component should match snapshot when no errors 1`] = `
-<form
-  className="loginInputForm"
-  onSubmit={[MockFunction]}
->
-  <div
-    className="login"
+<div>
+  <form
+    className="loginInputForm"
+    onSubmit={[MockFunction]}
   >
     <div
-      className="loginLabels"
+      className="logo"
     >
-      <label
-        className="loginInput"
-      >
-        Login:
-        <input
-          id="login"
-          onChange={[MockFunction]}
-          required={true}
-          type="text"
-        />
-      </label>
-      <label
-        className="loginPasswordInput"
-      >
-        Hasło:
-        <input
-          id="loginPassword"
-          onChange={[MockFunction]}
-          required={true}
-          type="password"
-        />
-      </label>
+      <img
+        alt="logo"
+        src="/logo.png"
+      />
     </div>
     <div
-      className="loginButton"
+      className="login"
     >
-      <button
-        className="loginButton"
-        onClick={[MockFunction]}
-        type="submit"
+      <div
+        className="loginLabels"
       >
-        Zaloguj
-      </button>
+        <label
+          className="loginInput"
+        >
+          Login:
+          <input
+            id="login"
+            onChange={[MockFunction]}
+            required={true}
+            type="text"
+          />
+        </label>
+        <label
+          className="loginPasswordInput"
+        >
+          Hasło:
+          <input
+            id="loginPassword"
+            onChange={[MockFunction]}
+            required={true}
+            type="password"
+          />
+        </label>
+      </div>
+      <div
+        className="loginButtonDiv"
+      >
+        <button
+          className="loginButton"
+          onClick={[MockFunction]}
+          type="submit"
+        >
+          Zaloguj
+        </button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
 `;

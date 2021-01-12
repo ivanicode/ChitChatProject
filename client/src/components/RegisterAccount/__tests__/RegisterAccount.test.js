@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {RegisterAccount} from '../RegisterAccount';
-import * as hooks from '../hooks';
+import * as hooks from '../registerAccountHooks';
 
 
 

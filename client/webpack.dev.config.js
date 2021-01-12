@@ -1,8 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const client = path.resolve(__dirname);
 const dist = path.resolve(__dirname, '../dist/client');
+const images = path.resolve(__dirname, './static/images');
 
 module.exports = {
     context: client,
@@ -25,8 +27,16 @@ module.exports = {
                 options: {
                     presets: ['@babel/preset-env', '@babel/preset-react']
                 }
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  },
+                ],
             }
-        ]
+        ],
     },
     devServer: {
         historyApiFallback: true,
@@ -43,6 +53,11 @@ module.exports = {
     }
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: path.join(__dirname, 'static/index.html') })
-    ]
+        new HtmlWebpackPlugin({ template: path.join(__dirname, 'static/index.html') }),
+        new CopyPlugin({
+            patterns: [
+              { from: images, to: dist }
+            ],
+          })
+    ],
 };

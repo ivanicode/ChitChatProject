@@ -55,6 +55,7 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
             id="gender"
             name="gender"
             onChange={[Function]}
+            required={true}
             type="radio"
             value={1}
           />
@@ -67,6 +68,7 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
             id="gender"
             name="gender"
             onChange={[Function]}
+            required={true}
             type="radio"
             value={2}
           />
@@ -79,6 +81,7 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
             id="gender"
             name="gender"
             onChange={[Function]}
+            required={true}
             type="radio"
             value={3}
           />
@@ -110,7 +113,8 @@ exports[`RegisterProfile component should match snapshot when no errors 1`] = `
           id="interests"
           multiple="multiple"
           onChange={[Function]}
-          size="10"
+          size="7"
+          value={Array []}
         >
           <option
             key="1"

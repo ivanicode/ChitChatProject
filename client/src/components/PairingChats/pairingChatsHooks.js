@@ -17,6 +17,7 @@ export function usePairingHooks(){
         submitPairingChats
     } = useSubmitPairingChats(saveData, formData, history)
     const chosenHobbys = history.location.search.substring(1).split('&').find((el) => el.includes('interest')).split('=')[1];
+
     const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id))
 
     return {
@@ -32,7 +33,7 @@ export function useSubmitPairingChats(saveData, formData, history){
     
     function checkIfFormIsValid(){
         const valuesForValidation = Object.values(formData).find( function (value){
-            return value === '' || value === [];
+            return value === '';
         })
         return valuesForValidation === undefined;
     }
@@ -46,7 +47,7 @@ export function useSubmitPairingChats(saveData, formData, history){
     function submitPairingChats(){
         if(formIsValid){
             function redirectToHome(){
-                history.push('') 
+                history.push('/home') 
             }
             saveData({data: formData, onSuccess: redirectToHome});
         }
@@ -55,10 +56,10 @@ export function useSubmitPairingChats(saveData, formData, history){
 }
 
 export const initialState = {
-    distance: [],
+    distance: '',
     interests: '',
-    gender: [],
-    age: []
+    gender: '',
+    age: ''
 }
 
 export function useManageFormData(){

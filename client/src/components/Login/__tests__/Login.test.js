@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import {Login} from '../Login';
-import * as hook from '../hook';
+import * as hook from '../loginHooks';
 
 describe('Login component', () => {
     it('should match snapshot when no errors', () => {

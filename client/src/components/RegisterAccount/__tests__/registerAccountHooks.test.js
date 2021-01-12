@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import {useManageFormData, useManageErrors, useAllHooks, useSubmitForm} from '../hooks';
+import {useManageFormData, useManageErrors, useAllHooks, useSubmitForm} from '../registerAccountHooks';
 
 const matchingPasswords = {originalPassword: 'a', repeatedPassword: 'a'};
 const notMatchingPasswords = {originalPassword: 'a', repeatedPassword: 'b'};
@@ -237,19 +237,27 @@ describe('RegisterAccount hooks', () => {
             const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
             expect(result.current.formIsValid).toEqual(true)
         })
-        it('should call saveData if form is valid', () => {
+        it('should call saveData if form is valid and set onSuccess on onRegisterSuccess and redirect', () => {
 
             const saveData = jest.fn()
             
             const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
             expect(result.current.formIsValid).toEqual(true);
             expect(saveData).toHaveBeenCalledTimes(0);
+            
+
             act(() => {
                 result.current.submitForm()
             })
-
             expect(saveData).toHaveBeenCalledTimes(1);
+            expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['data', 'onSuccess'])
+            const onSuccess = saveData.mock.calls[0][0].onSuccess
+            expect(typeof onSuccess).toEqual('function')
+            
+            onSuccess()
 
+            expect(global.historyPushFn).toHaveBeenCalledTimes(1)
+            expect(global.historyPushFn).toHaveBeenCalledWith('/profile/create')
             saveData.mockReset()
         })
         it('should not call saveData if form is not valid', () => {

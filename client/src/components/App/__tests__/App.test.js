@@ -6,7 +6,6 @@ import {App} from '../App';
 describe('App component', () => {
     it('should match snapshot', () => {
         const wrapper = shallow(<App />)
-        expect(wrapper.find('h1').length).toBe(1)
         expect(wrapper).toMatchSnapshot()
         
     })

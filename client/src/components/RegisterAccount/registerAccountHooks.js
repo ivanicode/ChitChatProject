@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 import { useSave } from '../../common/hooks/useSaveHook';
+import {useHistory} from 'react-router-dom';
 
 export function useAllHooks() {
     const {
@@ -41,7 +42,7 @@ export function useAllHooks() {
 }
 
 export function useSubmitForm(errors, formData, saveData) {
-   
+    const history = useHistory()
     function checkIfFormIsValid(){
         const variable = Object.values(formData).find( function (value){
             return value === '';
@@ -57,8 +58,12 @@ export function useSubmitForm(errors, formData, saveData) {
 
 
     function submitForm(event){
+
         if(formIsValid){
-            saveData(formData);
+            saveData({data: formData, onSuccess: onRegisterSuccess});
+            function onRegisterSuccess(){
+                history.push('/profile/create');
+            }
         }
     }
 

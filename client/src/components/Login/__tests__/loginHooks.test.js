@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import {useLoginHooks, useManageLoginData, useSubmitLogin} from '../hook';
+import {useLoginHooks, useManageLoginData, useSubmitLogin} from '../loginHooks';
 import * as saveHooks from '../../../common/hooks/useSaveHook';
 import * as helpers from '../../helpers/cookie';
 
@@ -79,24 +79,46 @@ describe('Login hooks', () => {
             ])
         })
         it('should save cookie and make redirect if user is found', () => {
-            saveHooks.useSave = jest.fn().mockImplementation(() => ({
-                saveState: {requesting: false, success: {status: 200, body: {id: 1}}}
-            }))
-            helpers.setCookie = jest.fn();
+            const saveData = jest.fn()
+            helpers.setCookie = jest.fn()
             const setUserData = jest.fn();
+            saveHooks.useSave = jest.fn().mockImplementation(() => ({
+                saveState: {requesting: false, success: {status: 200, body: {id: 1}}},
+                saveData
+            }))
+            const {result} = renderHook(() => useLoginHooks(setUserData))
+            expect(typeof result.current.submitLogin).toEqual('function')
+            expect(typeof result.current.onLoginChangeHandler).toEqual('function')
+
+            act(() => {
+                result.current.onLoginChangeHandler({target: {id: 'login', value: 'abc'}})
+            })
+            act(() => {
+                result.current.onLoginChangeHandler({target: {id: 'loginPassword', value: 'xyz'}})
+            })
+            
+            expect(saveData).toHaveBeenCalledTimes(0)
+            
+            act(() => {
+                result.current.submitLogin({preventDefault: jest.fn()})
+            })
+            expect(saveData).toHaveBeenCalledTimes(1)
+            expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['data', 'onSuccess'])
+            const onSuccess = saveData.mock.calls[0][0].onSuccess
+
             expect(helpers.setCookie).toHaveBeenCalledTimes(0)
             expect(global.historyPushFn).toHaveBeenCalledTimes(0)
             expect(setUserData).toHaveBeenCalledTimes(0)
-            const hookResult = renderHook(() => useLoginHooks(setUserData));
+
+            onSuccess({id: 101})
 
             expect(helpers.setCookie).toHaveBeenCalledTimes(1)
-            expect(helpers.setCookie).toHaveBeenCalledWith('user',1)
+            expect(helpers.setCookie).toHaveBeenCalledWith('user', 101)
             expect(global.historyPushFn).toHaveBeenCalledTimes(1)
-            expect(global.historyPushFn).toHaveBeenCalledWith('/profile/create')
+            expect(global.historyPushFn).toHaveBeenCalledWith('/home')
             expect(setUserData).toHaveBeenCalledTimes(1)
-            expect(setUserData).toHaveBeenCalledWith({id: 1})
+            expect(setUserData).toHaveBeenCalledWith({id: 101})
             saveHooks.useSave.mockReset();
-            saveHooks.useSave = useSave;
         })
     })
 })

@@ -9,7 +9,7 @@ exports[`PageNavigation component should match snapshot 1`] = `
       <NavLink
         activeClassName="activNavLink"
         className="navLink"
-        to="/"
+        to="/home"
       >
         Home
       </NavLink>

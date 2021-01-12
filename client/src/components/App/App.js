@@ -5,24 +5,25 @@ import {
     Route,
 } from 'react-router-dom';
 
-import PageNavigation from '../PageNavigation/PageNavigation';
 import Home from '../Home/Home';
 import RegisterAccount from '../RegisterAccount/RegisterAccount';
 import ProfileEdit from '../ProfileEdit/ProfileEdit';
 import Login from '../Login/Login';
 import RegisterProfile from '../RegisterProfile/RegisterProfile';
 import PairingChats from '../PairingChats/PairingChats'
-import { useAppHooks } from './AppHooks';
+import { useAppHooks } from './appHooks';
+import Start from '../Start/Start';
 
 
 export function App(){
     const {userData, setUserData} = useAppHooks()
     return (
         <BrowserRouter>
-            <PageNavigation />
-            <h1>ChitChat</h1>
             <Switch>
                 <Route exact path="/">
+                    <Start />
+                </Route>
+                <Route exact path="/home">
                     <Home />
                 </Route>
                 <Route path="/register">
@@ -40,6 +41,7 @@ export function App(){
                 <Route exact path="/pairing/chats">
                     <PairingChats />
                 </Route>
+                
             </Switch>
         </BrowserRouter>
     )

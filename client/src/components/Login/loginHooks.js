@@ -14,17 +14,15 @@ export function useLoginHooks(setUserData){
         loginData
     } = useManageLoginData()
 
-    const {submitLogin} = useSubmitLogin(saveData, loginData)
+    const {submitLogin} = useSubmitLogin(saveData, loginData, onLoginSuccess)
 
     
 
-    useEffect(() => {
-        if(!saveState.requesting && saveState.success?.status === 200){
-            setCookie('user', saveState.success.body.id)
-            setUserData(saveState.success.body)
-            history.push('/profile/create');
-        }
-    }, [saveState.requesting])
+    function onLoginSuccess(data){
+        setCookie('user', data.id)
+        setUserData(data)
+        history.push('/home');
+    }
 
     return {
         submitLogin,
@@ -56,12 +54,11 @@ export function useManageLoginData(){
     
 }
 
-export function useSubmitLogin(saveData, loginData){
+export function useSubmitLogin(saveData, loginData, onLoginSuccess){
     function submitLogin(event){
-        
         if(loginData.login && loginData.loginPassword){
             event.preventDefault();
-            saveData({data: loginData})
+            saveData({data: loginData, onSuccess: onLoginSuccess})
         }
     }
     return {submitLogin}

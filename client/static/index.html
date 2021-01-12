@@ -5,12 +5,13 @@
   <title>ChitChat Project</title>
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
   <style>
+    /*2d3142 blue, 4f5d75 light-blue, bfc0c0 grey, ffffff white, ef8354 orange */
     body {
       padding: 0;
       margin: 0;
       height: 100%;
       width: 100%;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: sans-serif;
       font-weight: bold;
     }
     #root, .page, .page > div {
@@ -31,43 +32,307 @@
     div {
       box-sizing: border-box;
     }
+    
+    /*Start component*/
+
+    .start {
+      display: flex;
+      margin: auto;
+      justify-content: center;
+      flex-direction: column;
+      width: 500px;
+      margin-top: 80px;
+    }
+    .logo {
+      justify-content: center;
+      width: 500px;
+      height: 400px;
+    }
+    .startButtons {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+    }
+    .startLogInButton {
+      width: 180px;
+      height: 50px;
+      border: solid 3px #bfc0c0;
+      border-radius: 10px;
+      background: white;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: grey;
+      margin-right: 10px;
+    }
+    .startRegisterButton {
+      width: 180px;
+      height: 50px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*Login Component*/
+    
+    .loginInputForm {
+      display: flex;
+      margin: auto;;
+      justify-content: center;
+      flex-direction: column;
+      width: 500px;
+      margin-top: 0;
+      
+    }
+    .login {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-bottom: 10px;
+      border: #ef8354 5px dashed;
+      background-color: white;
+      border-radius: 10px;
+    }
+    .loginLabels {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      font-family: sans-serif;
+    } 
+    .loginInput {
+      padding: 9px 70px 9px 30px;
+      margin-left: 10%
+    }
+    .loginPasswordInput {
+      padding: 9px 70px 9px 30px;
+      margin-left: 10%
+    }
+    .loginButtonDiv {
+      text-align: right;
+      padding-right: 12px;
+    }
+    .loginButton {
+      width: 100px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+    .errorTextForNoUser {
+      color: red;
+      margin: auto;
+      margin-top: 10px; 
+    }
+
+    /*register account component*/
+
+    .registerAccount {
+      margin: 0 auto;
+      margin-top: 150px;
+      border: #ef8354 5px dashed;
+      width: 30%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px
+    }
+
+    .registerAccountLabels {
+      padding-top: 15px;
+      padding-right: 28%;
+      text-align: right;
+    }
+    .createAccountButtonDiv {
+      margin-top: 10px;
+      margin-bottom: 12px;
+      text-align: right;
+      padding-right: 12px;
+    }
+    .createAccountButton {
+      width: 200px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*profile create component*/
+
+    .createProfileDiv {
+      width: 40%;
+      margin: auto;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: auto;
+      border: #ef8354 5px dashed;
+      border-radius: 10px;
+    }
+
+    .formDiv{
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .greetings {
+      text-align: center;
+    }
+
+    .nicknameInput  {
+      margin-left: 10%;
+    }
+
+    .cityInput {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .addMainPicture {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .interestsSelect {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .nextSubmit {
+      margin-left: 82%;
+      margin-bottom: 15px;
+      width: 100px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*pairingchats component*/
+    
+
+    .relationship-form {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding-bottom: 10px;
+      border: #ef8354 5px dashed;
+      border-radius: 10px;
+      width: 40%;
+      margin: auto;
+      margin-top: 10px;
+    }
+
+    .relationshipFormDiv {
+      width: 80%;
+      margin: auto;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: auto;
+    }
+
+    .h3Div {
+      text-align: center;
+    }
+
+    .distanceDiv {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+    
+    .interestDiv {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .genderSelectDiv {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .ageDifferenceDiv {
+      margin-left: 10%;
+      margin-bottom: 3%;
+    }
+
+    .submitPairingChats {
+      margin-left: 82%;
+      margin-bottom: 15px;
+      width: 100px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+    /*page navigation component*/
+
     .mainNavigation {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       justify-content: space-around;
+      margin-top: 5px;
+      margin-bottom: 10px;
     }
     .navLink {
-      font-style: italic;
       color: black;
       font-size: 20px;
     }
 
     .activNavLink {
       font-style: italic;
-      color: blue
+      color: #bfc0c0;
     }
+
+    /* home component */
+
     .page {
       margin: 0;
       padding: 0;
       width: auto;
-      height: auto;
+      height: 830px;
+
+    /* myprofile component */
+  
     }
     .myProfile {
       vertical-align: top;
       display: inline-block;
-      padding: 50px 0;
+      padding-top: 50px ;
       margin: 0;
-      width: 30%;
+      width: 33%;
       text-align: center;
-      border: #003300 7px solid;
-      border-radius: 4%;
-      
+      border: #2d3142 3px solid;
     }
     .mainPicture {
       margin: 0 auto;
-      border: #004d00 4px dashed;
+      border: #ef8354 3px dashed;
       width: 200px;
       height: 200px;
       text-align: center;
@@ -86,16 +351,18 @@
     }
     .status {
       display: flex;
-      padding-left: 15px;
       margin-left: 10px;
-      border: #004d00 2px solid;
       border-radius: 5%;
-      width: 20%;
-      height: 25px;
+      width: 40px;
+      height: 40px;
+    }
+    .statusImg{
+      width: 30px;
+      height: 30px;
     }
     .interests {
       text-align: left;
-      padding-left: 10px;
+      padding-left: 30px;
     }
     .city{
       padding-top: 10px;
@@ -107,78 +374,125 @@
       padding-top: 10px;
     }
     .myPage {
-      margin-top: 10px;
-      margin-right: 10px;
-      margin-left: 10px;
-      border: #004d00 1px solid;
+      margin: 10px 20px 20px 20px;
+      border: #4f5d75 3px dashed;
       width: auto;
-      height: 300px
+      height: 370px;
+      background-color: #e6f7ff;
     }
     
+    /*Chat component*/
+
     .chatWindow {
       vertical-align: top;
       display: inline-block;
       padding: 0;
       margin: 0;
-      width: 40%;
-      border: red 1px solid;
+      width: 34%;
+      border-top: #4f5d75 3px solid;
+      border-bottom: #4f5d75 3px solid;
     }
     .conversation {
-      margin: 0 auto;
-      width: 97%;
+      margin-top: 5px;
+      margin-right: 5px;
+      margin-left: 5px;
+      background-color: #f7f7fa;
+      border-top: #2d3142 2px dashed;
+      border-right: #2d3142 2px dashed;
+      border-left: #2d3142 2px dashed;
       height: 600px;
-      border: red 1px solid;
     }
     .textArea {
-      margin: 0 auto;
-      width: 97%;
-      height: 90px;
+      text-align: left;
+      margin-right: 1%;
+      margin-left: 1%;
+      height: 130px;
+      padding: 0px;
+      width: 98%;
+      border-radius: 5px;
     }
+    .sendMessageButtonDiv{
+      text-align: right;
+      margin-right: 13px;
+      margin-top: 6px;
+    }
+    .sendMessageButton{
+      margin-bottom: 15px;
+      width: 100px;
+      height: 30px;
+      border: solid 3px #2d3142;
+      border-radius: 10px;
+      background: #4f5d75;
+      font-size: larger;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: #2d3142;
+    }
+
+
+    /*chatter component*/
+    /*2d3142 blue, 4f5d75 light-blue, bfc0c0 grey, ffffff white, ef8354 orange */
+
     .profile {
       vertical-align: top;
       display: inline-block;
       padding: 50px 0;
       margin: 0;
-      width: 30%;
-      border: green 1px solid;
+      width: 33%;
+      border: #4f5d75 3px solid;
       text-align: center;
     }
     .mainPictureOfHim {
       margin: 0 auto;
-      border: green 1px solid;
-      width: 40%;
+      border: #4f5d75 3px dashed;
+      width: 200px;
       height: 200px;
       text-align: center;
+      border-radius: 50%;
     }
-    .interestsOfHim {
-      text-align: left;
+    .statusNicknameOfHimDiv {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .interestsAndTheRestOfHim {
+      text-align: right;
+      padding-right: 30px;
+    }
+    .nicknameOfHim{
+      font-size: 25px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    .cityOfHim{
+      padding-top: 10px;
+    }
+    .ageOfHim{
+      padding-top: 10px;
+    }
+    .interestsOfHim{
+      padding-top: 10px;
     }
     .statusOfHim {
-      margin: 0 auto;
-      border: green 1px solid;
-      width: 30%;
+      display: flex;
+      padding-left: 15px;
+      margin-left: 10px;
+      border: black 2px solid;
+      border-radius: 5%;
+      width: 40px;
       height: 40px;
     }
     .myPageOfHim {
-      margin: 0 auto;
-      border: green 1px solid;
-      width: 70%;
-      height: 350px;
+      margin: 10px 20px 20px 20px;
+      border: #ef8354 3px dashed;
+      width: auto;
+      height: 370px;
+      background-color: #fff0e6;
     }
-    .registerAccount {
-      margin: 0 auto;
-      border: black 1px solid;
-      width: 30%;
-      height: 750px;
-      text-align: center;
-      display: flex;
-      flex-direction: column; 
-    }
-    label {
-      padding: 9px 0 9px 100px;
-      width: 290px;
-      text-align: right;
-    }
+    
+
+
     .profileEdit {
       margin: 0 auto;
       border: black 1px solid;
@@ -199,8 +513,8 @@
     }
 
     input:invalid{
-  border-color: #a07c3a;
-  background-color: #f8efdd;
+  border-color: #003300;
+  background-color: #f2f2f2;
 }
 
 input:focus:invalid {
@@ -213,13 +527,7 @@ input {
 
 }
 
-button {
-  margin-top: 30px;
-    background: #ffe6cc;
-    border-radius: 10px;
-    width: 200px;
-    height: 80%;
-}
+
 
 /* This is the style of our error messages */
 .error {
@@ -238,150 +546,10 @@ button {
   padding: 0.3em;
 }
 
-.loginInputForm {
-  display: flex;
-  margin: auto;
-  justify-content: center;
-  flex-direction: column;
-  width: 400px;
-  margin-top: 100px;
-  border-style: ridge;
-  border-color: #c49248;
-  background-color: #dfd5a0;
-}
 
-.login {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-bottom: 10px;
-}
 
-.loginLabels {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-} 
 
-.loginInput {
-  padding: 9px 70px 9px 30px;
-}
-.loginPasswordInput {
-  padding: 9px 70px 9px 30px;
-}
 
-.errorTextForNoUser {
-  color: red;
-  margin: auto;
-  margin-top: 10px;
-  
-}
-.loginButton {
-  margin: auto;
-}
-
-.createProfileDiv {
-  width: 50%;
-  margin: auto;
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: auto
-}
-
-.formDiv{
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.buttonDiv {
-  display: flex;
-}
-
-.greetings {
-  text-align: center;
-}
-
-.nicknameInput  {
-  margin-left: 10%;
-}
-
-.cityInput {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.genderRadioButton {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.addMainPicture {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.interestsSelect {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.relationshipButton {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.nextSubmit {
-  margin-left: 60%;
-}
-
-.relationship-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-bottom: 10px;
-}
-
-.relationshipFormDiv {
-  width: 50%;
-  margin: auto;
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: auto;
-}
-
-.distanceDiv {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.h3Div {
-  text-align: center;
-}
-
-.interstDiv {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.genderSelectDiv {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.ageDifferenceDiv {
-  margin-left: 10%;
-  margin-bottom: 3%;
-}
-
-.submitPairingChats {
-  margin-left: 60%;
-}
 
 
 
