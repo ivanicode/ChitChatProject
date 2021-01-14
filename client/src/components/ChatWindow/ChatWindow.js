@@ -2,18 +2,18 @@ import React from 'react';
 import { useChatWindowHooks } from './chatWindowHooks'
 
 export function ChatWindow () {
-    const {sendMessage, message } = useChatWindowHooks()
+    const {showMessage, init, sendMessage} = useChatWindowHooks()
 
     return (
         <div className="chatWindow">
             <div className="conversation">
-            
+                <pre id="messages"></pre>
             </div>
-            <textarea className="textArea" placeholder="Napisz wiadomość..." onChange={sendMessage}>
+            <textarea className="textArea" id="messageBox" placeholder="Napisz wiadomość...">
 
             </textarea>
             <div className="sendMessageButtonDiv">
-                <button className="sendMessageButton" type="button">
+                <button className="sendMessageButton" id="send" type="button" onClick={sendMessage}>
                 wyślij
                 </button>
             </div>
