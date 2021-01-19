@@ -10,22 +10,20 @@ export function useChatWindowHooks(){
 
 export function useSendMessage(){
     
-    const messageState = [
+    const conversationState = [
         {id: 1, content: "Hej", sender: "Maja"}, 
         {id: 2, content: "No hej", sender: "Kasia"},
         {id: 3, content: "Odrobiłaś lekcje?", sender: "Maja"},
         {id: 4, content: "Nie jeszcze", sender: "Kasia"},
         {id: 5, content: "To szlaban", sender: "Maja"},
     ]
-    const messages = document.querySelector('#messages');
-    const messageBox = document.querySelector('#messageBox');
+
+    const [ message, setMessage] = useState(conversationState)
 
     let ws;
 
     function showMessage(message) {
-      messages.textContent += `\n\n${message}`;
-      messages.scrollTop = messages.scrollHeight;
-      messageBox.value = '';
+      document.getElementById(messages).textContent(`\n\n${message.content}`)
     }
 
     function init() {
