@@ -57,7 +57,6 @@ router.post('/details', upload.single('picture'), (req, res) => {
 router.post('/details2', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log(data)
   const dbQuery = `UPDATE chitchat_user_details 
   SET 
   distance = '${data.distance}',
@@ -71,7 +70,6 @@ router.post('/details2', (req, res) => {
     if (error) {
       throw error;
     }
-    console.log(results);
   });
 
   res.status(204).send()
@@ -138,12 +136,10 @@ router.get('', (req, res) => {
   let status = 200;
 
   const dbQuery = `select * from chitchat_account where id = ${parseInt(req.cookies.user, 10)}`
-  console.log('dbQuery!!!', dbQuery)
   connection.query(dbQuery, function (error, results) {
     if(error){
       res.status(500).send(error)
     }
-    console.log('results!!!!!', results[0])
 
     res.status(200).send(results[0])
     /*if (error) {
@@ -156,4 +152,20 @@ router.get('', (req, res) => {
     }*/
   closeConnection(connection);
   })
+})
+
+router.post('/conversations', (req, res) => {
+  console.log('endpoint!', req.body)
+  const connection = makeConnection();
+  const data = req.body;
+  const dbQuery = `insert into chitchat_conversations (user_id, message) values (${parseInt(req.cookies.user, 10)}, ${data.message})`
+  connection.query(dbQuery, function (error, results) {
+    if (error) {
+      throw error;
+    }
+    console.log(results);
+  });
+
+  res.status(204).send()
+  closeConnection(connection);
 })

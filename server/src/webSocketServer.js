@@ -1,21 +1,45 @@
-const express = require('express');
-const http = require('http');
-const WebSocket = require('ws');
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 8082;
+const https = require('http')
 
-const port = 8082;
-const server = http.createServer(express);
-const wss = new WebSocket.Server({ server })
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(data) {
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(data);
-      }
-    })
-  })
-})
 
-server.listen(port, function() {
-  console.log(`Server is listening on ${port}!`)
-})
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    
+    const postData = queryString.stringify({
+      'msg': msg
+    });
+
+    const options = {
+      port: 8080,
+      path: 'http://localhost:8080/api/user/conversations',
+      method: 'POST',
+    };
+
+    const req = http.request(options, (res) => {
+      res.setEncoding('utf8');
+      res.on('data', (chunk) => {
+        console.log(`BODY: ${chunk}`);
+      });
+      res.on('end', () => {
+        console.log('No more data in response.');
+      });
+    });
+
+    req.write(postData);
+
+    req.end();
+    io.emit('chat message', msg);
+  });
+});
+
+http.listen(port, function(){
+  console.log('listening on *:' + port);
+});

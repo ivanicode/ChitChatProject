@@ -1,58 +1,57 @@
 import { useState } from "react"
+import { io } from 'socket.io-client';
+
 
 export function useChatWindowHooks(){
-    const {showMessage, init, sendMessage} = useSendMessage()
+    const {writeMessage, sendMessage, enter} = useSendMessage()
 
     return {
-        showMessage, init, sendMessage
+      writeMessage,
+      sendMessage,
+      enter
     }
 }
 
-export function useSendMessage(){
-    
-    const conversationState = [
-        {id: 1, content: "Hej", sender: "Maja"}, 
-        {id: 2, content: "No hej", sender: "Kasia"},
-        {id: 3, content: "Odrobiłaś lekcje?", sender: "Maja"},
-        {id: 4, content: "Nie jeszcze", sender: "Kasia"},
-        {id: 5, content: "To szlaban", sender: "Maja"},
-    ]
-
-    const [ message, setMessage] = useState(conversationState)
-
-    let ws;
-
-    function showMessage(message) {
-      document.getElementById(messages).textContent(`\n\n${message.content}`)
-    }
-
-    function init() {
-      if (ws) {
-        ws.onerror = ws.onopen = ws.onclose = null;
-        ws.close();
-      }
-
-      ws = new WebSocket('ws://localhost:6969');
-      ws.onopen = () => {
-        console.log('Connection opened!');
-      }
-      ws.onmessage = ({ data }) => showMessage(data);
-      ws.onclose = function() {
-        ws = null;
-      }
-    }
-
-    function sendMessage() {
-      if (!ws) {
-        showMessage("No WebSocket connection :(");
-        return ;
-      }
-
-      ws.send(messageBox.value);
-      showMessage(messageBox.value);
-    }
-
-    return {showMessage, init, sendMessage}
+export function useSendMessage(){ 
+  const [messagesArray, setMessagesArray] = useState([])
+  const [textMessage, setTextMessage] = useState('')
+  const socket = io('http://localhost:8082', {
+    transports: ['websocket']
+  });
+  function writeMessage(event){
+    const message = event.target.value;
+    setTextMessage(message)
   }
+  function sendMessage(event){
+    if(textMessage){
+      socket.emit('chat message', textMessage)
+      setTextMessage('');
+      const newMessageArray = [...messagesArray];
+      newMessageArray.push(textMessage);
+      setMessagesArray(newMessageArray);
+    }
+
+    socket.on('chat message', function(msg) {
+      
+      
+      
+      //window.scrollTo(0, document.body.scrollHeight);
+    });
+    
+    
+  }
+  function enter(event){
+    console.log(event.key)
+    if(event.key.toLowerCase() === 'enter'){
+      sendMessage()
+    }
+  }
+  /*socket.on('chat message', function(msg) {
+      
+    console.log("socket.on", msg)
+  });*/
+    return {writeMessage, sendMessage, messagesArray, enter}
+    
+}
 
 
