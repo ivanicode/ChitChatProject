@@ -12,30 +12,30 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-    
-    const postData = queryString.stringify({
-      'msg': msg
-    });
+
+    const data = JSON.stringify({
+      message: msg
+    })
 
     const options = {
-      port: 8080,
-      path: 'http://localhost:8080/api/user/conversations',
       method: 'POST',
+      host: 'localhost',
+      port: 8080,
+      path: '/api/user/conversations'
     };
 
-    const req = http.request(options, (res) => {
-      res.setEncoding('utf8');
-      res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
+    const callback = function(response) {
+      let str = ''
+      response.on('data', function (chunk) {
+        str += chunk;
       });
-      res.on('end', () => {
-        console.log('No more data in response.');
+      response.on('end', function () {
+        console.log(str);
       });
-    });
-
-    req.write(postData);
-
-    req.end();
+    }
+    const req = https.request(options, callback);
+    req.write(data)
+    req.end()
     io.emit('chat message', msg);
   });
 });
