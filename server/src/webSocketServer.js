@@ -21,7 +21,11 @@ io.on('connection', function(socket){
       method: 'POST',
       host: 'localhost',
       port: 8080,
-      path: '/api/user/conversations'
+      path: '/api/user/conversations',
+      headers: {
+        "Content-Type": "application/json",
+        "Content-length": data.length
+      }
     };
 
     const callback = function(response) {

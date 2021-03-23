@@ -155,10 +155,10 @@ router.get('', (req, res) => {
 })
 
 router.post('/conversations', (req, res) => {
-  console.log('endpoint!', req.body)
   const connection = makeConnection();
   const data = req.body;
-  const dbQuery = `insert into chitchat_conversations (user_id, message) values (${parseInt(req.cookies.user, 10)}, ${data.message})`
+  console.log('!!!', req.cookies.user)
+  const dbQuery = `insert into chitchat_conversations (user_id, message) values ('${1}', '${data.message}')`
   connection.query(dbQuery, function (error, results) {
     if (error) {
       throw error;
