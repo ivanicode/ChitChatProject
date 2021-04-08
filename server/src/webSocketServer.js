@@ -8,15 +8,14 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-
-
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-
+    
     const data = JSON.stringify({
-      message: msg
+      message: msg[0],
+      user: msg[1]
     })
-
+  
     const options = {
       method: 'POST',
       host: 'localhost',

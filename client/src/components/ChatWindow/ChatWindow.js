@@ -7,18 +7,18 @@ export function ChatWindow () {
     return (
         <div className="chatWindow">
             <div className="conversationDiv">
-                <ul id="messages">{messagesArray.map((message, index) => (
+                
+                {/*<ul id="messages">{messagesArray.map((message, index) => (
                     <li key={`${index}${message}`}>{message}</li>
-                ))}</ul>
+                ))}</ul>*/}
             </div>
-            <textarea className="textArea" id="messageBox" placeholder="Napisz wiadomość..." onChange={writeMessage} onKeyPress={enter}>
-
-            </textarea>
-            <div className="sendMessageButtonDiv">
-                <button className="sendMessageButton" id="send" type="button" onClick={sendMessage}>
-                wyślij
-                </button>
+            <div className="createAndSendMessage">
+                <textarea className="textArea" id="messageBox" placeholder="Napisz wiadomość..." onChange={writeMessage} onKeyPress={enter}></textarea>
+                <div className="sendMessageButtonDiv">
+                    <button className="sendMessageButton" id="send" type="button" onClick={sendMessage}>wyślij</button>
+                </div>
             </div>
+            
         </div>
     );   
 }

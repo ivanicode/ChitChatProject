@@ -31,7 +31,7 @@ router.post('/details', upload.single('picture'), (req, res) => {
   const data = JSON.parse(req.body.form);
   const inputfile = req.file.path;
   const photo = fileHelpers.readImageFile(inputfile); 
-
+  console.log(data)
   const dbQuery = "insert into chitchat_user_details (user_id, nickname, city, gender, picture, interests, relationship) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
@@ -42,7 +42,7 @@ router.post('/details', upload.single('picture'), (req, res) => {
     photo,
     data.interests.toString(),
     data.relationship
-  ];
+  ]; 
   connection.query(dbQuery, values, function (error, results) {
     if (error) {
       throw error;
@@ -55,11 +55,11 @@ router.post('/details', upload.single('picture'), (req, res) => {
 })
 
 router.post('/details2', (req, res) => {
+  console.log()
   const connection = makeConnection();
   const data = req.body;
   const dbQuery = `UPDATE chitchat_user_details 
   SET 
-  distance = '${data.distance}',
   interest_pairing = '${data.interests}',
   gender_pairing = '${data.gender}',
   age_pairing = '${data.age}'
@@ -113,6 +113,7 @@ router.get('/details', (req, res) => {
   let status = 200;
 
   const dbQuery = `select * from chitchat_user_details where user_id = ${parseInt(req.cookies.user, 10)}`
+  console.log(dbQuery)
   connection.query(dbQuery, function (error, results) {
     if(error){
       res.status(500).send(error)
@@ -157,8 +158,7 @@ router.get('', (req, res) => {
 router.post('/conversations', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
-  console.log('!!!', req.cookies.user)
-  const dbQuery = `insert into chitchat_conversations (user_id, message) values ('${1}', '${data.message}')`
+  const dbQuery = `insert into chitchat_conversations (conversation_nr, user_id, message) values (${data.user}, ${data.user}, '${data.message}')`
   connection.query(dbQuery, function (error, results) {
     if (error) {
       throw error;
@@ -169,3 +169,31 @@ router.post('/conversations', (req, res) => {
   res.status(204).send()
   closeConnection(connection);
 })
+
+router.get('/conversations', (req, res) => {
+  
+  const connection = makeConnection();
+  
+  let status = 200;
+
+  const dbQuery = `select * from chitchat_conversations where user_id = ${parseInt(req.cookies.user, 10)}`
+  connection.query(dbQuery, function (error, results) {
+    if(error){
+      res.status(500).send(error)
+    }
+
+    res.status(200).send(results)
+    /*if (error) {
+      status = 500;
+      res.status(status).send(error) //tu przesyłam obiekt błędu
+      throw error;
+    } else {
+      status = 200;
+      res.status(status).send(results)
+    }*/
+  })
+  closeConnection(connection);
+  
+})
+
+router.get('')

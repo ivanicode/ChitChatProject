@@ -31,6 +31,7 @@ export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
     function saveData({data, contentType = 'application/json', onSuccess, onError}){
+        console.log('data w saveData', data)
         const headers = contentType ? {
             'Content-Type': contentType
         } : {};
@@ -67,6 +68,5 @@ export function useSave(path) {
             }
         })
     }
-    
     return {saveState, saveData};
 } 

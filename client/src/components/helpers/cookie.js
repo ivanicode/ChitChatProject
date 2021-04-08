@@ -6,3 +6,6 @@ export async function setCookie(name, value){
         document.cookie = cookieText;
     }
 }
+export function getCookieByName(name){
+    return document.cookie?.split('; ')?.find((el) => el.includes(name))?.split('=')[1]
+}

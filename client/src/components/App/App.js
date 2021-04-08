@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     BrowserRouter,
     Switch,
     Route,
+    Redirect
 } from 'react-router-dom';
 
 import Home from '../Home/Home';
@@ -14,9 +15,12 @@ import PairingChats from '../PairingChats/PairingChats'
 import { useAppHooks } from './appHooks';
 import Start from '../Start/Start';
 
+export const UserContext = React.createContext(null);
 
 export function App(){
-    const {userData, setUserData} = useAppHooks()
+    
+    const {userData, setUserData, isLoggedIn} = useAppHooks()
+
     return (
         <BrowserRouter>
             <Switch>
@@ -24,7 +28,9 @@ export function App(){
                     <Start />
                 </Route>
                 <Route exact path="/home">
-                    <Home />
+                    <UserContext.Provider value={isLoggedIn} >
+                        {!isLoggedIn ? <Redirect to="/login" /> : <Home />}
+                    </UserContext.Provider>
                 </Route>
                 <Route path="/register">
                     <RegisterAccount />

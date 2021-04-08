@@ -2,29 +2,43 @@ import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
 import { hobby } from '../RegisterProfile/dictionary'
+import { useFetch } from '../../common/hooks/useFetchHook'
+import { getRandomIntInclusive } from './helpers'
 
 
 export function usePairingHooks(){
+
     const history = useHistory();
+
     const {
         formData,
         onChangeHandler
     } = useManageFormData()
 
+    const [hobbys, setHobbys] = useState([])
     const {saveData} = useSave('/api/user/details2')
+    const {data} = useFetch('/api/user/details');
+    useEffect(() => {
+        if(data?.interests){
+            setHobbys(data?.interests.split(','))
+        }
+    }, [data])
+    
 
     const {
         submitPairingChats
     } = useSubmitPairingChats(saveData, formData, history)
-    const chosenHobbys = history.location.search.substring(1).split('&').find((el) => el.includes('interest')).split('=')[1];
 
-    const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id))
+    //const {
+        //requirements
+    //} = useSetPreferences()
 
     return {
         submitPairingChats,
         onChangeHandler,
         formData,
-        hobbys
+        hobbys,
+        useSetPreferences
     }
 }
 
@@ -56,7 +70,6 @@ export function useSubmitPairingChats(saveData, formData, history){
 }
 
 export const initialState = {
-    distance: '',
     interests: '',
     gender: '',
     age: ''
@@ -75,3 +88,25 @@ export function useManageFormData(){
     }
     return {formData, onChangeHandler}
 }
+
+export function useSetPreferences(){
+
+    //const {data} = useFetch('/api/user/details')
+
+    //const initialData = {relationship: 0, interestPairing: 0, genderPairing: 0, agePairing: 0}
+
+    //function reducer(action, state){
+
+    //}
+
+    //const [preferencesState, dispatch] = useReducer(reducer, initialData);
+
+    //useEffect(() => {
+        
+    //}, [data])
+
+    
+    //console.log(state)
+    //return {state}
+}
+
