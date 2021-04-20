@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 import { useSave } from '../../common/hooks/useSaveHook';
 import {useHistory} from 'react-router-dom';
+import {setCookie} from '../helpers/cookie';
 
 export function useAllHooks() {
     const {
@@ -56,12 +57,13 @@ export function useSubmitForm(errors, formData, saveData) {
         setFormIsValid(checkIfFormIsValid())
     }, [formData, errors])
 
-
     function submitForm(event){
 
         if(formIsValid){
+            
             saveData({data: formData, onSuccess: onRegisterSuccess});
-            function onRegisterSuccess(){
+            function onRegisterSuccess(_, headers){
+                setCookie('user', headers.get('insertedid'))
                 history.push('/profile/create');
             }
         }
