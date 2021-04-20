@@ -14,7 +14,7 @@ export function reducer(state, action) {
         case 'requesting':
             return { ...state, requesting: true };
         case 'success':
-            return { ...initialData, success: action.response};
+            return { ...initialData, success: action.response, headers: action.headers};
         case 'error':
             return { ...state, error: action.error, requesting: false };
         default:
@@ -31,7 +31,7 @@ export function useSave(path) {
     const [saveState, dispatch] = useReducer(reducer, initialData);
   
     function saveData({data, contentType = 'application/json', onSuccess, onError}){
-        console.log('data w saveData', data)
+        
         const headers = contentType ? {
             'Content-Type': contentType
         } : {};
@@ -45,12 +45,13 @@ export function useSave(path) {
             body,
         })
         .then( async (response) => {
+            const headers = response.headers
             const status = response.status;
             const body = response.statusText.toLowerCase() === 'no content' ? null : await response.json()
             if(status < 400){
-                dispatch({ type: 'success', response: {status, body}});
+                dispatch({ type: 'success', response: {status, body, headers}});
                 if(typeof onSuccess === 'function'){
-                    onSuccess(body)
+                    onSuccess(body, headers)
                 }
             } else {
                 dispatch({ type: 'error', error: {status, body}});

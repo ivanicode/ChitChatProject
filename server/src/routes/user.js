@@ -14,15 +14,15 @@ router.post('', (req, res) => {
   const connection = makeConnection();
   const data = req.body;
   const dbQuery = `insert into chitchat_account (first_name, last_name, birth_date, email, password) values ('${data.firstName}', '${data.lastName}', '${data.date}', '${data.mail}', '${data.originalPassword}')`
-
   connection.query(dbQuery, function (error, results) {
     if (error) {
-      throw error;
+      console.log(error)
+    } else {
+      res.setHeader('insertedId', results.insertId)
+      res.writeHead(204);
+      res.end()
     }
-    console.log(results);
   });
-
-  res.status(204).send()
   closeConnection(connection);
 })
 
@@ -31,7 +31,7 @@ router.post('/details', upload.single('picture'), (req, res) => {
   const data = JSON.parse(req.body.form);
   const inputfile = req.file.path;
   const photo = fileHelpers.readImageFile(inputfile); 
-  console.log(data)
+  
   const dbQuery = "insert into chitchat_user_details (user_id, nickname, city, gender, picture, interests, relationship) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
   const values = [
@@ -131,7 +131,7 @@ router.get('/details', (req, res) => {
   })
 })
 router.get('', (req, res) => {
-  
+
   const connection = makeConnection();
   
   let status = 200;
