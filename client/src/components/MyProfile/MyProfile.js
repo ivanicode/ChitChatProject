@@ -57,8 +57,11 @@ class MyProfile extends Component {
     }
     componentDidUpdate(prevProps, prevState, snapshot){
         if(this.state.data !== prevState.data){
-            const chosenHobbys = this.state.data?.interests;
-            const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id)).map(el => el?.label)
+            const chosenHobbys = this.state.data?.interests.split(',');
+            console.log('chosenHobbys', chosenHobbys)
+            console.log('hobby', hobby)
+            const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id.toString())).map(el => el?.label)
+            console.log('hobbys', hobbys)
             this.setState({hobbys})
         }
         if(this.state.accountData !== prevState.accountData){

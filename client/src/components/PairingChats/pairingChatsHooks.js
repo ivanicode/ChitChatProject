@@ -23,7 +23,6 @@ export function usePairingHooks(){
             setHobbys(data?.interests.split(','))
         }
     }, [data])
-    
 
     const {
         submitPairingChats
@@ -37,8 +36,7 @@ export function usePairingHooks(){
         submitPairingChats,
         onChangeHandler,
         formData,
-        hobbys,
-        useSetPreferences
+        hobbys
     }
 }
 
@@ -89,7 +87,7 @@ export function useManageFormData(){
     return {formData, onChangeHandler}
 }
 
-export function useSetPreferences(){
+/*export function useSetPreferences(){
 
     //const {data} = useFetch('/api/user/details')
 
@@ -108,5 +106,5 @@ export function useSetPreferences(){
     
     //console.log(state)
     //return {state}
-}
+}*/
 

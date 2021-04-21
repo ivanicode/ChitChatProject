@@ -11,8 +11,7 @@ export function PairingChats(){
         submitPairingChats,
         formData,
         onChangeHandler,
-        hobbys,
-        useSetPreferences
+        hobbys
     } = usePairingHooks()
     return (
         <form className="relationship-form">
@@ -26,7 +25,7 @@ export function PairingChats(){
                         {interest.map((el, index) => (
                             <div key={el.id}>
                             <input type={el.type} name={el.name} value={el.id} onChange={onChangeHandler} id="interests"/>
-                            {el.label} {index-2 >= 0 && hobby[hobbys[index-2]]?.label}
+                            {el.label} {index-2 >= 0 && hobby[hobbys[index-2] -1]?.label}
                         </div>
                         ))}
                 </div>
