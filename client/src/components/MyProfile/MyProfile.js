@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-/*import {useMyProfileHooks} from './myProfileHooks'*/
-import {hobby} from '../RegisterProfile/dictionary';
+import {useMyProfileHooks} from './myProfileHooks';
+//import {hobby} from '../RegisterProfile/dictionary';
 
 
-/*export function MyProfile () {
+export function MyProfile () {
 
     
-const {data, hobbys, age} = useMyProfileHooks()
+const {data, hobbys, age, findMatch} = useMyProfileHooks()
 
     return (
         <div className="myProfile">
@@ -29,11 +29,14 @@ const {data, hobbys, age} = useMyProfileHooks()
             <div className="myPage">
                 
             </div>
+            <button className="findMatch" onClick={findMatch}>
+                Znajdź rozmówcę
+            </button>
         </div>
     );   
-}*/
+}
 
-class MyProfile extends Component {
+/*class MyProfile extends Component {
     state = {data: null, error: null, accountData: null, hobbys: [], age: 0}
     componentDidMount(){
         fetch('/api/user')
@@ -58,10 +61,7 @@ class MyProfile extends Component {
     componentDidUpdate(prevProps, prevState, snapshot){
         if(this.state.data !== prevState.data){
             const chosenHobbys = this.state.data?.interests.split(',');
-            console.log('chosenHobbys', chosenHobbys)
-            console.log('hobby', hobby)
             const hobbys = hobby.filter((element) => chosenHobbys.includes(element.id.toString())).map(el => el?.label)
-            console.log('hobbys', hobbys)
             this.setState({hobbys})
         }
         if(this.state.accountData !== prevState.accountData){
@@ -92,10 +92,13 @@ class MyProfile extends Component {
             <div className="myPage">
                 
             </div>
+            <button className="findMatch">
+                Znajdź rozmówcę
+            </button>
         </div>
         )
     }
-}
+}*/
 
 export default MyProfile;
 

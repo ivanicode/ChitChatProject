@@ -1,9 +1,7 @@
 import {useHistory} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import { useSave } from '../../common/hooks/useSaveHook';
-import { hobby } from '../RegisterProfile/dictionary'
 import { useFetch } from '../../common/hooks/useFetchHook'
-import { getRandomIntInclusive } from './helpers'
 
 
 export function usePairingHooks(){

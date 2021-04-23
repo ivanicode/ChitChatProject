@@ -21,12 +21,13 @@ export function reducer(state, action) {
     }
 }
   
-export function useFetch(path) {
+export function useFetch(path, shouldMakeRequest = true) {
     const [fetchState, dispatch] = useReducer(reducer, initialData);
   
     useEffect(
         () => {
-            dispatch({ type: 'requesting' });
+            if(shouldMakeRequest && path){
+                dispatch({ type: 'requesting' });
             fetch(path)
                 .then(response => response.json())
                 .then(data => {
@@ -36,8 +37,9 @@ export function useFetch(path) {
                     dispatch({ type: 'error', error});
                     console.error(error);
                 })
+            }
         },
-        []
+        [shouldMakeRequest, path]
     );
     return fetchState;
 } 

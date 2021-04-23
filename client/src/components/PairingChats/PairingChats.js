@@ -4,9 +4,8 @@ import {hobby} from '../RegisterProfile/dictionary';
 import { string } from 'prop-types';
 import {usePairingHooks} from './pairingChatsHooks';
 
-
 export function PairingChats(){
-
+    
     const {
         submitPairingChats,
         formData,
