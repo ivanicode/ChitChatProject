@@ -1,7 +1,8 @@
 import {hobby} from '../RegisterProfile/dictionary';
 import { useFetch } from '../../common/hooks/useFetchHook';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {pairingRelationship} from './pairingDictionary'
+import { MyContext } from '../Home/Home'
 
 export function useMyProfileHooks() {
     const [hobbys, setHobbys] = useState([])
@@ -11,7 +12,6 @@ export function useMyProfileHooks() {
     const [shouldFetchMatch, setShouldFetchMatch] = useState(false)
     const [fetchMatchUrl, setFetchMatchUrl] = useState('')
     const {data: matchData} = useFetch(fetchMatchUrl, shouldFetchMatch);
-    
     useEffect(() => {
         if(data?.interests){
             const chosenHobbys = data?.interests;
@@ -30,9 +30,15 @@ export function useMyProfileHooks() {
         }
     }, [accountData])
 
+    const { setMatchFunction } = useContext(MyContext);
+
     function findMatch(event){
         setShouldFetchMatch(true)
-
+        if(matchData){
+            setMatchFunction(matchData)
+        }
     }
-    return {data, hobbys, age, findMatch}
+    
+
+    return {data, hobbys, age, findMatch, matchData}
 }
