@@ -12,6 +12,7 @@ export function useMyProfileHooks() {
     const [shouldFetchMatch, setShouldFetchMatch] = useState(false)
     const [fetchMatchUrl, setFetchMatchUrl] = useState('')
     const {data: matchData} = useFetch(fetchMatchUrl, shouldFetchMatch);
+    
     useEffect(() => {
         if(data?.interests){
             const chosenHobbys = data?.interests;
@@ -30,13 +31,16 @@ export function useMyProfileHooks() {
         }
     }, [accountData])
 
+    useEffect(() => {
+        if(matchData?.id){
+            setMatchFunction(matchData)
+        }
+    }, [matchData])
+
     const { setMatchFunction } = useContext(MyContext);
 
     function findMatch(event){
         setShouldFetchMatch(true)
-        if(matchData){
-            setMatchFunction(matchData)
-        }
     }
     
 

@@ -16,15 +16,15 @@ export function Home(props){
         setMsg(data)
     }
     
-
-    const { isLoggedIn } = useContext(UserContext)
-    return(
+    const isLoggedIn = useContext(UserContext)
+    
+    return !isLoggedIn ? (<Redirect to="/login" />) : (
         <div className="page">
             <MyContext.Provider value={{setMatchFunction, msg}}>
-                {!isLoggedIn ? <Redirect to="/login" /> : <PageNavigation />}
-                {!isLoggedIn ? <Redirect to="/login" /> : <MyProfile />}
-                {!isLoggedIn ? <Redirect to="/login" /> : <ChatWindow />}
-                {!isLoggedIn ? <Redirect to="/login" /> : <Profile />}
+                <PageNavigation />
+                <MyProfile />
+                <ChatWindow />
+                <Profile />
             </MyContext.Provider >
         </div>
     )
