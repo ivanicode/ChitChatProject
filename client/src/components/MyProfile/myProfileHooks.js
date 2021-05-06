@@ -33,11 +33,11 @@ export function useMyProfileHooks() {
 
     useEffect(() => {
         if(matchData?.id){
-            setMatchFunction(matchData)
+            updatePartnerData(matchData)
         }
     }, [matchData])
 
-    const { setMatchFunction } = useContext(MyContext);
+    const { updatePartnerData } = useContext(MyContext);
 
     function findMatch(event){
         setShouldFetchMatch(true)

@@ -17,7 +17,6 @@ export function useSendMessage(){
   const [messagesArray, setMessagesArray] = useState([])
   const [textMessage, setTextMessage] = useState('')
   const {data} = useFetch('/api/user/conversations');
-  console.log(data)
   const socket = io('http://localhost:8082', {
     transports: ['websocket']
   });

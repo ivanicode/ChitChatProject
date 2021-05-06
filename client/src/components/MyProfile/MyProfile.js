@@ -26,9 +26,6 @@ const {data, hobbys, age, findMatch} = useMyProfileHooks()
                 <div className="age">{age}</div>
                 <div className="hobbys">{hobbys.join(', ')}</div>
             </div>
-            <div className="myPage">
-                
-            </div>
             <button className="findMatch" onClick={findMatch}>
                 Znajdź rozmówcę
             </button>

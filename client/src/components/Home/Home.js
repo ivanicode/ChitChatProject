@@ -10,17 +10,16 @@ export const MyContext = React.createContext(null);
 
 export function Home(props){
 
-    const [msg, setMsg] = useState('')
-    function setMatchFunction(data){
-        console.log('data!', data)
-        setMsg(data)
+    const [partnerData, setPartnerData] = useState('')
+    function updatePartnerData(data){
+        setPartnerData(data)
     }
     
     const isLoggedIn = useContext(UserContext)
     
     return !isLoggedIn ? (<Redirect to="/login" />) : (
         <div className="page">
-            <MyContext.Provider value={{setMatchFunction, msg}}>
+            <MyContext.Provider value={{updatePartnerData, partnerData}}>
                 <PageNavigation />
                 <MyProfile />
                 <ChatWindow />

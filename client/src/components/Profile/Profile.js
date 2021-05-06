@@ -1,22 +1,26 @@
 import React from 'react';
+import { useProfileHooks } from './profileHooks'
+
 
 export function Profile () {
+    
+    const { age, partnerData, hobbys } = useProfileHooks()
+
     return (
-        <div className="profile">
-            <div className="mainPictureOfHim"></div>
-            <div className="statusNicknameOfHimDiv">
-                <div className="nicknameOfHim">
-                    Nickname
+        <div className="partnerProfile">
+            <div className="partnerPicture"></div>
+            <div className="partnerNicknameAndStatusDiv">
+                <div className="partnerNickname">
+                    {partnerData.nickname}
                 </div>
-                <div className="statusOfHim"></div>
+                <div className="partnerStatus">
+                    <img src={'/' + partnerData?.relationship + '.png'}></img>
+                </div>
             </div>
-            <div className="interestsAndTheRestOfHim">               
-                <div className="cityOfHim">Miasto</div>
-                <div className="ageOfHim">Wiek</div>
-                <div className="interestsOfHim">Główne zainteresowania po przecinku(max 3)</div>
-            </div>
-            <div className="myPageOfHim">
-                
+            <div className="partnerInformations">               
+                <div className="partnerCity">{partnerData.city}</div>
+                <div className="partnerAge">{age}</div>
+                <div className="partnerInterests">{hobbys.join(', ')}</div>
             </div>
         </div>
     );   

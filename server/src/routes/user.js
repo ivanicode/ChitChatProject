@@ -135,18 +135,15 @@ router.get('', (req, res) => {
   const connection = makeConnection();
   
   let status = 200;
-  console.log('reqquery', req.query)
   let dbQuery = `select * from chitchat_account where id = ${parseInt(req.cookies.user, 10)}`
   const reqArray = Object.keys(req.query)
   if(reqArray.length){
     dbQuery = `select * from chitchat_account as acc, chitchat_user_details as det where acc.id = det.user_id and acc.id <> ${parseInt(req.cookies.user, 10)} and det.relationship = ${req.query.relationship}`
   }
-  console.log('dbQuery', dbQuery)
   connection.query(dbQuery, function (error, results) {
     if(error){
       res.status(500).send(error)
     }
-    console.log('results[0]', results[0])
     res.status(200).send(results[0])
 
     /*if (error) {
