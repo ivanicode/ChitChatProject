@@ -46,7 +46,7 @@ describe('PairingChats hooks', () => {
             const hookResult = renderHook(() => useManageFormData())
             expect(typeof hookResult.result.current.onChangeHandler).toEqual('function')
             expect(Object.keys(hookResult.result.current.formData).sort()).toEqual(['age',
-            'distance','gender','interests'])
+            'gender','interests'])
         })
         it('should change gender from formData if onChangeHandler function was called with the new value of gender', () => {
 

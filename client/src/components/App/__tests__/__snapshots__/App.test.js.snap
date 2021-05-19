@@ -13,7 +13,13 @@ exports[`App component should match snapshot 1`] = `
       exact={true}
       path="/home"
     >
-      <Home />
+      <ContextProvider
+        value={false}
+      >
+        <Redirect
+          to="/login"
+        />
+      </ContextProvider>
     </Route>
     <Route
       path="/register"

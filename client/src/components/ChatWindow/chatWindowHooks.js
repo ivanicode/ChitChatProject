@@ -16,7 +16,6 @@ export function useChatWindowHooks(){
 export function useSendMessage(){ 
   const [messagesArray, setMessagesArray] = useState([])
   const [textMessage, setTextMessage] = useState('')
-  const {data} = useFetch('/api/user/conversations');
   const socket = io('http://localhost:8082', {
     transports: ['websocket']
   });
@@ -26,7 +25,6 @@ export function useSendMessage(){
     if(textMessage){
       socket.emit('chat message', [textMessage, document.cookie.slice(5)])
       setTextMessage('');
-      console.log(textMessage)
       const newMessageArray = [...messagesArray];
       newMessageArray.push(textMessage);
       setMessagesArray(newMessageArray);

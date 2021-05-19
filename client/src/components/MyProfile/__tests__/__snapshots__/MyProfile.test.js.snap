@@ -35,8 +35,11 @@ exports[`MyProfile component should match snapshot 1`] = `
       className="hobbys"
     />
   </div>
-  <div
-    className="myPage"
-  />
+  <button
+    className="findMatch"
+    onClick={[Function]}
+  >
+    Znajdź rozmówcę
+  </button>
 </div>
 `;

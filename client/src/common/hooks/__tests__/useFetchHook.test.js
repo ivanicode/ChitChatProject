@@ -31,11 +31,13 @@ describe('useFetchHook', () => {
     })
     describe('useFetch', () => {
         it('should return proper data', async () => {
+            const onSuccess = jest.fn()
             let state;
             await act( async () => {
-                const {result} = await renderHook(() => useFetch('abc'))
+                const {result} = await renderHook(() => useFetch('abc', true, onSuccess, null))
                 state = await result;
             })
+            expect(onSuccess).toHaveBeenCalledTimes(1)
             expect(state.current.requesting).toEqual(false);
             expect(state.current.data).toEqual({name: 'Kasia', lastName: 'Stosio'});
             expect(state.current.error).toEqual(null);
@@ -54,6 +56,21 @@ describe('useFetchHook', () => {
             expect(state.current.requesting).toEqual(false);
             expect(state.current.data).toEqual(null);
             expect(state.current.error).toEqual({message: 'error'})
+        })
+        it('should call onError if is passed and fetch returns error', async () => {
+            global.fetch = jest.fn(
+                () => Promise.reject({
+                    message: 'error'
+                })
+            )
+            let state;
+            const onError = jest.fn()
+            expect(onError).toHaveBeenCalledTimes(0)
+            await act( async () => {
+                const {result} = await renderHook(() => useFetch('abc', true, null, onError))
+                state = await result;
+            })
+            expect(onError).toHaveBeenCalledTimes(1)
         })
     })
 })

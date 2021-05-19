@@ -23,3 +23,17 @@ jest.doMock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'), 
   useHistory: () => global.testHistoryObject
 }))
+
+const data = {interests: '2, 3, 4'}
+global.fetch = jest.fn()
+    .mockImplementationOnce(
+        () => Promise.resolve({
+            json: () => Promise.resolve({birth_date: '1998-03-21'})
+        })
+    )
+    .mockImplementationOnce(
+        () => Promise.resolve({
+            json: () => Promise.resolve(data)
+        })
+    )
+

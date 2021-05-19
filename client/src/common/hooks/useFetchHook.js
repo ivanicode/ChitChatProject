@@ -34,7 +34,7 @@ export function useFetch(path, shouldMakeRequest = true, onSuccess, onError) {
         () => {
             if(shouldMakeRequest && path){
                 dispatch({ type: 'requesting' });
-            fetch(path)
+                fetch(path)
                 .then(response => response.json())
                 .then(data => {
                     dispatch({ type: 'success', data });

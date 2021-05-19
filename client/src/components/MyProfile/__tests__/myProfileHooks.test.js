@@ -2,19 +2,6 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useMyProfileHooks } from '../myProfileHooks';
 import { hobby } from '../../RegisterProfile/dictionary';
 
-const data = {interests: '2, 3, 4'}
-global.fetch = jest.fn()
-    .mockImplementationOnce(
-        () => Promise.resolve({
-            json: () => Promise.resolve({birth_date: '1998-03-21'})
-        })
-    )
-    .mockImplementationOnce(
-        () => Promise.resolve({
-            json: () => Promise.resolve(data)
-        })
-    )
-
 describe('useMyProfileHooks function', () => {
     it('should return data, age and hobbys', async () => {
         let hookResult;

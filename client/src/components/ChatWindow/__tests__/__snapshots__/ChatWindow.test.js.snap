@@ -5,21 +5,30 @@ exports[`ChatWindow component should match snapshot 1`] = `
   className="chatWindow"
 >
   <div
-    className="conversation"
-  />
-  <textarea
-    className="textArea"
-    placeholder="Napisz wiadomość..."
+    className="conversationDiv"
   />
   <div
-    className="sendMessageButtonDiv"
+    className="createAndSendMessage"
   >
-    <button
-      className="sendMessageButton"
-      type="button"
+    <textarea
+      className="textArea"
+      id="messageBox"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Napisz wiadomość..."
+    />
+    <div
+      className="sendMessageButtonDiv"
     >
-      wyślij
-    </button>
+      <button
+        className="sendMessageButton"
+        id="send"
+        onClick={[Function]}
+        type="button"
+      >
+        wyślij
+      </button>
+    </div>
   </div>
 </div>
 `;

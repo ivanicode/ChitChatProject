@@ -15,117 +15,6 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
       </h3>
     </div>
     <div
-      className="distanceDiv"
-    >
-      <p>
-        Odległość:
-      </p>
-      <p>
-        Ustaw jaka odległość powinna dzielić Cię od rozmówcy
-      </p>
-      <select
-        id="distance"
-        onChange={[MockFunction]}
-      >
-        <option
-          key="1"
-          value={1}
-        >
-          Losowo
-        </option>
-        <option
-          key="2"
-          value={2}
-        >
-          Tylko moja miejscowość
-        </option>
-        <option
-          key="3"
-          value={3}
-        >
-          do 10km
-        </option>
-        <option
-          key="4"
-          value={4}
-        >
-          do 20km
-        </option>
-        <option
-          key="5"
-          value={5}
-        >
-          do 30km
-        </option>
-        <option
-          key="6"
-          value={6}
-        >
-          do 40km
-        </option>
-        <option
-          key="7"
-          value={7}
-        >
-          do 50km
-        </option>
-        <option
-          key="8"
-          value={8}
-        >
-          do 60km
-        </option>
-        <option
-          key="9"
-          value={9}
-        >
-          do 70km
-        </option>
-        <option
-          key="10"
-          value={10}
-        >
-          do 80km
-        </option>
-        <option
-          key="11"
-          value={11}
-        >
-          do 90km
-        </option>
-        <option
-          key="12"
-          value={12}
-        >
-          do 100km
-        </option>
-        <option
-          key="13"
-          value={13}
-        >
-          do 150km
-        </option>
-        <option
-          key="14"
-          value={14}
-        >
-          do 200km
-        </option>
-        <option
-          key="15"
-          value={15}
-        >
-          do 300km
-        </option>
-        <option
-          key="16"
-          value={16}
-        >
-          do i powyżej 400km
-        </option>
-      </select>
-    </div>
-    <div
       className="interestDiv"
     >
       <p>
@@ -274,55 +163,31 @@ exports[`PairingChats component should match snapshot when no errors 1`] = `
           key="4"
           value={4}
         >
-          Do 2 roku różnicy
+          Do 2 lat różnicy
         </option>
         <option
           key="5"
           value={5}
         >
-          Do 3 roku różnicy
+          Do 3 lat różnicy
         </option>
         <option
           key="6"
           value={6}
         >
-          Do 4 roku różnicy
+          Do 5 lat różnicy
         </option>
         <option
           key="7"
           value={7}
         >
-          Do 5 roku różnicy
+          Do 7 lat różnicy
         </option>
         <option
           key="8"
           value={8}
         >
-          Do 6 roku różnicy
-        </option>
-        <option
-          key="9"
-          value={9}
-        >
-          Do 7 roku różnicy
-        </option>
-        <option
-          key="10"
-          value={10}
-        >
-          Do 8 roku różnicy
-        </option>
-        <option
-          key="11"
-          value={11}
-        >
-          Do 9 roku różnicy
-        </option>
-        <option
-          key="12"
-          value={12}
-        >
-          Do 10 roku różnicy
+          Do 10 lat różnicy
         </option>
       </select>
     </div>

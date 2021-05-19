@@ -8,6 +8,10 @@ import { UserContext } from '../App/App';
 
 export const MyContext = React.createContext(null);
 
+export function useGetMyContext(){
+    return useContext(MyContext)
+}
+
 export function Home(props){
 
     const [partnerData, setPartnerData] = useState('')
