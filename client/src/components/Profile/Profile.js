@@ -1,7 +1,6 @@
 import React from 'react';
 import { useProfileHooks } from './profileHooks'
 
-
 export function Profile () {
     
     const { age, partnerData, hobbys } = useProfileHooks()
