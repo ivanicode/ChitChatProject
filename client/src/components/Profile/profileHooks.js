@@ -8,7 +8,7 @@ export function useProfileHooks(){
     const { partnerData } = useGetMyContext()
     const [age, setAge] = useState();
     const [hobbys, setHobbys] = useState([])
-    console.log('Hello')
+    
     useEffect(() => {
         if(partnerData?.birth_date){
             const now = new Date();
@@ -17,9 +17,10 @@ export function useProfileHooks(){
         }
         if(partnerData?.interests){
             const chosenHobbys = partnerData.interests;
-            setHobbys(hobby.filter((element) => chosenHobbys.includes(element.id)).map(el => el?.label))
+            const interests = hobby.filter((element) => chosenHobbys.includes(element.id)).map(el => el?.label)
+            setHobbys(interests)
         }
-    }, [partnerData])
+    }, [JSON.stringify(partnerData)])
 
     return {age, partnerData, hobbys}
 }

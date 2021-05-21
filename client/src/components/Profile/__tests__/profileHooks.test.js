@@ -16,7 +16,7 @@ describe('useProfileHooks hook', () => {
 
         expect(result.current.partnerData).toEqual({birth_date: '1998-03-22', interests: '1, 2, 3'})
     })
-    /*it('should return data, age and hobbys', async () => {
+    it('should return data, age and hobbys', async () => {
         home.useGetMyContext = jest.fn().mockImplementation(() => ({
             partnerData: {birth_date: '1998-03-22'}
         }))
@@ -31,5 +31,5 @@ describe('useProfileHooks hook', () => {
         const { result} = renderHook(() => useProfileHooks())
 
         expect(result.current.partnerData).toEqual({interests: '1, 2, 3'})
-    })*/
+    })
 })
