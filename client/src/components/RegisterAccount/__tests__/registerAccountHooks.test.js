@@ -1,8 +1,12 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import {useManageFormData, useManageErrors, useAllHooks, useSubmitForm} from '../registerAccountHooks';
+import * as cookieHelper from '../../helpers/cookie';
 
 const matchingPasswords = {originalPassword: 'a', repeatedPassword: 'a'};
 const notMatchingPasswords = {originalPassword: 'a', repeatedPassword: 'b'};
+
+
+
 
 describe('RegisterAccount hooks', () => {
     
@@ -237,8 +241,12 @@ describe('RegisterAccount hooks', () => {
             const {result} = renderHook(() => useSubmitForm({}, {b: 1}))
             expect(result.current.formIsValid).toEqual(true)
         })
-        it('should call saveData if form is valid and set onSuccess on onRegisterSuccess and redirect', () => {
 
+        it('should call saveData if form is valid and set onSuccess on onRegisterSuccess and redirect', () => {
+            
+        
+            cookieHelper.setCookie = jest.fn()
+            
             const saveData = jest.fn()
             
             const {result} = renderHook(() => useSubmitForm({}, {}, saveData))
@@ -252,10 +260,13 @@ describe('RegisterAccount hooks', () => {
             expect(saveData).toHaveBeenCalledTimes(1);
             expect(Object.keys(saveData.mock.calls[0][0]).sort()).toEqual(['data', 'onSuccess'])
             const onSuccess = saveData.mock.calls[0][0].onSuccess
-            expect(typeof onSuccess).toEqual('function')
             
-            onSuccess()
+            expect(typeof onSuccess).toEqual('function')
+            expect(cookieHelper.setCookie).toHaveBeenCalledTimes(0)
+            
+            onSuccess({}, {get: jest.fn()})
 
+            expect(cookieHelper.setCookie).toHaveBeenCalledTimes(1)
             expect(global.historyPushFn).toHaveBeenCalledTimes(1)
             expect(global.historyPushFn).toHaveBeenCalledWith('/profile/create')
             saveData.mockReset()

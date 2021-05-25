@@ -18,6 +18,7 @@ export function usePairingHooks(){
     const {data} = useFetch('/api/user/details');
     useEffect(() => {
         if(data?.interests){
+            console.log(data.interests)
             setHobbys(data?.interests.split(','))
         }
     }, [data])

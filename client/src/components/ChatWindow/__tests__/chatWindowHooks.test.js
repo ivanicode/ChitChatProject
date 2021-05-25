@@ -24,11 +24,13 @@ describe('ChatWindow hooks', () => {
             expect(typeof hookResult.result.current.sendMessage).toEqual('function')
 
             act(() => {
-                hookResult.sendMessage({})
-                hookResult.result.current.setTextMessage('text')
+                hookResult.result.current.writeMessage({target: {value: 'text'}})
+            })
+            act(() => {
+                hookResult.result.current.sendMessage({})
             })
 
-            expect(hookResult.result.current.textMessage).toEqual('text')
+            expect(hookResult.result.current.messagesArray).toEqual(['text'])
 
             const endpoint = 'http://localhost:8082'
             io(endpoint)

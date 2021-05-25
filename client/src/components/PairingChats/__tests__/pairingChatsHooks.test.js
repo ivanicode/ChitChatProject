@@ -39,6 +39,22 @@ describe('PairingChats hooks', () => {
             const {result} = renderHook(() => useSubmitPairingChats(saveData, {interests: ''}, global.testHistoryObject))
             expect(saveData).toHaveBeenCalledTimes(0)
         })
+        it('should set hobbys if interests come from fetch', async () => {
+
+            global.fetch = jest.fn()
+                .mockImplementation(
+                    () => Promise.resolve({
+                    json: () => Promise.resolve({interests: '1,2,3'})
+                }))
+
+            let hookResult;
+
+            await act( async () => {
+                hookResult = await renderHook(() => usePairingHooks())
+            })
+            
+            expect(hookResult.result.current.hobbys).toEqual(['1', '2', '3'])
+        })
     })
     describe('useManageFormData', () => {
         it('should return proper data', () => {

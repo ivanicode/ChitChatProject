@@ -24,10 +24,10 @@ export function useSendMessage(){
     
     if(textMessage){
       socket.emit('chat message', [textMessage, document.cookie.slice(5)])
-      setTextMessage('');
       const newMessageArray = [...messagesArray];
       newMessageArray.push(textMessage);
       setMessagesArray(newMessageArray);
+      setTextMessage('');
     }
 
     socket.on('chat message', function(msg) {

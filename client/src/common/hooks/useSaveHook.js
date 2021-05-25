@@ -47,6 +47,7 @@ export function useSave(path) {
         .then( async (response) => {
             const headers = response.headers
             const status = response.status;
+            
             const body = response.statusText.toLowerCase() === 'no content' ? null : await response.json()
             if(status < 400){
                 dispatch({ type: 'success', response: {status, body, headers}});

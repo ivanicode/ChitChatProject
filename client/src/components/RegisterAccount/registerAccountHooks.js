@@ -58,9 +58,7 @@ export function useSubmitForm(errors, formData, saveData) {
     }, [formData, errors])
 
     function submitForm(event){
-
         if(formIsValid){
-            
             saveData({data: formData, onSuccess: onRegisterSuccess});
             function onRegisterSuccess(_, headers){
                 setCookie('user', headers.get('insertedid'))
